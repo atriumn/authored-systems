@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const essays = (await getCollection('essays')).sort((a, b) => a.data.order - b.data.order);
+
+const series: Record<string, typeof essays> = {};
+for (const essay of essays) {
+  const s = essay.data.series || 'Standalone';
+  if (!series[s]) series[s] = [];
+  series[s].push(essay);
+}
+---
+
+<Base title="Essays — authored.systems" description="Long-form arguments for structure-first operational systems.">
+  <div class="max-w-3xl mx-auto px-6 py-16">
+    <header class="mb-16">
+      <p class="font-mono text-sm text-accent mb-4 tracking-wide">ESSAYS</p>
+      <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">The Arguments</h1>
+      <p class="text-muted leading-relaxed">
+        Each essay stands alone. Together they build the case for why structure beats intelligence,
+        why authored beats inferred, and why six primitives are all you need.
+      </p>
+    </header>
+
+    {Object.entries(series).map(([seriesName, seriesEssays]) => (
+      <section class="mb-14">
+        <h2 class="font-mono text-sm text-muted mb-6 tracking-wide uppercase">{seriesName}</h2>
+        <div class="space-y-6">
+          {seriesEssays.map((essay) => (
+            <a href={`/essays/${essay.id}`} class="block group">
+              <article class="py-4 border-b border-rule group-hover:border-accent transition-colors">
+                <div class="flex items-baseline justify-between gap-4">
+                  <h3 class="text-lg font-semibold tracking-tight group-hover:text-accent transition-colors">
+                    {essay.data.title}
+                  </h3>
+                  <time class="text-sm font-mono text-muted whitespace-nowrap">{essay.data.date}</time>
+                </div>
+                <p class="text-sm text-muted mt-1">{essay.data.description}</p>
+              </article>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</Base>

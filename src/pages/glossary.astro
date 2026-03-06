@@ -1,0 +1,140 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Glossary — authored.systems" description="The six primitives that every operation decomposes into.">
+  <div class="max-w-3xl mx-auto px-6 py-16">
+    <header class="mb-16">
+      <p class="font-mono text-sm text-accent mb-4 tracking-wide">GLOSSARY</p>
+      <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">The Six Primitives</h1>
+      <p class="text-muted leading-relaxed">
+        Every operation — all of them, always — decomposes into these six irreducible building blocks.
+        Everything else is a composition. Nothing decomposes further. Nothing is missing.
+      </p>
+    </header>
+
+    <div class="space-y-14">
+      <section id="policy">
+        <div class="flex items-baseline gap-3 mb-3">
+          <span class="font-mono text-accent text-xs px-2 py-0.5 border border-accent/30 rounded">P</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Policy</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          The rule. Why something must happen. Policies are declarative — they state what must be true, not how to make it true.
+          Policy is constraint, not intelligence.
+        </p>
+        <p class="text-sm text-muted leading-relaxed mb-3">Policies answer the questions your system must know from day one:</p>
+        <ul class="text-sm text-muted space-y-1 ml-4 list-disc">
+          <li>"Can this operator take this job?" &rarr; assignment policy</li>
+          <li>"Does this step require a photo?" &rarr; spot check policy</li>
+          <li>"How many kids fit in a party slot?" &rarr; capacity policy</li>
+          <li>"Does this critical finding need escalation?" &rarr; escalation policy</li>
+        </ul>
+      </section>
+
+      <section id="procedure">
+        <div class="flex items-baseline gap-3 mb-3">
+          <span class="font-mono text-accent text-xs px-2 py-0.5 border border-accent/30 rounded">Pr</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Procedure</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          The steps. How to do the thing. A procedure is a sequence of actions that satisfies a policy.
+          Procedures are specific — they name the thing, the steps, and the order.
+        </p>
+        <div class="text-sm text-muted space-y-1">
+          <p><em>"Warped Wall Weekly Inspection"</em> — surface, kick plate, ledge grip, landing mat.</p>
+          <p><em>"Lawn Service — Full Visit"</em> — arrive, assess, mow, edge, blow, photograph, complete.</p>
+        </div>
+      </section>
+
+      <section id="asset">
+        <div class="flex items-baseline gap-3 mb-3">
+          <span class="font-mono text-accent text-xs px-2 py-0.5 border border-accent/30 rounded">A</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Asset</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          The thing being acted on. An asset has state that can be good or not good.
+          Not all assets are physical — some are ephemeral (a party booking, a job, a legal case).
+          They exist for a window, then become historical.
+        </p>
+        <div class="text-sm text-muted space-y-1">
+          <p>A water heater. A property. A gym obstacle. A SaaS subscription. A consulting engagement.</p>
+        </div>
+      </section>
+
+      <section id="person">
+        <div class="flex items-baseline gap-3 mb-3">
+          <span class="font-mono text-accent text-xs px-2 py-0.5 border border-accent/30 rounded">Pe</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Person</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          Who does the work. Three roles always emerge: the person doing it, the person overseeing it, the person paying for it.
+          A person carries two dimensions: <strong class="text-ink">availability</strong> (when they can work) and <strong class="text-ink">qualifications</strong> (what they can do).
+        </p>
+        <div class="text-sm border border-rule rounded-lg overflow-hidden">
+          <table class="w-full">
+            <thead><tr class="border-b border-rule bg-paper">
+              <th class="text-left px-4 py-2 font-mono text-xs text-muted">Context</th>
+              <th class="text-left px-4 py-2 font-mono text-xs text-muted">Doer</th>
+              <th class="text-left px-4 py-2 font-mono text-xs text-muted">Overseer</th>
+              <th class="text-left px-4 py-2 font-mono text-xs text-muted">Customer</th>
+            </tr></thead>
+            <tbody class="text-muted">
+              <tr class="border-b border-rule"><td class="px-4 py-2">Property</td><td class="px-4 py-2">Steward</td><td class="px-4 py-2">Manager</td><td class="px-4 py-2">Homeowner</td></tr>
+              <tr class="border-b border-rule"><td class="px-4 py-2">Gym</td><td class="px-4 py-2">Coach</td><td class="px-4 py-2">Coordinator</td><td class="px-4 py-2">Parent</td></tr>
+              <tr><td class="px-4 py-2">Lawn Care</td><td class="px-4 py-2">Provider</td><td class="px-4 py-2">Platform Ops</td><td class="px-4 py-2">Homeowner</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="event">
+        <div class="flex items-baseline gap-3 mb-3">
+          <span class="font-mono text-accent text-xs px-2 py-0.5 border border-accent/30 rounded">E</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Event</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          The trigger. What causes work to happen. Events don't just trigger individual procedures — they trigger
+          <strong class="text-ink">chains</strong> of work. Event + Policy together are the operational brain.
+        </p>
+        <div class="text-sm text-muted space-y-2">
+          <p><strong class="text-ink">Scheduled</strong> — Monday 8am. Quarterly. 30 minutes before close.</p>
+          <p><strong class="text-ink">Condition-based</strong> — Member count &gt; 45. Provider rating &lt; 3.5. Coverage gap detected.</p>
+          <p><strong class="text-ink">Occurrence-based</strong> — Customer books service. Provider marks complete. Injury reported.</p>
+        </div>
+      </section>
+
+      <section id="ledger">
+        <div class="flex items-baseline gap-3 mb-3">
+          <span class="font-mono text-accent text-xs px-2 py-0.5 border border-accent/30 rounded">L</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Ledger</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          The record. Proof it happened. Every execution of every procedure writes to the ledger.
+          The ledger is <strong class="text-ink">append-only</strong>. The ledger is the moat.
+        </p>
+        <p class="text-sm text-muted leading-relaxed">
+          The ledger also feeds back into operations: policies can query the ledger to make decisions
+          ("3 complaints in 30 days" requires reading historical entries). Over time, the ledger becomes
+          the training set for cross-business intelligence.
+        </p>
+      </section>
+    </div>
+
+    <!-- The Flow -->
+    <div class="mt-16 pt-16 border-t border-rule">
+      <h2 class="text-xl font-semibold tracking-tight mb-6">The Flow</h2>
+      <pre class="bg-ink text-rule rounded-lg p-6 text-sm font-mono leading-relaxed overflow-x-auto"><code>Events signal that something happened (or should happen).
+Policies decide what to do about it.
+Runbooks define the work.
+Procedures execute the steps.
+People do the work, on Assets.
+The Ledger records everything.
+The Ledger feeds back into Policy decisions.</code></pre>
+      <p class="text-sm text-muted mt-4">
+        This is not a linear pipeline. It's a loop. Events fire. Policies evaluate constraints.
+        The engine runs procedures. The ledger records outcomes. Those outcomes feed back into future policy decisions.
+      </p>
+    </div>
+  </div>
+</Base>

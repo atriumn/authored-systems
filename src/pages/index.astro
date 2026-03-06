@@ -1,0 +1,281 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="authored.systems — Ten Principles for Operational Systems">
+  <div class="max-w-3xl mx-auto px-6">
+    <!-- Hero -->
+    <header class="pt-20 pb-16 border-b border-rule">
+      <p class="font-mono text-sm text-accent mb-6 tracking-wide">TEN PRINCIPLES</p>
+      <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.15] mb-6">
+        Authored Systems
+      </h1>
+      <p class="text-lg text-muted leading-relaxed max-w-2xl">
+        Every operation decomposes into six primitives. Every AI decision should trace to a rule a human wrote.
+        These principles aren't aspirational. They're drawn from watching how hospitals run trauma bays,
+        how airlines run pre-flight, and how every "AI agent" demo falls apart the moment you ask
+        <em>"what happens when it's wrong?"</em>
+      </p>
+    </header>
+
+    <!-- The Ten Principles -->
+    <div class="py-16 space-y-16">
+      <section>
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-mono text-accent text-sm">01</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Six primitives. Always six.</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          Every operation decomposes into six things: <strong class="text-ink">Policy, Procedure, Asset, Person, Event, Ledger.</strong>
+          Everything else is a composition. Nothing decomposes further. Nothing is missing.
+        </p>
+        <details class="group">
+          <summary class="text-sm font-mono text-accent cursor-pointer hover:text-blue-700 transition-colors">
+            Proof: The Subtraction Test
+          </summary>
+          <p class="mt-3 text-sm text-muted leading-relaxed pl-4 border-l-2 border-rule">
+            Pick any operation you run. Write down the six primitives. Now remove one.
+            Remove Policy — who decides what's allowed? Remove Person — who does the work?
+            Remove Ledger — how do you prove it happened?
+            If the operation still makes sense with five, you've found a flaw. Nobody has yet.
+          </p>
+        </details>
+      </section>
+
+      <section>
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-mono text-accent text-sm">02</span>
+          <h2 class="text-2xl font-semibold tracking-tight">"Agent" is a noun that hides verbs.</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          When you say "AI agent," you stop asking what it actually does. Take the agent apart and you'll find the same six bricks every time.
+          The agent didn't add a capability. It obscured a structure.
+        </p>
+        <details class="group">
+          <summary class="text-sm font-mono text-accent cursor-pointer hover:text-blue-700 transition-colors">
+            Proof: The Decomposition Challenge
+          </summary>
+          <p class="mt-3 text-sm text-muted leading-relaxed pl-4 border-l-2 border-rule">
+            Take any AI agent demo. List every action the agent takes. Classify each one:
+            is it applying a rule? Following steps? Acting on a thing? Assigning work? Responding to a trigger? Recording what happened?
+            You will run out of actions before you run out of primitives.
+          </p>
+        </details>
+      </section>
+
+      <section>
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-mono text-accent text-sm">03</span>
+          <h2 class="text-2xl font-semibold tracking-tight">AI sees. It never writes.</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          AI's job is perception — turning unstructured input into structured data. It classifies. It drafts. It suggests.
+          But it does not author. The moment AI-generated content enters the record without attribution and sourcing,
+          the entire audit trail is compromised.
+        </p>
+        <details class="group">
+          <summary class="text-sm font-mono text-accent cursor-pointer hover:text-blue-700 transition-colors">
+            Proof: The Attribution Audit
+          </summary>
+          <p class="mt-3 text-sm text-muted leading-relaxed pl-4 border-l-2 border-rule">
+            Open any system where AI "manages" records. Find five entries. For each one, answer:
+            Who created this? Was it a human, an automation, or a model? If a model, what source data did it use?
+            Can you trace the entry back to a real event?
+            If you can't answer all four for every entry, your system of record is already contaminated.
+          </p>
+        </details>
+      </section>
+
+      <section>
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-mono text-accent text-sm">04</span>
+          <h2 class="text-2xl font-semibold tracking-tight">The agent is commodity. Your policy is the asset.</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          Claude, GPT, Gemini — any of them can read email. They're interchangeable execution engines.
+          What isn't interchangeable is your rules: which emails matter, what "urgent" means in your context,
+          who gets escalated to. An agent without a policy is a contractor without a scope of work.
+        </p>
+        <details class="group">
+          <summary class="text-sm font-mono text-accent cursor-pointer hover:text-blue-700 transition-colors">
+            Proof: The Swap Test
+          </summary>
+          <p class="mt-3 text-sm text-muted leading-relaxed pl-4 border-l-2 border-rule">
+            Take your most sophisticated AI workflow. Replace the model with a different provider. What breaks?
+            If the answer is "the routing logic, the rules, the escalation paths" — those aren't in the model.
+            They're in your configuration, your prompts, your tribal knowledge.
+            That's your policy. It's the valuable part, and it probably isn't versioned, reviewed, or even written down.
+          </p>
+        </details>
+      </section>
+
+      <section>
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-mono text-accent text-sm">05</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Hallucinations are inevitable. Architecture decides if they matter.</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          Every AI hallucinates. This is a property of the technology, not a bug in the implementation.
+          Primitives make hallucinations a classification error — caught at the next gate, corrected, logged.
+          Agents make hallucinations a decision error — acted on before anyone reviews it.
+        </p>
+        <details class="group">
+          <summary class="text-sm font-mono text-accent cursor-pointer hover:text-blue-700 transition-colors">
+            Proof: The Misclassification Drill
+          </summary>
+          <p class="mt-3 text-sm text-muted leading-relaxed pl-4 border-l-2 border-rule">
+            Feed your AI a tricky input. Watch what happens.
+            In a primitives architecture, the wrong classification triggers the wrong policy,
+            but the policy is visible, the action is logged, and a human can reverse it.
+            In an agent architecture, the wrong classification triggers... whatever the model decided.
+            Can you undo it? How long before you even notice?
+          </p>
+        </details>
+      </section>
+
+      <section>
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-mono text-accent text-sm">06</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Accountability requires explainability. Explainability requires structure.</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          The first time a customer asks "why did it do that?" and the answer is "the model decided," trust breaks.
+          It doesn't come back. Every automated decision must trace to a policy a human wrote, approved, and can change.
+        </p>
+        <details class="group">
+          <summary class="text-sm font-mono text-accent cursor-pointer hover:text-blue-700 transition-colors">
+            Proof: The "Why?" Walkback
+          </summary>
+          <p class="mt-3 text-sm text-muted leading-relaxed pl-4 border-l-2 border-rule">
+            Pick any automated action your system took in the last week. Walk it back:
+            Why did it happen? What rule triggered it? Who approved that rule? When was it last reviewed?
+            If you hit a dead end — "the AI decided" — that's the gap. That's where trust will break.
+          </p>
+        </details>
+      </section>
+
+      <section>
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-mono text-accent text-sm">07</span>
+          <h2 class="text-2xl font-semibold tracking-tight">You don't have procedures. You have habits.</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          The gap between "what we say we do" and "what we actually do" is where all operational risk lives.
+          The expert does it right because they remember. The new hire does it wrong because nobody wrote it down.
+        </p>
+        <details class="group">
+          <summary class="text-sm font-mono text-accent cursor-pointer hover:text-blue-700 transition-colors">
+            Proof: The New Hire Test
+          </summary>
+          <p class="mt-3 text-sm text-muted leading-relaxed pl-4 border-l-2 border-rule">
+            Hand your most important process to someone who's never done it. Give them only what's written down.
+            No phone calls, no Slack messages, no "just ask Jordan."
+            Time how long it takes before they're stuck.
+            That's the length of your actual procedure. Everything after that is tribal knowledge.
+          </p>
+        </details>
+      </section>
+
+      <section>
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-mono text-accent text-sm">08</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Structure first. AI second.</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          If you haven't written down how your business works, you're paying to automate operations you haven't defined.
+          The most expensive AI deployment in the world can't fix a process that doesn't exist.
+        </p>
+        <details class="group">
+          <summary class="text-sm font-mono text-accent cursor-pointer hover:text-blue-700 transition-colors">
+            Proof: The Pencil Test
+          </summary>
+          <p class="mt-3 text-sm text-muted leading-relaxed pl-4 border-l-2 border-rule">
+            Before you automate anything, try running it on paper for a week. Printed checklists, handwritten logs.
+            If the paper version works, you have a real procedure and AI will make it faster.
+            If the paper version collapses, you don't have a process to automate. You have a conversation to have first.
+          </p>
+        </details>
+      </section>
+
+      <section>
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-mono text-accent text-sm">09</span>
+          <h2 class="text-2xl font-semibold tracking-tight">The kill switch test.</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          What happens if you turn off the AI? If it stops your operation, the AI isn't assisting your operation — it <em>is</em> your operation.
+          When AI is bounded to specific perception points, the rest of your system works fine without it.
+          You lose speed. You don't lose the ability to operate.
+        </p>
+        <details class="group">
+          <summary class="text-sm font-mono text-accent cursor-pointer hover:text-blue-700 transition-colors">
+            Proof: Actually do it.
+          </summary>
+          <p class="mt-3 text-sm text-muted leading-relaxed pl-4 border-l-2 border-rule">
+            Pick a Saturday. Turn off every AI integration. Run your operation manually.
+            What breaks? What slows down? What stops entirely?
+            The things that slow down are good AI deployments. The things that stop entirely are dependencies you didn't know you had.
+          </p>
+        </details>
+      </section>
+
+      <section>
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-mono text-accent text-sm">10</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Authored beats inferred.</h2>
+        </div>
+        <p class="text-muted leading-relaxed mb-4">
+          An inferred semantic layer tells you what <em>has happened</em>. An authored system tells you what <em>should happen</em> — and alerts
+          you when reality diverges. This is the whole thesis in one line: <strong class="text-ink">your operation already has six primitives.
+          The question is whether they're authored — or whether they're just in someone's head, waiting to walk out the door.</strong>
+        </p>
+        <details class="group">
+          <summary class="text-sm font-mono text-accent cursor-pointer hover:text-blue-700 transition-colors">
+            Proof: The Resignation Test
+          </summary>
+          <p class="mt-3 text-sm text-muted leading-relaxed pl-4 border-l-2 border-rule">
+            Your best operator quits on Friday. No notice. What do you lose?
+            If the answer is "their knowledge of how we actually do things" — that knowledge was never authored.
+            It was inferred from their behavior. Authored systems survive personnel changes. Inferred systems survive people.
+          </p>
+        </details>
+      </section>
+    </div>
+
+    <!-- How to Read -->
+    <div class="border-t border-rule py-16">
+      <h2 class="text-xl font-semibold tracking-tight mb-6">How to Read These Principles</h2>
+      <div class="grid sm:grid-cols-2 gap-6 text-sm">
+        <div class="p-5 border border-rule rounded-lg">
+          <p class="font-mono text-accent mb-2">Founders</p>
+          <p class="text-muted">Start with #4 (The Swap Test) and #9 (The Kill Switch Test). They'll tell you how dependent your product is on things you don't own.</p>
+        </div>
+        <div class="p-5 border border-rule rounded-lg">
+          <p class="font-mono text-accent mb-2">Operators</p>
+          <p class="text-muted">Start with #7 (The New Hire Test) and #10 (The Resignation Test). They'll tell you how much of your operation lives in someone's head.</p>
+        </div>
+        <div class="p-5 border border-rule rounded-lg">
+          <p class="font-mono text-accent mb-2">Engineers</p>
+          <p class="text-muted">Start with #2 (The Decomposition Challenge) and #5 (The Misclassification Drill). They'll change how you think about "AI integration."</p>
+        </div>
+        <div class="p-5 border border-rule rounded-lg">
+          <p class="font-mono text-accent mb-2">Investors</p>
+          <p class="text-muted">Start with #1 (The Subtraction Test) and #8 (The Pencil Test). A framework for evaluating every AI-for-operations pitch you'll hear this year.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="border-t border-rule py-16 text-center">
+      <p class="text-muted italic max-w-xl mx-auto leading-relaxed">
+        These principles emerged from building real systems for real operations — property management, fitness facilities,
+        field services — and discovering that the same six structures kept appearing regardless of industry.
+        We didn't design them. We discovered them. And then we authored them.
+      </p>
+      <div class="mt-8 flex justify-center gap-6 text-sm">
+        <a href="/essays" class="font-mono text-accent hover:text-blue-700 transition-colors">Read the essays &rarr;</a>
+        <a href="/glossary" class="font-mono text-accent hover:text-blue-700 transition-colors">Learn the primitives &rarr;</a>
+      </div>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Ten principles for building operational systems where humans author the rules and machines enforce them.' } = Astro.props;
+const isHome = Astro.url.pathname === '/';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen">
+    <nav class="border-b border-rule">
+      <div class="max-w-3xl mx-auto px-6 py-5 flex items-center justify-between">
+        <a href="/" class="font-mono text-sm tracking-tight hover:text-accent transition-colors">
+          authored.systems
+        </a>
+        <div class="flex gap-6 text-sm text-muted">
+          <a href="/essays" class="hover:text-ink transition-colors">Essays</a>
+          <a href="/glossary" class="hover:text-ink transition-colors">Glossary</a>
+          <a href="/about" class="hover:text-ink transition-colors">About</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="border-t border-rule mt-24">
+      <div class="max-w-3xl mx-auto px-6 py-12 text-sm text-muted">
+        <div class="flex flex-col sm:flex-row justify-between gap-4">
+          <div>
+            <span class="font-mono">authored.systems</span>
+            <span class="mx-2">&middot;</span>
+            Structure first. AI second.
+          </div>
+          <div class="flex gap-6">
+            <a href="https://onrunbook.com" class="hover:text-ink transition-colors">Runbook</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>
