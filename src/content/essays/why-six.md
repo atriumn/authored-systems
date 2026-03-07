@@ -9,9 +9,9 @@ series: "The Core Thesis"
 
 ## Where This Came From
 
-My family owns a gym. Not a franchise — an independent ninja warrior facility with obstacles, coaches, birthday parties, open gym sessions, and all the operational chaos that comes with a physical space full of kids and equipment that can hurt them.
+I'm a software engineer who left tech to open a small business. My family owns a gym — not a franchise, an independent ninja warrior facility with obstacles, coaches, birthday parties, open gym sessions, and all the operational chaos that comes with a physical space full of kids and equipment that can hurt them.
 
-I'm the founding CTO of the company building software for operations like this. Not because I wanted to be in software — because nothing on the market modeled what we actually do. Every tool I evaluated was either a generic checklist app that ignored the structure of our work, or an enterprise platform that cost more than our annual revenue.
+I figured building software for my own operation would be the easy part. I'd spent years building software for other people's problems. Now I had my own. Nothing on the market modeled what we actually do. Every tool I evaluated was either a generic checklist app that ignored the structure of our work, or an enterprise platform that cost more than our annual revenue.
 
 So I started building. And I kept hitting the same wall: every "simple" feature — assign a coach to an opening shift, schedule a weekly equipment inspection, track a damaged obstacle, cap a birthday party at 25 kids — required me to model the same handful of concepts. I didn't set out to find primitives. I set out to build a checklist app for our team and kept discovering things I couldn't avoid naming.
 
@@ -122,7 +122,7 @@ Six is the number where nothing decomposes further and nothing is missing. It's 
 
 Frameworks that sound clean usually are. They were designed top-down, from theory, to be memorable. They work in a slide deck and break in a codebase.
 
-This one is ugly in origin. It came from building software for a family gym and discovering that every "simple" feature required the same six concepts. Then building the same software for property management and finding the same six. I didn't set out to find primitives. I set out to stop losing institutional knowledge every time a coach quit. The framework is what survived.
+This one is ugly in origin. It came from a software engineer who thought building tools for his own gym would be easy, and discovered that every "simple" feature required the same six concepts. Then building the same software for property management and finding the same six. I didn't set out to find primitives. I set out to stop losing institutional knowledge every time a coach quit. The framework is what survived.
 
 The number isn't the point. The irreducibility is. If you can decompose one of the six into the others, it shouldn't be a primitive. If you find a seventh that can't be decomposed, it should be. I haven't found one yet. I've been looking.
 
