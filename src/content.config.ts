@@ -10,6 +10,7 @@ const essays = defineCollection({
     description: z.string(),
     order: z.number(),
     series: z.string().optional(),
+    draft: z.boolean().optional(),
   }),
 });
 

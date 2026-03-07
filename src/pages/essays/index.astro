@@ -2,7 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const essays = (await getCollection('essays')).sort((a, b) => a.data.order - b.data.order);
+const essays = (await getCollection('essays'))
+  .filter((e) => !e.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
 
 const series: Record<string, typeof essays> = {};
 for (const essay of essays) {

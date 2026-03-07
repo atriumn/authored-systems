@@ -3,7 +3,7 @@ import Essay from '../../layouts/Essay.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const essays = await getCollection('essays');
+  const essays = (await getCollection('essays')).filter((e) => !e.data.draft);
   return essays.map((essay) => ({
     params: { id: essay.id },
     props: { essay },
