@@ -20,8 +20,6 @@ import Base from '../layouts/Base.astro';
         <line id="path-procedure-person" x1="650" y1="150" x2="650" y2="350" stroke="#e5e5e3" stroke-width="2" opacity="0" />
         <line id="path-person-asset" x1="600" y1="400" x2="450" y2="400" stroke="#e5e5e3" stroke-width="2" opacity="0" />
         <line id="path-asset-ledger" x1="350" y1="400" x2="200" y2="400" stroke="#e5e5e3" stroke-width="2" opacity="0" />
-        <!-- Feedback: Ledger back up to Event -->
-        <line id="path-ledger-event" x1="150" y1="350" x2="150" y2="150" stroke="#e5e5e3" stroke-width="2" stroke-dasharray="6 4" opacity="0" />
 
         <!-- Chevron arrows on paths -->
         <polygon id="arrow-1" points="345,95 355,100 345,105" fill="#e5e5e3" opacity="0" />
@@ -29,97 +27,235 @@ import Base from '../layouts/Base.astro';
         <polygon id="arrow-3" points="645,345 650,355 655,345" fill="#e5e5e3" opacity="0" />
         <polygon id="arrow-4" points="455,395 445,400 455,405" fill="#e5e5e3" opacity="0" />
         <polygon id="arrow-5" points="205,395 195,400 205,405" fill="#e5e5e3" opacity="0" />
-        <polygon id="arrow-6" points="145,155 150,145 155,155" fill="#e5e5e3" opacity="0" />
 
-        <!-- Event node -->
+        <!-- Event node — lightning bolt in circle -->
         <g id="node-event" class="node" opacity="0">
-          <circle cx="150" cy="100" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
-          <text x="150" y="96" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Event</text>
-          <text x="150" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">trigger</text>
+          <circle cx="150" cy="100" r="44" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
+          <path d="M148,76 L140,100 L150,98 L144,124 L160,94 L149,96 Z" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linejoin="round" />
+          <text x="150" y="158" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Event</text>
         </g>
 
-        <!-- Policy node -->
+        <!-- Policy node — document with lines -->
         <g id="node-policy" class="node" opacity="0">
-          <circle cx="400" cy="100" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
-          <text x="400" y="96" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Policy</text>
-          <text x="400" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">rule</text>
+          <rect x="358" y="60" width="84" height="80" rx="6" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
+          <!-- Dog-ear fold -->
+          <path d="M422,60 L422,72 L442,72" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
+          <!-- Rule lines -->
+          <line x1="372" y1="84" x2="428" y2="84" stroke="#1a1a1a" stroke-width="1" opacity="0.4" />
+          <line x1="372" y1="94" x2="420" y2="94" stroke="#1a1a1a" stroke-width="1" opacity="0.4" />
+          <line x1="372" y1="104" x2="424" y2="104" stroke="#1a1a1a" stroke-width="1" opacity="0.4" />
+          <line x1="372" y1="114" x2="412" y2="114" stroke="#1a1a1a" stroke-width="1" opacity="0.4" />
+          <text x="400" y="158" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Policy</text>
         </g>
 
-        <!-- Procedure node -->
+        <!-- Procedure node — checklist with checkboxes -->
         <g id="node-procedure" class="node" opacity="0">
-          <circle cx="650" cy="100" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
-          <text x="650" y="96" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Procedure</text>
-          <text x="650" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">steps</text>
+          <rect x="608" y="60" width="84" height="80" rx="6" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
+          <!-- Checkbox rows -->
+          <rect x="620" y="76" width="10" height="10" rx="2" fill="none" stroke="#1a1a1a" stroke-width="1.2" />
+          <path d="M622,81 L624,84 L629,78" fill="none" stroke="#1a1a1a" stroke-width="1.2" />
+          <line x1="636" y1="82" x2="678" y2="82" stroke="#1a1a1a" stroke-width="1" opacity="0.4" />
+          <rect x="620" y="94" width="10" height="10" rx="2" fill="none" stroke="#1a1a1a" stroke-width="1.2" />
+          <path d="M622,99 L624,102 L629,96" fill="none" stroke="#1a1a1a" stroke-width="1.2" />
+          <line x1="636" y1="100" x2="678" y2="100" stroke="#1a1a1a" stroke-width="1" opacity="0.4" />
+          <rect x="620" y="112" width="10" height="10" rx="2" fill="none" stroke="#1a1a1a" stroke-width="1.2" />
+          <line x1="636" y1="118" x2="678" y2="118" stroke="#1a1a1a" stroke-width="1" opacity="0.4" />
+          <text x="650" y="158" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Procedure</text>
         </g>
 
-        <!-- Person node (main) -->
+        <!-- Person node — bust silhouette -->
         <g id="node-person" class="node" opacity="0">
-          <circle cx="650" cy="400" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
-          <text x="650" y="396" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Person</text>
-          <text x="650" y="414" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">who</text>
+          <circle cx="650" cy="400" r="44" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
+          <!-- Head -->
+          <circle cx="650" cy="388" r="10" fill="none" stroke="#1a1a1a" stroke-width="1.5" />
+          <!-- Shoulders -->
+          <path d="M634,416 Q634,404 650,404 Q666,404 666,416" fill="none" stroke="#1a1a1a" stroke-width="1.5" />
+          <text x="650" y="458" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Person</text>
         </g>
 
-        <!-- Extra person nodes for optimization (step 9) -->
+        <!-- Extra person nodes for optimization (step 9) — row at y=400 -->
         <g id="node-person-b" class="node" opacity="0">
-          <circle cx="720" cy="310" r="30" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
-          <text x="720" y="306" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#6b6b6b">Person B</text>
-          <text x="720" y="320" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b6b6b">4.2 / 8mi</text>
+          <circle cx="540" cy="400" r="30" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
+          <circle cx="540" cy="392" r="6" fill="none" stroke="#1a1a1a" stroke-width="1.2" />
+          <path d="M530,412 Q530,404 540,404 Q550,404 550,412" fill="none" stroke="#1a1a1a" stroke-width="1.2" />
+          <text x="540" y="440" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b6b6b">4.2 / 8mi</text>
         </g>
         <g id="node-person-c" class="node" opacity="0">
-          <circle cx="750" cy="400" r="30" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
-          <text x="750" y="396" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#6b6b6b">Person C</text>
-          <text x="750" y="410" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b6b6b">3.9 / 14mi</text>
+          <circle cx="760" cy="400" r="30" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
+          <circle cx="760" cy="392" r="6" fill="none" stroke="#1a1a1a" stroke-width="1.2" />
+          <path d="M750,412 Q750,404 760,404 Q770,404 770,412" fill="none" stroke="#1a1a1a" stroke-width="1.2" />
+          <text x="760" y="440" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b6b6b">3.9 / 14mi</text>
         </g>
 
-        <!-- Asset node -->
+        <!-- Asset node — rounded box with tag -->
         <g id="node-asset" class="node" opacity="0">
-          <circle cx="400" cy="400" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
-          <text x="400" y="396" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Asset</text>
-          <text x="400" y="414" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">thing</text>
+          <rect x="356" y="368" width="88" height="64" rx="12" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
+          <!-- ID tag line -->
+          <line x1="376" y1="388" x2="424" y2="388" stroke="#1a1a1a" stroke-width="1" opacity="0.4" />
+          <!-- Barcode-like hash marks -->
+          <line x1="382" y1="400" x2="382" y2="414" stroke="#1a1a1a" stroke-width="1.5" opacity="0.3" />
+          <line x1="388" y1="400" x2="388" y2="414" stroke="#1a1a1a" stroke-width="2.5" opacity="0.3" />
+          <line x1="394" y1="400" x2="394" y2="414" stroke="#1a1a1a" stroke-width="1" opacity="0.3" />
+          <line x1="399" y1="400" x2="399" y2="414" stroke="#1a1a1a" stroke-width="2" opacity="0.3" />
+          <line x1="405" y1="400" x2="405" y2="414" stroke="#1a1a1a" stroke-width="1.5" opacity="0.3" />
+          <line x1="411" y1="400" x2="411" y2="414" stroke="#1a1a1a" stroke-width="1" opacity="0.3" />
+          <line x1="417" y1="400" x2="417" y2="414" stroke="#1a1a1a" stroke-width="2" opacity="0.3" />
+          <text x="400" y="458" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Asset</text>
         </g>
 
-        <!-- Ledger node -->
+        <!-- Ledger node — open book / stacked rows -->
         <g id="node-ledger" class="node" opacity="0">
-          <circle cx="150" cy="400" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
-          <text x="150" y="396" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Ledger</text>
-          <text x="150" y="414" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">proof</text>
+          <rect x="108" y="368" width="84" height="64" rx="4" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
+          <!-- Spine -->
+          <line x1="150" y1="368" x2="150" y2="432" stroke="#1a1a1a" stroke-width="1.5" />
+          <!-- Left page lines -->
+          <line x1="118" y1="382" x2="144" y2="382" stroke="#1a1a1a" stroke-width="1" opacity="0.3" />
+          <line x1="118" y1="392" x2="144" y2="392" stroke="#1a1a1a" stroke-width="1" opacity="0.3" />
+          <line x1="118" y1="402" x2="144" y2="402" stroke="#1a1a1a" stroke-width="1" opacity="0.3" />
+          <line x1="118" y1="412" x2="140" y2="412" stroke="#1a1a1a" stroke-width="1" opacity="0.3" />
+          <!-- Right page lines -->
+          <line x1="156" y1="382" x2="182" y2="382" stroke="#1a1a1a" stroke-width="1" opacity="0.3" />
+          <line x1="156" y1="392" x2="182" y2="392" stroke="#1a1a1a" stroke-width="1" opacity="0.3" />
+          <line x1="156" y1="402" x2="182" y2="402" stroke="#1a1a1a" stroke-width="1" opacity="0.3" />
+          <line x1="156" y1="412" x2="178" y2="412" stroke="#1a1a1a" stroke-width="1" opacity="0.3" />
+          <text x="150" y="458" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Ledger</text>
         </g>
 
-        <!-- Messy squiggle input (appears at step 7) -->
-        <path id="squiggle" d="M 10,100 Q 25,80 35,100 Q 45,120 55,100 Q 65,80 75,100 Q 85,120 95,100" stroke="#cc3333" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0" />
+        <!-- Chaos flood (appears at step 7) -->
+        <g id="chaos-flood" opacity="0">
+          <!-- Blurry overwhelm circle behind Event -->
+          <circle cx="150" cy="100" r="70" fill="#cc3333" opacity="0.08" />
+          <!-- Squiggle paths at varying angles -->
+          <path class="squiggle-animate" d="M 10,100 Q 25,80 35,100 Q 45,120 55,100 Q 65,80 75,100 Q 85,120 95,100" stroke="#cc3333" stroke-width="2.5" fill="none" stroke-linecap="round" />
+          <path class="squiggle-animate" d="M 30,50 Q 45,35 55,55 Q 65,75 80,55 Q 95,35 110,55" stroke="#e05533" stroke-width="2" fill="none" stroke-linecap="round" />
+          <path class="squiggle-animate" d="M 50,150 Q 60,130 75,155 Q 90,175 105,150 Q 115,130 130,150" stroke="#cc3333" stroke-width="2" fill="none" stroke-linecap="round" />
+          <path class="squiggle-animate" d="M 180,45 Q 200,30 215,50 Q 230,70 245,45" stroke="#e07744" stroke-width="1.8" fill="none" stroke-linecap="round" />
+          <!-- Scattered emoji/text fragments -->
+          <text class="squiggle-animate" x="20" y="70" font-size="18">📸</text>
+          <text class="squiggle-animate" x="210" y="160" font-size="18">🎤</text>
+          <text class="squiggle-animate" x="80" y="170" font-size="18">💬</text>
+          <text class="squiggle-animate" x="230" y="70" font-family="JetBrains Mono, monospace" font-size="14" fill="#cc3333" font-weight="700">???</text>
+        </g>
 
-        <!-- Blue AI perception filter bar (step 8) -->
+        <!-- AI perception filter bar + glow (step 8) -->
         <g id="ai-filter" opacity="0">
-          <rect x="96" y="70" width="8" height="60" rx="4" fill="#2563eb" opacity="0.7" />
-          <text x="100" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#2563eb">AI</text>
+          <rect x="90" y="60" width="20" height="80" rx="4" fill="#2563eb" opacity="0.12" />
+          <rect x="94" y="65" width="12" height="70" rx="3" fill="#2563eb" opacity="0.6" />
+          <text x="100" y="52" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#2563eb">AI</text>
         </g>
 
-        <!-- AI optimization pulse around person (step 9) -->
-        <circle id="ai-opt-ring-a" cx="650" cy="400" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
-        <circle id="ai-opt-ring-b" cx="720" cy="310" r="36" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4 3" opacity="0" />
-        <circle id="ai-opt-ring-c" cx="750" cy="400" r="36" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4 3" opacity="0" />
-        <!-- "BEST" label on selected person -->
-        <text id="ai-best-label" x="650" y="360" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#2563eb" opacity="0">BEST MATCH</text>
+        <!-- AI optimization: underline + BEST MATCH badge (step 9) -->
+        <g id="ai-opt-highlight" opacity="0">
+          <rect id="ai-sweep-bar" x="530" y="440" width="0" height="3" rx="1.5" fill="#2563eb" opacity="0.5" />
+          <rect x="620" y="448" width="60" height="16" rx="3" fill="#2563eb" opacity="0" id="ai-best-badge-bg" />
+          <text id="ai-best-label" x="650" y="460" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" fill="#fff" opacity="0">BEST MATCH</text>
+        </g>
 
-        <!-- AI pattern detection: ledger lines + arc back to policy (step 10) -->
+        <!-- AI pattern detection: ledger scan lines (step 10) -->
         <g id="ai-ledger-lines" opacity="0">
-          <line x1="120" y1="385" x2="180" y2="385" stroke="#2563eb" stroke-width="1" opacity="0.5" />
-          <line x1="125" y1="392" x2="175" y2="392" stroke="#2563eb" stroke-width="1" opacity="0.5" />
-          <line x1="122" y1="399" x2="178" y2="399" stroke="#2563eb" stroke-width="1" opacity="0.5" />
-          <line x1="128" y1="406" x2="172" y2="406" stroke="#2563eb" stroke-width="1" opacity="0.5" />
-          <line x1="124" y1="413" x2="176" y2="413" stroke="#2563eb" stroke-width="1" opacity="0.5" />
+          <line x1="120" y1="385" x2="180" y2="385" stroke="#2563eb" stroke-width="1.5" opacity="0" class="ledger-scan-line" />
+          <line x1="125" y1="392" x2="175" y2="392" stroke="#2563eb" stroke-width="1.5" opacity="0" class="ledger-scan-line" />
+          <line x1="122" y1="399" x2="178" y2="399" stroke="#2563eb" stroke-width="1.5" opacity="0" class="ledger-scan-line" />
+          <line x1="128" y1="406" x2="172" y2="406" stroke="#2563eb" stroke-width="1.5" opacity="0" class="ledger-scan-line" />
+          <line x1="124" y1="413" x2="176" y2="413" stroke="#2563eb" stroke-width="1.5" opacity="0" class="ledger-scan-line" />
         </g>
-        <circle id="ai-pattern-ring" cx="150" cy="400" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
-        <!-- Arc from Ledger to Policy = "pattern suggests new rule" -->
-        <path id="ai-suggestion-arc" d="M 185,360 Q 280,250 365,140" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 3" fill="none" opacity="0" />
-        <polygon id="ai-suggestion-arrow" points="360,145 370,135 365,150" fill="#2563eb" opacity="0" />
-        <text id="ai-suggestion-label" x="260" y="240" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#2563eb" opacity="0" transform="rotate(-35, 260, 240)">pattern → new rule?</text>
+        <!-- Horizontal dashed line from Ledger to Policy (step 10) -->
+        <line id="ai-pattern-line" x1="200" y1="300" x2="370" y2="300" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 3" fill="none" opacity="0" />
+        <text id="ai-pattern-label" x="285" y="318" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#2563eb" opacity="0">pattern → suggest rule update</text>
 
-        <!-- AI perception ring for Event (step 8) -->
-        <circle id="ai-perception-ring" cx="150" cy="100" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
+        <!-- Final state: AI text labels at three edge points (step 11) -->
+        <g id="ai-edge-labels" opacity="0">
+          <text x="100" y="56" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#2563eb">AI</text>
+          <text x="650" y="345" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#2563eb">AI</text>
+          <text x="150" y="340" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#2563eb">AI</text>
+        </g>
 
-        <!-- Final state: all AI rings at edges (step 11) -->
-        <text id="ai-label" x="400" y="265" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#2563eb" opacity="0">AI LAYER</text>
+        <!-- Step 0: Blue AI blob — "You've been told AI is the answer" -->
+        <g id="ai-blob" opacity="0">
+          <circle cx="400" cy="250" r="80" fill="#2563eb" opacity="0.15" />
+          <circle cx="400" cy="250" r="60" fill="#2563eb" opacity="0.25" />
+          <circle cx="400" cy="250" r="36" fill="#2563eb" opacity="0.4" />
+          <text x="400" y="255" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="700" fill="#fff">AI</text>
+          <!-- Messy unlabeled arrows in/out -->
+          <line x1="260" y1="180" x2="348" y2="222" stroke="#2563eb" stroke-width="1.5" opacity="0.4" />
+          <line x1="280" y1="330" x2="352" y2="280" stroke="#2563eb" stroke-width="1.5" opacity="0.4" />
+          <line x1="520" y1="170" x2="450" y2="220" stroke="#2563eb" stroke-width="1.5" opacity="0.4" />
+          <line x1="540" y1="310" x2="452" y2="272" stroke="#2563eb" stroke-width="1.5" opacity="0.4" />
+          <line x1="400" y1="120" x2="400" y2="192" stroke="#2563eb" stroke-width="1.5" opacity="0.4" />
+          <line x1="400" y1="380" x2="400" y2="308" stroke="#2563eb" stroke-width="1.5" opacity="0.4" />
+          <!-- Small labels on arrows -->
+          <text x="250" y="175" font-family="JetBrains Mono, monospace" font-size="8" fill="#2563eb" opacity="0.5">events?</text>
+          <text x="265" y="340" font-family="JetBrains Mono, monospace" font-size="8" fill="#2563eb" opacity="0.5">people?</text>
+          <text x="525" y="165" font-family="JetBrains Mono, monospace" font-size="8" fill="#2563eb" opacity="0.5">data?</text>
+          <text x="535" y="322" font-family="JetBrains Mono, monospace" font-size="8" fill="#2563eb" opacity="0.5">rules?</text>
+        </g>
+
+        <!-- Step 12: Side-by-side comparison -->
+        <g id="comparison" opacity="0">
+          <!-- Left side: blue AI blob (no structure) -->
+          <text x="200" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="600" fill="#2563eb">THE PITCH</text>
+          <circle cx="200" cy="200" r="70" fill="#2563eb" opacity="0.12" />
+          <circle cx="200" cy="200" r="50" fill="#2563eb" opacity="0.2" />
+          <circle cx="200" cy="200" r="28" fill="#2563eb" opacity="0.35" />
+          <text x="200" y="205" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#fff">AI</text>
+          <!-- Chaos arrows -->
+          <line x1="130" y1="140" x2="172" y2="176" stroke="#2563eb" stroke-width="1" opacity="0.3" />
+          <line x1="130" y1="260" x2="175" y2="228" stroke="#2563eb" stroke-width="1" opacity="0.3" />
+          <line x1="270" y1="140" x2="228" y2="176" stroke="#2563eb" stroke-width="1" opacity="0.3" />
+          <line x1="270" y1="260" x2="225" y2="228" stroke="#2563eb" stroke-width="1" opacity="0.3" />
+          <!-- AI brand names -->
+          <text x="200" y="293" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6b6b6b">pick one...</text>
+          <text x="200" y="310" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#10a37f">ChatGPT</text>
+          <text x="200" y="327" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#d97706">Claude</text>
+          <text x="200" y="344" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#4285f4">Gemini</text>
+          <!-- Contrast labels -->
+          <text x="200" y="370" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b6b">no audit trail</text>
+          <text x="200" y="387" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b6b">no accountability</text>
+          <text x="200" y="404" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b6b">black box</text>
+          <text x="200" y="421" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b6b">AI is everything</text>
+
+          <!-- Divider -->
+          <line x1="400" y1="70" x2="400" y2="460" stroke="#e5e5e3" stroke-width="1" stroke-dasharray="4 4" />
+
+          <!-- Right side: authored system miniature (1.5x scale) -->
+          <text x="600" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="600" fill="#1a1a1a">THE SYSTEM</text>
+          <!-- Mini primitives loop — scaled up -->
+          <circle cx="510" cy="150" r="24" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
+          <text x="510" y="154" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1a1a">EVT</text>
+          <rect x="571" y="126" width="48" height="48" rx="4" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
+          <text x="595" y="154" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1a1a">POL</text>
+          <rect x="656" y="126" width="48" height="48" rx="4" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
+          <text x="680" y="154" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1a1a">PRC</text>
+          <circle cx="680" cy="270" r="24" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
+          <text x="680" y="274" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1a1a">PER</text>
+          <rect x="571" y="246" width="48" height="48" rx="8" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
+          <text x="595" y="274" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1a1a">AST</text>
+          <rect x="486" y="246" width="48" height="48" rx="3" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
+          <text x="510" y="274" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1a1a">LGR</text>
+          <!-- Mini connecting lines -->
+          <line x1="534" y1="150" x2="571" y2="150" stroke="#e5e5e3" stroke-width="1.2" />
+          <line x1="619" y1="150" x2="656" y2="150" stroke="#e5e5e3" stroke-width="1.2" />
+          <line x1="680" y1="174" x2="680" y2="246" stroke="#e5e5e3" stroke-width="1.2" />
+          <line x1="656" y1="270" x2="619" y2="270" stroke="#e5e5e3" stroke-width="1.2" />
+          <line x1="571" y1="270" x2="534" y2="270" stroke="#e5e5e3" stroke-width="1.2" />
+          <line x1="510" y1="246" x2="510" y2="174" stroke="#e5e5e3" stroke-width="1.2" stroke-dasharray="3 2" />
+          <!-- AI at edges label -->
+          <text x="600" y="320" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#2563eb">AI at the edges</text>
+          <!-- Contrast labels -->
+          <text x="600" y="348" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b6b">proof in the ledger</text>
+          <text x="600" y="365" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b6b">named person</text>
+          <text x="600" y="382" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b6b">explicit rules</text>
+          <text x="600" y="399" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b6b">AI is bounded + replaceable</text>
+        </g>
+
+        <!-- AI announce badge (pops center, flies to target) -->
+        <g id="ai-announce" opacity="0" style="transform-origin: 400px 250px">
+          <circle cx="400" cy="250" r="50" fill="#2563eb" opacity="0.15" />
+          <circle cx="400" cy="250" r="30" fill="#2563eb" opacity="0.3" />
+          <text id="ai-announce-text" x="400" y="256" text-anchor="middle"
+                font-family="JetBrains Mono, monospace" font-size="14"
+                font-weight="700" fill="#2563eb"></text>
+        </g>
 
         <!-- The dot (flows through the system) -->
         <circle id="dot" cx="150" cy="100" r="6" fill="#1a1a1a" opacity="0" />
@@ -134,7 +270,11 @@ import Base from '../layouts/Base.astro';
     <div class="steps">
       <div class="step" data-step="0">
         <div class="step-content">
-          <p class="step-label">Scroll to begin</p>
+          <h2>You run an operation.</h2>
+          <p>Things happen. People respond. Assets get used. And someone has to answer for what happened and why.</p>
+          <p>Property management. Field service. Healthcare. Logistics. Any business where the work is real, the people are accountable, and the outcomes matter.</p>
+          <p>You've been told AI is the answer — just dump it all in and let the model sort it out.</p>
+          <p class="step-label">Here's what actually works. ↓</p>
         </div>
       </div>
 
@@ -268,6 +408,15 @@ import Base from '../layouts/Base.astro';
           <h2>Structure first. Intelligence second.</h2>
           <p>The six primitives are the brain. AI is the senses — at the edges, never the center. Thin, bounded, replaceable.</p>
           <p class="finale">The brain is rules. The senses are AI. The record is proof.</p>
+        </div>
+      </div>
+
+      <div class="step" data-step="12">
+        <div class="step-content">
+          <h2>Two architectures.</h2>
+          <p>One dumps everything into a blue box and hopes for the best. No audit trail. No accountability. No way to explain what happened or why.</p>
+          <p>The other starts with structure — explicit rules, named people, proof in the ledger — then adds intelligence at the edges, where it belongs.</p>
+          <p class="finale">One is a black box. The other is an authored system.</p>
           <div class="links">
             <a href="/">Principles</a>
             <a href="/essays">Essays</a>
@@ -313,6 +462,11 @@ import Base from '../layouts/Base.astro';
     display: flex;
     align-items: center;
     padding: 2rem;
+  }
+
+  .step:first-child {
+    padding-top: 25vh;
+    align-items: flex-start;
   }
 
   .step-content {
@@ -415,15 +569,6 @@ import Base from '../layouts/Base.astro';
     text-decoration: underline;
   }
 
-  @keyframes pulse-ring {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-  }
-
-  .ai-glow {
-    animation: pulse-ring 2s ease-in-out infinite;
-  }
-
   @keyframes squiggle-shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-3px); }
@@ -434,10 +579,6 @@ import Base from '../layouts/Base.astro';
     animation: squiggle-shake 0.3s ease-in-out infinite;
   }
 
-  @keyframes dim-node {
-    0%, 100% { opacity: 0.3; }
-  }
-
   .node {
     transition: opacity 0.8s ease;
   }
@@ -446,45 +587,82 @@ import Base from '../layouts/Base.astro';
     transition: opacity 0.5s ease;
   }
 
+  #clean-dot {
+    filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.6));
+  }
+
+  #ai-announce {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+  }
+
   line, polygon, path, rect {
     transition: opacity 0.6s ease;
+  }
+
+  @media (max-width: 768px) {
+    .explain {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .graphic {
+      position: sticky;
+      top: 0;
+      height: 40vh;
+      min-height: 200px;
+      z-index: 1;
+    }
+
+    #diagram {
+      padding: 0.5rem;
+    }
+
+    .steps {
+      position: relative;
+      z-index: 2;
+    }
+
+    .step {
+      min-height: 60vh;
+      padding: 1rem;
+    }
+
+    .step-content {
+      max-width: 100%;
+    }
+
+    .step-content h2 {
+      font-size: 1.25rem;
+    }
   }
 </style>
 
 <script>
-  const steps = document.querySelectorAll('.step');
+  import scrollama from 'scrollama';
+
   let currentStep = 0;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const step = parseInt((entry.target as HTMLElement).dataset.step || '0');
-        if (step !== currentStep) {
-          currentStep = step;
-          updateDiagram(step);
-        }
-      }
-    });
-  }, {
-    threshold: 0.5
+  const scroller = scrollama();
+  scroller.setup({
+    step: '.step',
+    offset: 0.5,
+  }).onStepEnter(({ index }: { index: number }) => {
+    const step = index;
+    if (step !== currentStep) {
+      currentStep = step;
+      updateDiagram(step);
+    }
   });
 
-  steps.forEach(step => observer.observe(step));
+  window.addEventListener('resize', () => scroller.resize());
 
   function show(id: string, visible: boolean) {
     const el = document.getElementById(id);
     if (el) el.style.opacity = visible ? '1' : '0';
   }
 
-  function toggleClass(id: string, cls: string, on: boolean) {
-    const el = document.getElementById(id);
-    if (el) {
-      if (on) el.classList.add(cls);
-      else el.classList.remove(cls);
-    }
-  }
-
   let dotAnimation: number | null = null;
+  let stepTimeouts: ReturnType<typeof setTimeout>[] = [];
 
   function stopDot() {
     if (dotAnimation) {
@@ -493,15 +671,97 @@ import Base from '../layouts/Base.astro';
     }
   }
 
-  function updateDiagram(step: number) {
-    // === ACT 1: The Six Primitives ===
+  // Hide all diagram elements to start clean
+  function hideAll() {
+    // Primitives
+    ['node-event', 'node-policy', 'node-procedure', 'node-person', 'node-asset', 'node-ledger'].forEach(id => show(id, false));
+    // Paths + arrows
+    ['path-event-policy', 'path-policy-procedure', 'path-procedure-person', 'path-person-asset', 'path-asset-ledger'].forEach(id => show(id, false));
+    ['arrow-1', 'arrow-2', 'arrow-3', 'arrow-4', 'arrow-5'].forEach(id => show(id, false));
+    // Dots
+    show('dot', false);
+    show('clean-dot', false);
+    stopDot();
+    // AI announce
+    show('ai-announce', false);
+    const announceEl = document.getElementById('ai-announce');
+    if (announceEl) announceEl.style.transform = 'translate(0,0) scale(1)';
+    // AI elements
+    show('chaos-flood', false);
+    show('ai-filter', false);
+    show('node-person-b', false);
+    show('node-person-c', false);
+    show('ai-opt-highlight', false);
+    show('ai-best-label', false);
+    show('ai-best-badge-bg', false);
+    show('ai-ledger-lines', false);
+    show('ai-pattern-line', false);
+    show('ai-pattern-label', false);
+    show('ai-edge-labels', false);
+    // Reset ledger scan lines
+    document.querySelectorAll('.ledger-scan-line').forEach(el => (el as HTMLElement).style.opacity = '0');
+    // Clear any pending step timeouts
+    stepTimeouts.forEach(t => clearTimeout(t));
+    stepTimeouts = [];
+    // Bookend elements
+    show('ai-blob', false);
+    show('comparison', false);
+  }
 
-    // Step 1: Event
+  function announceAI(label: string, targetX: number, targetY: number, callback: () => void) {
+    const group = document.getElementById('ai-announce');
+    const text = document.getElementById('ai-announce-text');
+    if (!group || !text) { callback(); return; }
+
+    text.textContent = label;
+    // Reset to center, full size
+    group.style.transition = 'none';
+    group.style.transform = 'translate(0,0) scale(1)';
+    group.style.opacity = '1';
+    // Force reflow so the reset takes effect before transition
+    group.getBoundingClientRect();
+
+    // After a pause, fly to target
+    stepTimeouts.push(setTimeout(() => {
+      group.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease';
+      const dx = targetX - 400;
+      const dy = targetY - 250;
+      group.style.transform = `translate(${dx}px, ${dy}px) scale(0.4)`;
+      group.style.opacity = '0';
+    }, 1200));
+
+    // After fly completes, clean up and run callback
+    stepTimeouts.push(setTimeout(() => {
+      group.style.transition = 'none';
+      group.style.opacity = '0';
+      group.style.transform = 'translate(0,0) scale(1)';
+      callback();
+    }, 2050));
+  }
+
+  function updateDiagram(step: number) {
+    // Reset everything, then build up
+    hideAll();
+
+    // === Step 0: Blue AI blob opener ===
+    if (step === 0) {
+      show('ai-blob', true);
+      return;
+    }
+
+    // === Step 12: Two architectures comparison ===
+    if (step === 12) {
+      show('comparison', true);
+      return;
+    }
+
+    // === ACT 1: The Six Primitives (steps 1-6) ===
+
+    // Step 1+: Event
     show('node-event', step >= 1);
 
     // Static dot at Event for steps 1-5
     if (step >= 1 && step < 6) {
-      stopDot();
       show('dot', true);
       show('clean-dot', false);
       const dot = document.getElementById('dot');
@@ -509,35 +769,34 @@ import Base from '../layouts/Base.astro';
         dot.setAttribute('cx', '150');
         dot.setAttribute('cy', '100');
         dot.setAttribute('fill', '#1a1a1a');
+        dot.setAttribute('r', '6');
       }
     }
 
-    // Step 2: Policy + path
+    // Step 2+: Policy + path
     show('node-policy', step >= 2);
     show('path-event-policy', step >= 2);
     show('arrow-1', step >= 2);
 
-    // Step 3: Procedure + path
+    // Step 3+: Procedure + path
     show('node-procedure', step >= 3);
     show('path-policy-procedure', step >= 3);
     show('arrow-2', step >= 3);
 
-    // Step 4: Person + path
+    // Step 4+: Person + path
     show('node-person', step >= 4);
     show('path-procedure-person', step >= 4);
     show('arrow-3', step >= 4);
 
-    // Step 5: Asset + path
+    // Step 5+: Asset + path
     show('node-asset', step >= 5);
     show('path-person-asset', step >= 5);
     show('arrow-4', step >= 5);
 
-    // Step 6: Ledger + remaining paths + loop animation
+    // Step 6+: Ledger + remaining paths + loop animation
     show('node-ledger', step >= 6);
     show('path-asset-ledger', step >= 6);
     show('arrow-5', step >= 6);
-    show('path-ledger-event', step >= 6);
-    show('arrow-6', step >= 6);
 
     if (step === 6) {
       show('dot', true);
@@ -546,110 +805,100 @@ import Base from '../layouts/Base.astro';
       animateDot(false);
     }
 
-    // === ACT 2: The AI Layer ===
+    // === ACT 2: The AI Layer (steps 7-11) ===
 
-    // Step 7: The mess — squiggle appears, system breaks
-    show('squiggle', step === 7);
-    toggleClass('squiggle', 'squiggle-animate', step === 7);
+    // Step 7: The mess — chaos flood appears, system breaks
+    show('chaos-flood', step === 7);
     if (step === 7) {
-      // Dot stops, system stalled
       stopDot();
-      show('dot', false);
-      show('clean-dot', false);
     }
 
-    // Step 8: Perception — blue filter cleans the squiggle
-    show('ai-filter', step >= 8 && step <= 11);
-    show('ai-perception-ring', step >= 8 && step <= 11);
-    toggleClass('ai-perception-ring', 'ai-glow', step === 8);
-    show('squiggle', step === 7); // squiggle gone after 7
-    if (step === 8) {
-      // Clean blue dot emerges, system flows again
-      show('dot', false);
-      show('clean-dot', true);
-      animateDot(true);
-    }
-
-    // Step 9: Optimization — three person nodes, AI picks best
-    show('node-person-b', step === 9);
-    show('node-person-c', step === 9);
-    show('ai-opt-ring-a', step === 9);
-    show('ai-opt-ring-b', step === 9);
-    show('ai-opt-ring-c', step === 9);
-    show('ai-best-label', step === 9);
-    toggleClass('ai-opt-ring-a', 'ai-glow', step === 9);
-    if (step === 9) {
-      // Dim the non-selected persons
-      const pb = document.getElementById('node-person-b');
-      const pc = document.getElementById('node-person-c');
-      if (pb) pb.style.opacity = '0.4';
-      if (pc) pc.style.opacity = '0.4';
-      show('clean-dot', true);
-      animateDot(true);
-    }
-
-    // Step 10: Pattern Detection — ledger glows, arc to policy
-    show('ai-ledger-lines', step >= 10 && step <= 11);
-    show('ai-pattern-ring', step >= 10 && step <= 11);
-    show('ai-suggestion-arc', step >= 10 && step <= 11);
-    show('ai-suggestion-arrow', step >= 10 && step <= 11);
-    show('ai-suggestion-label', step >= 10 && step <= 11);
-    toggleClass('ai-pattern-ring', 'ai-glow', step === 10);
-    toggleClass('ai-ledger-lines', 'ai-glow', step === 10);
-    if (step === 10) {
-      show('clean-dot', true);
-      animateDot(true);
-    }
-
-    // Step 11: Complete system — everything visible, all AI at edges
-    if (step === 11) {
-      // All primitives visible (already are from step 6+)
-      // AI rings visible but not pulsing
-      show('ai-perception-ring', true);
-      show('ai-pattern-ring', true);
+    // Step 8: Perception — announce then filter bar + dot
+    if (step >= 8 && step <= 11 && step !== 8) {
       show('ai-filter', true);
-      show('ai-label', true);
-      show('ai-ledger-lines', true);
-      show('ai-suggestion-arc', true);
-      show('ai-suggestion-arrow', true);
-      show('ai-suggestion-label', true);
+    }
+    if (step === 8) {
+      announceAI('PERCEPTION', 100, 100, () => {
+        show('ai-filter', true);
+        show('clean-dot', true);
+        animateDot(true);
+      });
+    }
 
-      // Hide extra persons (back to single person node)
+    // Step 9: Optimization — announce then staggered person reveal
+    if (step === 9) {
+      announceAI('OPTIMIZATION', 650, 400, () => {
+        show('ai-opt-highlight', true);
+        show('clean-dot', true);
+        animateDot(true);
+        // Stagger: B appears, then main Person, then C
+        const pb = document.getElementById('node-person-b');
+        const person = document.getElementById('node-person');
+        const pc = document.getElementById('node-person-c');
+        if (pb) pb.style.opacity = '0';
+        if (pc) pc.style.opacity = '0';
+        stepTimeouts.push(setTimeout(() => { if (pb) pb.style.opacity = '1'; }, 0));
+        stepTimeouts.push(setTimeout(() => { if (person) person.style.opacity = '1'; }, 200));
+        stepTimeouts.push(setTimeout(() => { if (pc) pc.style.opacity = '1'; }, 400));
+        // After all appear, sweep highlight bar and reveal winner
+        stepTimeouts.push(setTimeout(() => {
+          const sweep = document.getElementById('ai-sweep-bar');
+          if (sweep) {
+            sweep.style.transition = 'width 0.5s ease';
+            sweep.setAttribute('width', '240');
+          }
+        }, 800));
+        stepTimeouts.push(setTimeout(() => {
+          show('ai-best-label', true);
+          show('ai-best-badge-bg', true);
+          if (pb) pb.style.opacity = '0.3';
+          if (pc) pc.style.opacity = '0.3';
+        }, 1300));
+      });
+    } else {
       show('node-person-b', false);
       show('node-person-c', false);
-      show('ai-opt-ring-a', false);
-      show('ai-opt-ring-b', false);
-      show('ai-opt-ring-c', false);
-      show('ai-best-label', false);
+    }
 
-      // Remove all pulses
-      ['ai-perception-ring', 'ai-pattern-ring', 'ai-ledger-lines'].forEach(id => {
-        toggleClass(id, 'ai-glow', false);
+    // Step 10: Pattern Detection — announce then ledger scan
+    show('ai-ledger-lines', step >= 10 && step <= 11);
+    if (step === 10) {
+      announceAI('PATTERN', 150, 400, () => {
+        show('clean-dot', true);
+        animateDot(true);
+        // Stagger ledger scan lines
+        const scanLines = document.querySelectorAll('.ledger-scan-line');
+        scanLines.forEach((line, i) => {
+          stepTimeouts.push(setTimeout(() => {
+            (line as HTMLElement).style.opacity = '1';
+          }, i * 100));
+        });
+        // After scanning, show horizontal line and label
+        stepTimeouts.push(setTimeout(() => {
+          show('ai-pattern-line', true);
+          show('ai-pattern-label', true);
+        }, scanLines.length * 100 + 200));
       });
+    }
+
+    // Step 11: Complete system — AI text labels at three edge points
+    if (step === 11) {
+      show('ai-filter', true);
+      show('ai-edge-labels', true);
+      show('ai-ledger-lines', true);
+      show('ai-pattern-line', true);
+      show('ai-pattern-label', true);
+      // Make ledger scan lines fully visible
+      document.querySelectorAll('.ledger-scan-line').forEach(el => (el as HTMLElement).style.opacity = '1');
 
       show('clean-dot', true);
       animateDot(true);
     }
+  }
 
-    // Hide AI stuff for primitive-only steps
-    if (step < 7) {
-      show('squiggle', false);
-      show('ai-filter', false);
-      show('ai-perception-ring', false);
-      show('clean-dot', false);
-      show('node-person-b', false);
-      show('node-person-c', false);
-      show('ai-opt-ring-a', false);
-      show('ai-opt-ring-b', false);
-      show('ai-opt-ring-c', false);
-      show('ai-best-label', false);
-      show('ai-ledger-lines', false);
-      show('ai-pattern-ring', false);
-      show('ai-suggestion-arc', false);
-      show('ai-suggestion-arrow', false);
-      show('ai-suggestion-label', false);
-      show('ai-label', false);
-    }
+  // Easing function: ease-in-out cubic
+  function easeInOut(t: number): number {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
 
   function animateDot(useBlue: boolean) {
@@ -660,7 +909,7 @@ import Base from '../layouts/Base.astro';
     // Hide the other dot
     show(useBlue ? 'dot' : 'clean-dot', false);
 
-    // Full loop: Event -> Policy -> Procedure -> Person -> Asset -> Ledger -> Event
+    // One pass: Event -> Policy -> Procedure -> Person -> Asset -> Ledger (no loop back)
     const waypoints = [
       { x: 150, y: 100 },  // Event
       { x: 400, y: 100 },  // Policy
@@ -668,31 +917,63 @@ import Base from '../layouts/Base.astro';
       { x: 650, y: 400 },  // Person
       { x: 400, y: 400 },  // Asset
       { x: 150, y: 400 },  // Ledger
-      { x: 150, y: 100 },  // Back to Event
     ];
 
     let wpIndex = 0;
     let progress = 0;
-    const speed = 0.015;
+    const speed = 0.012;
+    const dwellDuration = 18; // frames to dwell at each node (~300ms at 60fps)
+    let dwellCounter = 0;
+    let isDwelling = false;
+    const baseRadius = 6;
 
     stopDot();
 
     function frame() {
+      if (isDwelling) {
+        // Pulse: scale up slightly during dwell
+        const dwellProgress = dwellCounter / dwellDuration;
+        const pulseScale = 1 + 0.4 * Math.sin(dwellProgress * Math.PI);
+        dot.setAttribute('r', String(baseRadius * pulseScale));
+        dwellCounter++;
+        if (dwellCounter >= dwellDuration) {
+          isDwelling = false;
+          dwellCounter = 0;
+          dot.setAttribute('r', String(baseRadius));
+          // Move to next segment or stop at end
+          wpIndex++;
+          if (wpIndex >= waypoints.length - 1) {
+            // Stay at Ledger — don't loop
+            return;
+          }
+          progress = 0;
+        }
+        dotAnimation = requestAnimationFrame(frame);
+        return;
+      }
+
       progress += speed;
 
       if (progress >= 1) {
-        progress = 0;
-        wpIndex++;
-        if (wpIndex >= waypoints.length - 1) {
-          wpIndex = 0;
-        }
+        // Snap to waypoint and start dwell
+        const target = waypoints[wpIndex + 1] || waypoints[0];
+        dot.setAttribute('cx', String(target.x));
+        dot.setAttribute('cy', String(target.y));
+        progress = 1;
+        isDwelling = true;
+        dwellCounter = 0;
+        dotAnimation = requestAnimationFrame(frame);
+        return;
       }
 
       const from = waypoints[wpIndex];
-      const to = waypoints[wpIndex + 1];
+      const to = waypoints[wpIndex + 1] || waypoints[0];
 
-      const x = from.x + (to.x - from.x) * progress;
-      const y = from.y + (to.y - from.y) * progress;
+      // Apply ease-in-out to progress
+      const eased = easeInOut(progress);
+
+      const x = from.x + (to.x - from.x) * eased;
+      const y = from.y + (to.y - from.y) * eased;
 
       dot.setAttribute('cx', String(x));
       dot.setAttribute('cy', String(y));
@@ -702,4 +983,7 @@ import Base from '../layouts/Base.astro';
 
     frame();
   }
+
+  // Show step 0 immediately on load (Scrollama doesn't fire until scroll)
+  updateDiagram(0);
 </script>
