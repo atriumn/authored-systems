@@ -7,86 +7,83 @@ import Base from '../layouts/Base.astro';
     <!-- Sticky graphic -->
     <div class="graphic">
       <svg id="diagram" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
-        <!-- Grid layout for 6 nodes:
+        <!-- Layout:
              Event(150,100) -> Policy(400,100) -> Procedure(650,100)
                                                        |
              Ledger(150,400) <- Asset(400,400) <- Person(650,400)
-             Ledger feeds back to Policy (dotted)
+             Ledger feeds back to Event (left side, up)
         -->
 
-        <!-- Paths (hidden initially) -->
-        <g id="paths" opacity="0">
-          <line x1="210" y1="100" x2="340" y2="100" stroke="#e5e5e3" stroke-width="2" />
-          <line x1="460" y1="100" x2="590" y2="100" stroke="#e5e5e3" stroke-width="2" />
-          <line x1="650" y1="160" x2="650" y2="340" stroke="#e5e5e3" stroke-width="2" />
-          <line x1="590" y1="400" x2="460" y2="400" stroke="#e5e5e3" stroke-width="2" />
-          <line x1="340" y1="400" x2="210" y2="400" stroke="#e5e5e3" stroke-width="2" />
-          <!-- Feedback loop: Ledger back to Policy -->
-          <path d="M 150 340 L 150 250 Q 150 200 200 200 L 340 150" stroke="#e5e5e3" stroke-width="2" fill="none" stroke-dasharray="6 4" opacity="0" id="feedback-path" />
-        </g>
+        <!-- Connecting paths (hidden initially, revealed per-step) -->
+        <line id="path-event-policy" x1="200" y1="100" x2="350" y2="100" stroke="#e5e5e3" stroke-width="2" opacity="0" />
+        <line id="path-policy-procedure" x1="450" y1="100" x2="600" y2="100" stroke="#e5e5e3" stroke-width="2" opacity="0" />
+        <line id="path-procedure-person" x1="650" y1="150" x2="650" y2="350" stroke="#e5e5e3" stroke-width="2" opacity="0" />
+        <line id="path-person-asset" x1="600" y1="400" x2="450" y2="400" stroke="#e5e5e3" stroke-width="2" opacity="0" />
+        <line id="path-asset-ledger" x1="350" y1="400" x2="200" y2="400" stroke="#e5e5e3" stroke-width="2" opacity="0" />
+        <!-- Feedback: Ledger back up to Event -->
+        <line id="path-ledger-event" x1="150" y1="350" x2="150" y2="150" stroke="#e5e5e3" stroke-width="2" stroke-dasharray="6 4" opacity="0" />
 
-        <!-- Arrow heads on paths -->
-        <defs>
-          <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-            <path d="M0,0 L8,3 L0,6" fill="#e5e5e3" />
-          </marker>
-          <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-            <path d="M0,0 L8,3 L0,6" fill="#2563eb" />
-          </marker>
-        </defs>
+        <!-- Chevron arrows on paths -->
+        <polygon id="arrow-1" points="345,95 355,100 345,105" fill="#e5e5e3" opacity="0" />
+        <polygon id="arrow-2" points="595,95 605,100 595,105" fill="#e5e5e3" opacity="0" />
+        <polygon id="arrow-3" points="645,345 650,355 655,345" fill="#e5e5e3" opacity="0" />
+        <polygon id="arrow-4" points="455,395 445,400 455,405" fill="#e5e5e3" opacity="0" />
+        <polygon id="arrow-5" points="205,395 195,400 205,405" fill="#e5e5e3" opacity="0" />
+        <polygon id="arrow-6" points="145,155 150,145 155,155" fill="#e5e5e3" opacity="0" />
 
         <!-- Event node -->
         <g id="node-event" class="node" opacity="0">
-          <circle cx="150" cy="100" r="50" fill="none" stroke="#1a1a1a" stroke-width="2" />
+          <circle cx="150" cy="100" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
           <text x="150" y="96" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Event</text>
           <text x="150" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">trigger</text>
         </g>
 
         <!-- Policy node -->
         <g id="node-policy" class="node" opacity="0">
-          <circle cx="400" cy="100" r="50" fill="none" stroke="#1a1a1a" stroke-width="2" />
+          <circle cx="400" cy="100" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
           <text x="400" y="96" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Policy</text>
           <text x="400" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">rule</text>
         </g>
 
         <!-- Procedure node -->
         <g id="node-procedure" class="node" opacity="0">
-          <circle cx="650" cy="100" r="50" fill="none" stroke="#1a1a1a" stroke-width="2" />
+          <circle cx="650" cy="100" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
           <text x="650" y="96" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Procedure</text>
           <text x="650" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">steps</text>
         </g>
 
         <!-- Person node -->
         <g id="node-person" class="node" opacity="0">
-          <circle cx="650" cy="400" r="50" fill="none" stroke="#1a1a1a" stroke-width="2" />
+          <circle cx="650" cy="400" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
           <text x="650" y="396" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Person</text>
           <text x="650" y="414" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">who</text>
         </g>
 
         <!-- Asset node -->
         <g id="node-asset" class="node" opacity="0">
-          <circle cx="400" cy="400" r="50" fill="none" stroke="#1a1a1a" stroke-width="2" />
+          <circle cx="400" cy="400" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
           <text x="400" y="396" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Asset</text>
           <text x="400" y="414" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">thing</text>
         </g>
 
         <!-- Ledger node -->
         <g id="node-ledger" class="node" opacity="0">
-          <circle cx="150" cy="400" r="50" fill="none" stroke="#1a1a1a" stroke-width="2" />
+          <circle cx="150" cy="400" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
           <text x="150" y="396" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Ledger</text>
           <text x="150" y="414" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">proof</text>
         </g>
 
+        <!-- AI glow rings (hidden until AI steps) -->
+        <circle id="ai-perception" cx="150" cy="100" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
+        <circle id="ai-optimize-policy" cx="400" cy="100" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
+        <circle id="ai-optimize-person" cx="650" cy="400" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
+        <circle id="ai-pattern" cx="150" cy="400" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
+
+        <!-- AI label -->
+        <text id="ai-label" x="400" y="265" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#2563eb" opacity="0">AI LAYER</text>
+
         <!-- The dot (flows through the system) -->
         <circle id="dot" cx="150" cy="100" r="6" fill="#1a1a1a" opacity="0" />
-
-        <!-- The messy input (squiggle) -->
-        <path id="squiggle" d="M 30 100 Q 50 70 60 100 Q 70 130 80 100 Q 90 70 100 100" stroke="#1a1a1a" stroke-width="2" fill="none" opacity="0" />
-
-        <!-- AI perception layer -->
-        <g id="ai-perception" opacity="0">
-          <rect x="95" y="60" width="10" height="80" rx="5" fill="#2563eb" opacity="0.15" />
-        </g>
 
       </svg>
     </div>
@@ -95,55 +92,128 @@ import Base from '../layouts/Base.astro';
     <div class="steps">
       <div class="step" data-step="0">
         <div class="step-content">
-          <p class="step-label font-mono text-accent text-sm">Scroll to begin</p>
+          <p class="step-label">Scroll to begin</p>
         </div>
       </div>
 
       <div class="step" data-step="1">
         <div class="step-content">
           <h2>Something happened.</h2>
-          <p>A parent books a birthday party. A sensor trips. A coach calls in sick. Monday hits 8am.</p>
           <p>An event fires. But it just sits there. Nothing knows what to do with it.</p>
+          <div class="examples">
+            <div class="example"><span class="example-label">Property</span> Homeowner reports a leak</div>
+            <div class="example"><span class="example-label">Landscaping</span> Customer books a mow</div>
+            <div class="example"><span class="example-label">ER</span> Patient walks through the door</div>
+          </div>
         </div>
       </div>
 
       <div class="step" data-step="2">
         <div class="step-content">
           <h2>Now there's a rule.</h2>
-          <p>The event has a path. A policy decides what happens next — who's eligible, what's allowed, what the constraints are.</p>
-          <p>But the rule points to... nothing. No steps to follow.</p>
+          <p>A policy decides what happens next — who's eligible, what's allowed, what the constraints are.</p>
+          <div class="examples">
+            <div class="example"><span class="example-label">Property</span> Water leak = emergency. 2-hour SLA. Notify owner.</div>
+            <div class="example"><span class="example-label">Landscaping</span> Match crew by zone, rating, and availability</div>
+            <div class="example"><span class="example-label">ER</span> Triage: ESI Level 2. See within 10 minutes.</div>
+          </div>
         </div>
       </div>
 
       <div class="step" data-step="3">
         <div class="step-content">
           <h2>Now there's a how.</h2>
-          <p>Steps materialize. First this, then that. In order. With gates. The event flows through a defined procedure.</p>
-          <p>But no one's doing it.</p>
+          <p>Steps materialize. First this, then that. In order. With gates.</p>
+          <div class="examples">
+            <div class="example"><span class="example-label">Property</span> Dispatch plumber. Confirm arrival. Document repair. Close.</div>
+            <div class="example"><span class="example-label">Landscaping</span> Arrive. Assess. Mow. Edge. Blow. Photo. Complete.</div>
+            <div class="example"><span class="example-label">ER</span> Vitals. History. Assessment. Orders. Reassess.</div>
+          </div>
         </div>
       </div>
 
       <div class="step" data-step="4">
         <div class="step-content">
           <h2>Now someone's accountable.</h2>
-          <p>A person picks up the work. Not just anyone — someone qualified, available, and assigned by policy.</p>
-          <p>But what are they working on?</p>
+          <p>Not just anyone — someone qualified, available, and assigned by policy.</p>
+          <div class="examples">
+            <div class="example"><span class="example-label">Property</span> Licensed plumber, within 15 miles, rated 4.5+</div>
+            <div class="example"><span class="example-label">Landscaping</span> Crew lead certified for this property size</div>
+            <div class="example"><span class="example-label">ER</span> Attending physician, on shift, credentialed for trauma</div>
+          </div>
         </div>
       </div>
 
       <div class="step" data-step="5">
         <div class="step-content">
           <h2>Now there's a thing.</h2>
-          <p>The warped wall. The water heater. The customer account. The asset — the thing being acted on, with state that matters.</p>
-          <p>But did it happen?</p>
+          <p>The asset — with identity, state, and history that persists across every event.</p>
+          <div class="examples">
+            <div class="example"><span class="example-label">Property</span> Unit 4B kitchen — water heater, installed 2019, last inspected 7 months ago</div>
+            <div class="example"><span class="example-label">Landscaping</span> 1247 Oak St — bermuda grass, 0.3 acres, last service 12 days ago</div>
+            <div class="example"><span class="example-label">ER</span> Bed 7 — patient, 58M, chest pain, prior cardiac history</div>
+          </div>
         </div>
       </div>
 
       <div class="step" data-step="6">
         <div class="step-content">
           <h2>Now there's proof.</h2>
-          <p>The ledger records everything. Who did what, when, what they found. Append-only. Immutable. The record feeds back into future decisions.</p>
-          <p class="font-semibold mt-4">Six primitives. Always six.</p>
+          <p>The ledger records everything. Who did what, when, what they found. Append-only. Immutable.</p>
+          <p>The record feeds back into future decisions.</p>
+          <div class="examples">
+            <div class="example"><span class="example-label">Property</span> Plumber arrived 10:42am. Fixed supply line. Photos attached. Cost: $340.</div>
+            <div class="example"><span class="example-label">Landscaping</span> Service complete 2:15pm. Before/after photos. Crew rating: 4.8.</div>
+            <div class="example"><span class="example-label">ER</span> Troponin negative. Discharged 14:30. Follow-up scheduled. Full chart documented.</div>
+          </div>
+          <p class="finale">Six primitives. Always six.</p>
+        </div>
+      </div>
+
+      <div class="step" data-step="7">
+        <div class="step-content ai-step">
+          <p class="ai-badge">AI MODE 1</p>
+          <h2>Perception</h2>
+          <p>AI watches the event stream. It classifies, routes, and escalates — not by guessing, but by reading structure.</p>
+          <div class="examples">
+            <div class="example"><span class="example-label">Property</span> Photo of ceiling stain → classified as water damage, severity: high</div>
+            <div class="example"><span class="example-label">Landscaping</span> GPS ping at property → arrival confirmed, timer started</div>
+            <div class="example"><span class="example-label">ER</span> Vitals entered → auto-flags tachycardia, alerts attending</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" data-step="8">
+        <div class="step-content ai-step">
+          <p class="ai-badge">AI MODE 2</p>
+          <h2>Optimization</h2>
+          <p>AI reads the policy and the people. It matches the right person to the right work — factoring qualifications, proximity, load, and history.</p>
+          <div class="examples">
+            <div class="example"><span class="example-label">Property</span> 3 plumbers available → selects one with best rating for this building</div>
+            <div class="example"><span class="example-label">Landscaping</span> Resequences route to save 40 min across 8 stops</div>
+            <div class="example"><span class="example-label">ER</span> Assigns overflow patient to provider with lowest current acuity load</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" data-step="9">
+        <div class="step-content ai-step">
+          <p class="ai-badge">AI MODE 3</p>
+          <h2>Pattern Detection</h2>
+          <p>AI reads the ledger. It finds what humans miss — recurring failures, drifting SLAs, procedures that always stall at step 3.</p>
+          <div class="examples">
+            <div class="example"><span class="example-label">Property</span> Unit 4B: 3rd water event in 14 months. Recommends pipe replacement.</div>
+            <div class="example"><span class="example-label">Landscaping</span> Crew B averaging 22% longer on similar lots. Flag for review.</div>
+            <div class="example"><span class="example-label">ER</span> Door-to-doc time trending up 12% over 6 weeks. Staffing model alert.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" data-step="10">
+        <div class="step-content">
+          <h2>Structure first. Intelligence second.</h2>
+          <p>AI doesn't replace the system. It reads it, rides it, and makes it better — because someone authored the structure for it to follow.</p>
+          <p class="finale">That's the whole idea.</p>
         </div>
       </div>
 
@@ -186,8 +256,8 @@ import Base from '../layouts/Base.astro';
   }
 
   .step-content {
-    max-width: 360px;
-    background: rgba(250, 250, 248, 0.92);
+    max-width: 380px;
+    background: rgba(250, 250, 248, 0.95);
     backdrop-filter: blur(8px);
     border: 1px solid #e5e5e3;
     border-radius: 12px;
@@ -206,7 +276,69 @@ import Base from '../layouts/Base.astro';
   .step-content p {
     color: #6b6b6b;
     line-height: 1.7;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .step-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #2563eb;
+  }
+
+  .examples {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .example {
+    font-size: 0.8rem;
+    color: #6b6b6b;
+    line-height: 1.5;
+    padding-left: 0.75rem;
+    border-left: 2px solid #e5e5e3;
+  }
+
+  .example-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #2563eb;
+    display: block;
+    margin-bottom: 0.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .finale {
+    font-weight: 600;
+    color: #1a1a1a !important;
+    margin-top: 1rem;
+  }
+
+  .ai-step {
+    border-color: #2563eb;
+    border-width: 2px;
+  }
+
+  .ai-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem !important;
+    font-weight: 600;
+    color: #2563eb !important;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem !important;
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .ai-glow {
+    animation: pulse-ring 2s ease-in-out infinite;
   }
 
   .node {
@@ -215,6 +347,14 @@ import Base from '../layouts/Base.astro';
 
   #dot {
     transition: opacity 0.5s ease;
+  }
+
+  line, polygon {
+    transition: opacity 0.6s ease;
+  }
+
+  #ai-perception, #ai-optimize-policy, #ai-optimize-person, #ai-pattern, #ai-label {
+    transition: opacity 0.6s ease;
   }
 </style>
 
@@ -225,7 +365,7 @@ import Base from '../layouts/Base.astro';
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const step = parseInt(entry.target.dataset.step);
+        const step = parseInt((entry.target as HTMLElement).dataset.step || '0');
         if (step !== currentStep) {
           currentStep = step;
           updateDiagram(step);
@@ -238,54 +378,112 @@ import Base from '../layouts/Base.astro';
 
   steps.forEach(step => observer.observe(step));
 
-  function updateDiagram(step: number) {
-    // Step 1: Event appears
-    const event = document.getElementById('node-event');
-    const dot = document.getElementById('dot');
-    if (event) event.style.opacity = step >= 1 ? '1' : '0';
-    if (dot) {
-      dot.style.opacity = step >= 1 ? '1' : '0';
-      dot.setAttribute('cx', '150');
-      dot.setAttribute('cy', '100');
-    }
-
-    // Step 2: Policy appears, path connects
-    const policy = document.getElementById('node-policy');
-    const paths = document.getElementById('paths');
-    if (policy) policy.style.opacity = step >= 2 ? '1' : '0';
-    if (paths) paths.style.opacity = step >= 2 ? '1' : '0';
-
-    // Step 3: Procedure appears
-    const procedure = document.getElementById('node-procedure');
-    if (procedure) procedure.style.opacity = step >= 3 ? '1' : '0';
-
-    // Step 4: Person appears
-    const person = document.getElementById('node-person');
-    if (person) person.style.opacity = step >= 4 ? '1' : '0';
-
-    // Step 5: Asset appears
-    const asset = document.getElementById('node-asset');
-    if (asset) asset.style.opacity = step >= 5 ? '1' : '0';
-
-    // Step 6: Ledger appears, system is complete
-    const ledger = document.getElementById('node-ledger');
-    const feedback = document.getElementById('feedback-path');
-    if (ledger) ledger.style.opacity = step >= 6 ? '1' : '0';
-    if (feedback) feedback.style.opacity = step >= 6 ? '1' : '0';
-
-    // Animate dot through the system when all 6 are present
-    if (step >= 6 && dot) {
-      animateDot();
-    }
+  function show(id: string, visible: boolean) {
+    const el = document.getElementById(id);
+    if (el) el.style.opacity = visible ? '1' : '0';
   }
 
   let dotAnimation: number | null = null;
+
+  function stopDot() {
+    if (dotAnimation) {
+      cancelAnimationFrame(dotAnimation);
+      dotAnimation = null;
+    }
+  }
+
+  function updateDiagram(step: number) {
+    // Step 1: Event
+    show('node-event', step >= 1);
+    show('dot', step >= 1 && step < 6);
+
+    // Reset dot position for pre-loop steps
+    if (step >= 1 && step < 6) {
+      stopDot();
+      const dot = document.getElementById('dot');
+      if (dot) {
+        dot.setAttribute('cx', '150');
+        dot.setAttribute('cy', '100');
+      }
+    }
+
+    // Step 2: Policy + path
+    show('node-policy', step >= 2);
+    show('path-event-policy', step >= 2);
+    show('arrow-1', step >= 2);
+
+    // Step 3: Procedure + path
+    show('node-procedure', step >= 3);
+    show('path-policy-procedure', step >= 3);
+    show('arrow-2', step >= 3);
+
+    // Step 4: Person + path
+    show('node-person', step >= 4);
+    show('path-procedure-person', step >= 4);
+    show('arrow-3', step >= 4);
+
+    // Step 5: Asset + path
+    show('node-asset', step >= 5);
+    show('path-person-asset', step >= 5);
+    show('arrow-4', step >= 5);
+
+    // Step 6: Ledger + remaining paths + loop animation
+    show('node-ledger', step >= 6);
+    show('path-asset-ledger', step >= 6);
+    show('arrow-5', step >= 6);
+    show('path-ledger-event', step >= 6);
+    show('arrow-6', step >= 6);
+
+    if (step >= 6) {
+      show('dot', true);
+      animateDot();
+    } else {
+      stopDot();
+    }
+
+    // AI Layer
+    const showAI = step >= 7;
+    show('ai-label', showAI);
+
+    // Perception: glows Event node
+    show('ai-perception', step === 7 || step >= 10);
+    togglePulse('ai-perception', step === 7);
+
+    // Optimization: glows Policy + Person
+    show('ai-optimize-policy', step === 8 || step >= 10);
+    show('ai-optimize-person', step === 8 || step >= 10);
+    togglePulse('ai-optimize-policy', step === 8);
+    togglePulse('ai-optimize-person', step === 8);
+
+    // Pattern Detection: glows Ledger
+    show('ai-pattern', step === 9 || step >= 10);
+    togglePulse('ai-pattern', step === 9);
+
+    // Step 10: all AI rings visible, no pulse
+    if (step >= 10) {
+      ['ai-perception', 'ai-optimize-policy', 'ai-optimize-person', 'ai-pattern'].forEach(id => {
+        show(id, true);
+        togglePulse(id, false);
+      });
+    }
+  }
+
+  function togglePulse(id: string, on: boolean) {
+    const el = document.getElementById(id);
+    if (el) {
+      if (on) {
+        el.classList.add('ai-glow');
+      } else {
+        el.classList.remove('ai-glow');
+      }
+    }
+  }
 
   function animateDot() {
     const dot = document.getElementById('dot');
     if (!dot) return;
 
-    // Path: Event -> Policy -> Procedure -> Person -> Asset -> Ledger
+    // Full loop: Event -> Policy -> Procedure -> Person -> Asset -> Ledger -> Event
     const waypoints = [
       { x: 150, y: 100 },  // Event
       { x: 400, y: 100 },  // Policy
@@ -293,24 +491,28 @@ import Base from '../layouts/Base.astro';
       { x: 650, y: 400 },  // Person
       { x: 400, y: 400 },  // Asset
       { x: 150, y: 400 },  // Ledger
+      { x: 150, y: 100 },  // Back to Event (follows the dashed feedback line)
     ];
 
     let wpIndex = 0;
     let progress = 0;
-    const speed = 0.02;
+    const speed = 0.015;
 
-    if (dotAnimation) cancelAnimationFrame(dotAnimation);
+    stopDot();
 
-    function step() {
-      const from = waypoints[wpIndex];
-      const to = waypoints[(wpIndex + 1) % waypoints.length];
-
+    function frame() {
       progress += speed;
 
       if (progress >= 1) {
         progress = 0;
-        wpIndex = (wpIndex + 1) % waypoints.length;
+        wpIndex++;
+        if (wpIndex >= waypoints.length - 1) {
+          wpIndex = 0;
+        }
       }
+
+      const from = waypoints[wpIndex];
+      const to = waypoints[wpIndex + 1];
 
       const x = from.x + (to.x - from.x) * progress;
       const y = from.y + (to.y - from.y) * progress;
@@ -318,9 +520,9 @@ import Base from '../layouts/Base.astro';
       dot.setAttribute('cx', String(x));
       dot.setAttribute('cy', String(y));
 
-      dotAnimation = requestAnimationFrame(step);
+      dotAnimation = requestAnimationFrame(frame);
     }
 
-    step();
+    frame();
   }
 </script>
