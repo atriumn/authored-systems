@@ -2,7 +2,7 @@
 title: "I've Worked Where the Procedures Are Real"
 subtitle: "What healthcare tech taught me about operations — and why your gym, your property, and your lawn care company need the same discipline."
 date: "2026-03-07"
-description: "At Tempus, procedures weren't optional. Policies weren't tribal knowledge. The ledger was real. Then I left and built software for small businesses — and found the same six structures, with none of the discipline."
+description: "In healthcare tech, procedures weren't optional. Policies weren't tribal knowledge. The ledger was real. Then I left and built software for small businesses — and found the same six structures, with none of the discipline."
 order: 10
 series: "Phase 2"
 draft: true
@@ -10,9 +10,9 @@ draft: true
 
 ## The Other Side
 
-Before I built software for gyms and property managers, I built software at Tempus — a healthcare technology company where the data touches patients, clinical decisions, and regulatory bodies that don't care about your shipping velocity.
+Before I built software for gyms and property managers, I built software in healthcare tech — the kind where the data touches patients, clinical decisions, and regulatory bodies that don't care about your shipping velocity.
 
-At Tempus, you don't ship code and hope the procedure was followed. You prove it. You don't have policies in someone's head. You have policies in a system — versioned, reviewed, enforced. You don't skip the audit trail because it's inconvenient. The audit trail is the product.
+In that world, you don't ship code and hope the procedure was followed. You prove it. You don't have policies in someone's head. You have policies in a system — versioned, reviewed, enforced. You don't skip the audit trail because it's inconvenient. The audit trail is the product.
 
 I didn't appreciate this at the time. It felt like overhead. Like process for the sake of process. Like the kind of bureaucracy that slows engineering teams down.
 
@@ -20,7 +20,7 @@ Then I left and started building software for operations that had none of it.
 
 ---
 
-## What Tempus Looked Like
+## What Healthcare Tech Looked Like
 
 Every system that touched patient data had a defined set of constraints. Not suggestions. Not best practices. Constraints.
 
@@ -58,7 +58,7 @@ Same six primitives. Every single one implicit, scattered, and fragile.
 
 ## The Gap
 
-Here's what I realized: the difference between Tempus and the gym wasn't the stakes. It was whether anyone had been *forced* to author the system.
+Here's what I realized: the difference between healthcare tech and the gym wasn't the stakes. It was whether anyone had been *forced* to author the system.
 
 Healthcare has the FDA. Aviation has the FAA. Nuclear has the NRC. These industries author their operations because the consequences of not doing it are catastrophic and the regulators won't let you skip it.
 
@@ -68,7 +68,7 @@ So they don't. And the operation works — until it doesn't.
 
 Until the coach who "just knows" the opening routine quits. Until the equipment that "probably" got inspected fails. Until the policy that lived in the owner's head walks out the door with the owner.
 
-The six primitives exist in both environments. At Tempus, they were authored — explicit, inspectable, enforceable. At the gym, they were inferred — implicit, scattered, and dependent on specific people showing up and remembering.
+The six primitives exist in both environments. In healthcare, they were authored — explicit, inspectable, enforceable. At the gym, they were inferred — implicit, scattered, and dependent on specific people showing up and remembering.
 
 ---
 
@@ -76,7 +76,7 @@ The six primitives exist in both environments. At Tempus, they were authored —
 
 Here's the thing that surprised me: the *structuring work* is the same. Writing a policy for "who can access patient data under what conditions" is structurally identical to writing a policy for "who can open the gym on Monday morning." The domain is different. The primitive is the same.
 
-At Tempus, that structuring work was mandated. A compliance team existed to make sure it happened. An entire infrastructure of tools, reviews, and audits enforced it.
+In healthcare, that structuring work was mandated. A compliance team existed to make sure it happened. An entire infrastructure of tools, reviews, and audits enforced it.
 
 At the gym, nobody mandates it. There's no compliance team. There's no budget for operational infrastructure. The founder *is* the system — they hold the policies, teach the procedures, track the assets informally, and serve as the institutional memory.
 
@@ -84,13 +84,13 @@ This works until it doesn't scale. Until the founder goes on vacation. Until the
 
 The opportunity isn't "bring FDA-level compliance to gyms." That's absurd. The opportunity is: **the same six structures that make healthcare operations reliable can make any operation reliable — if someone authors them.**
 
-The structuring work that cost millions of dollars of institutional infrastructure at Tempus can now be done on a platform that costs less than a single employee. Not because the work is different. Because AI closes the gap — it sees the unstructured input, it validates the execution, it reads the ledger for patterns. The discipline is the same. The cost of implementing it just dropped by orders of magnitude.
+The structuring work that cost millions of dollars of institutional infrastructure in healthcare can now be done on a platform that costs less than a single employee. Not because the work is different. Because AI closes the gap — it sees the unstructured input, it validates the execution, it reads the ledger for patterns. The discipline is the same. The cost of implementing it just dropped by orders of magnitude.
 
 ---
 
 ## What I Brought With Me
 
-I didn't bring Tempus's tools. I brought the mental model.
+I didn't bring the tools. I brought the mental model.
 
 The instinct that says: if a decision matters, there should be a policy you can point to. If a process matters, there should be steps you can follow without calling the boss. If something happened, there should be a record that proves it. If a person did the work, there should be a reason they were the right person for it.
 
