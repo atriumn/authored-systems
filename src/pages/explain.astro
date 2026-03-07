@@ -52,11 +52,23 @@ import Base from '../layouts/Base.astro';
           <text x="650" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">steps</text>
         </g>
 
-        <!-- Person node -->
+        <!-- Person node (main) -->
         <g id="node-person" class="node" opacity="0">
           <circle cx="650" cy="400" r="50" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
           <text x="650" y="396" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Person</text>
           <text x="650" y="414" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">who</text>
+        </g>
+
+        <!-- Extra person nodes for optimization (step 9) -->
+        <g id="node-person-b" class="node" opacity="0">
+          <circle cx="720" cy="310" r="30" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
+          <text x="720" y="306" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#6b6b6b">Person B</text>
+          <text x="720" y="320" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b6b6b">4.2 / 8mi</text>
+        </g>
+        <g id="node-person-c" class="node" opacity="0">
+          <circle cx="750" cy="400" r="30" fill="#fafaf8" stroke="#1a1a1a" stroke-width="1.5" />
+          <text x="750" y="396" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#6b6b6b">Person C</text>
+          <text x="750" y="410" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b6b6b">3.9 / 14mi</text>
         </g>
 
         <!-- Asset node -->
@@ -73,17 +85,47 @@ import Base from '../layouts/Base.astro';
           <text x="150" y="414" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6b6b">proof</text>
         </g>
 
-        <!-- AI glow rings (hidden until AI steps) -->
-        <circle id="ai-perception" cx="150" cy="100" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
-        <circle id="ai-optimize-policy" cx="400" cy="100" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
-        <circle id="ai-optimize-person" cx="650" cy="400" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
-        <circle id="ai-pattern" cx="150" cy="400" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
+        <!-- Messy squiggle input (appears at step 7) -->
+        <path id="squiggle" d="M 10,100 Q 25,80 35,100 Q 45,120 55,100 Q 65,80 75,100 Q 85,120 95,100" stroke="#cc3333" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0" />
 
-        <!-- AI label -->
+        <!-- Blue AI perception filter bar (step 8) -->
+        <g id="ai-filter" opacity="0">
+          <rect x="96" y="70" width="8" height="60" rx="4" fill="#2563eb" opacity="0.7" />
+          <text x="100" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#2563eb">AI</text>
+        </g>
+
+        <!-- AI optimization pulse around person (step 9) -->
+        <circle id="ai-opt-ring-a" cx="650" cy="400" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
+        <circle id="ai-opt-ring-b" cx="720" cy="310" r="36" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4 3" opacity="0" />
+        <circle id="ai-opt-ring-c" cx="750" cy="400" r="36" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4 3" opacity="0" />
+        <!-- "BEST" label on selected person -->
+        <text id="ai-best-label" x="650" y="360" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#2563eb" opacity="0">BEST MATCH</text>
+
+        <!-- AI pattern detection: ledger lines + arc back to policy (step 10) -->
+        <g id="ai-ledger-lines" opacity="0">
+          <line x1="120" y1="385" x2="180" y2="385" stroke="#2563eb" stroke-width="1" opacity="0.5" />
+          <line x1="125" y1="392" x2="175" y2="392" stroke="#2563eb" stroke-width="1" opacity="0.5" />
+          <line x1="122" y1="399" x2="178" y2="399" stroke="#2563eb" stroke-width="1" opacity="0.5" />
+          <line x1="128" y1="406" x2="172" y2="406" stroke="#2563eb" stroke-width="1" opacity="0.5" />
+          <line x1="124" y1="413" x2="176" y2="413" stroke="#2563eb" stroke-width="1" opacity="0.5" />
+        </g>
+        <circle id="ai-pattern-ring" cx="150" cy="400" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
+        <!-- Arc from Ledger to Policy = "pattern suggests new rule" -->
+        <path id="ai-suggestion-arc" d="M 185,360 Q 280,250 365,140" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 3" fill="none" opacity="0" />
+        <polygon id="ai-suggestion-arrow" points="360,145 370,135 365,150" fill="#2563eb" opacity="0" />
+        <text id="ai-suggestion-label" x="260" y="240" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#2563eb" opacity="0" transform="rotate(-35, 260, 240)">pattern → new rule?</text>
+
+        <!-- AI perception ring for Event (step 8) -->
+        <circle id="ai-perception-ring" cx="150" cy="100" r="58" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3" opacity="0" />
+
+        <!-- Final state: all AI rings at edges (step 11) -->
         <text id="ai-label" x="400" y="265" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#2563eb" opacity="0">AI LAYER</text>
 
         <!-- The dot (flows through the system) -->
         <circle id="dot" cx="150" cy="100" r="6" fill="#1a1a1a" opacity="0" />
+
+        <!-- Clean dot that emerges from AI filter (step 8) -->
+        <circle id="clean-dot" cx="150" cy="100" r="6" fill="#2563eb" opacity="0" />
 
       </svg>
     </div>
@@ -172,48 +214,66 @@ import Base from '../layouts/Base.astro';
 
       <div class="step" data-step="7">
         <div class="step-content ai-step">
-          <p class="ai-badge">AI MODE 1</p>
-          <h2>Perception</h2>
-          <p>AI watches the event stream. It classifies, routes, and escalates — not by guessing, but by reading structure.</p>
+          <h2>But the real world is messy.</h2>
+          <p>The event arrives as a photo. A voice note. A vague text. The system can't route a squiggle.</p>
           <div class="examples">
-            <div class="example"><span class="example-label">Property</span> Photo of ceiling stain → classified as water damage, severity: high</div>
-            <div class="example"><span class="example-label">Landscaping</span> GPS ping at property → arrival confirmed, timer started</div>
-            <div class="example"><span class="example-label">ER</span> Vitals entered → auto-flags tachycardia, alerts attending</div>
+            <div class="example"><span class="example-label">Property</span> "there's water coming from somewhere upstairs"</div>
+            <div class="example"><span class="example-label">Landscaping</span> Blurry photo of overgrown yard, no address</div>
+            <div class="example"><span class="example-label">ER</span> "my chest feels weird" — no vitals, no history</div>
           </div>
         </div>
       </div>
 
       <div class="step" data-step="8">
         <div class="step-content ai-step">
-          <p class="ai-badge">AI MODE 2</p>
-          <h2>Optimization</h2>
-          <p>AI reads the policy and the people. It matches the right person to the right work — factoring qualifications, proximity, load, and history.</p>
+          <p class="ai-badge">AI MODE 1 — PERCEPTION</p>
+          <h2>AI sees.</h2>
+          <p>A thin blue layer between the mess and the system. The squiggle passes through — comes out structured. The system hums again.</p>
           <div class="examples">
-            <div class="example"><span class="example-label">Property</span> 3 plumbers available → selects one with best rating for this building</div>
-            <div class="example"><span class="example-label">Landscaping</span> Resequences route to save 40 min across 8 stops</div>
-            <div class="example"><span class="example-label">ER</span> Assigns overflow patient to provider with lowest current acuity load</div>
+            <div class="example"><span class="example-label">Property</span> Photo → water damage, ceiling, severity: high, unit: 4B</div>
+            <div class="example"><span class="example-label">Landscaping</span> GPS + photo → 1247 Oak St, overgrowth grade: heavy</div>
+            <div class="example"><span class="example-label">ER</span> Intake transcript → chest pain, 58M, onset 2hrs, no prior meds</div>
           </div>
         </div>
       </div>
 
       <div class="step" data-step="9">
         <div class="step-content ai-step">
-          <p class="ai-badge">AI MODE 3</p>
-          <h2>Pattern Detection</h2>
-          <p>AI reads the ledger. It finds what humans miss — recurring failures, drifting SLAs, procedures that always stall at step 3.</p>
+          <p class="ai-badge">AI MODE 2 — OPTIMIZATION</p>
+          <h2>Three people can do the work.</h2>
+          <p>Policy already filtered who's eligible. AI picks who's optimal — fastest, closest, least loaded. Policy decides who <em>can</em>. AI decides who <em>should</em>.</p>
           <div class="examples">
-            <div class="example"><span class="example-label">Property</span> Unit 4B: 3rd water event in 14 months. Recommends pipe replacement.</div>
-            <div class="example"><span class="example-label">Landscaping</span> Crew B averaging 22% longer on similar lots. Flag for review.</div>
-            <div class="example"><span class="example-label">ER</span> Door-to-doc time trending up 12% over 6 weeks. Staffing model alert.</div>
+            <div class="example"><span class="example-label">Property</span> 3 plumbers qualified → AI picks one: 4.8 rating, 3 miles, available now</div>
+            <div class="example"><span class="example-label">Landscaping</span> 2 crews in zone → resequence routes, save 40 min</div>
+            <div class="example"><span class="example-label">ER</span> 4 attendings on shift → assign by current acuity load</div>
           </div>
         </div>
       </div>
 
       <div class="step" data-step="10">
+        <div class="step-content ai-step">
+          <p class="ai-badge">AI MODE 3 — PATTERN DETECTION</p>
+          <h2>AI reads the record.</h2>
+          <p>The ledger has been filling up. AI scans it — finds what humans can't see. Recurring failures. Drifting SLAs. Procedures that stall at step 3. It proposes. Humans decide.</p>
+          <div class="examples">
+            <div class="example"><span class="example-label">Property</span> Unit 4B: 3rd water event in 14 months → recommend pipe replacement</div>
+            <div class="example"><span class="example-label">Landscaping</span> Crew B: 22% slower on similar lots → flag for review</div>
+            <div class="example"><span class="example-label">ER</span> Door-to-doc trending up 12% over 6 weeks → staffing model alert</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" data-step="11">
         <div class="step-content">
           <h2>Structure first. Intelligence second.</h2>
-          <p>AI doesn't replace the system. It reads it, rides it, and makes it better — because someone authored the structure for it to follow.</p>
-          <p class="finale">That's the whole idea.</p>
+          <p>The six primitives are the brain. AI is the senses — at the edges, never the center. Thin, bounded, replaceable.</p>
+          <p class="finale">The brain is rules. The senses are AI. The record is proof.</p>
+          <div class="links">
+            <a href="/">Principles</a>
+            <a href="/essays">Essays</a>
+            <a href="/glossary">Glossary</a>
+            <a href="/architect">The Role</a>
+          </div>
         </div>
       </div>
 
@@ -323,6 +383,10 @@ import Base from '../layouts/Base.astro';
     border-width: 2px;
   }
 
+  .ai-step .example {
+    border-left-color: #2563eb;
+  }
+
   .ai-badge {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem !important;
@@ -332,8 +396,27 @@ import Base from '../layouts/Base.astro';
     margin-bottom: 0.25rem !important;
   }
 
+  .links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: #2563eb;
+    text-decoration: none;
+    pointer-events: auto;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+  }
+
   @keyframes pulse-ring {
-    0%, 100% { opacity: 0.4; }
+    0%, 100% { opacity: 0.3; }
     50% { opacity: 1; }
   }
 
@@ -341,19 +424,29 @@ import Base from '../layouts/Base.astro';
     animation: pulse-ring 2s ease-in-out infinite;
   }
 
+  @keyframes squiggle-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+  }
+
+  .squiggle-animate {
+    animation: squiggle-shake 0.3s ease-in-out infinite;
+  }
+
+  @keyframes dim-node {
+    0%, 100% { opacity: 0.3; }
+  }
+
   .node {
     transition: opacity 0.8s ease;
   }
 
-  #dot {
+  #dot, #clean-dot {
     transition: opacity 0.5s ease;
   }
 
-  line, polygon {
-    transition: opacity 0.6s ease;
-  }
-
-  #ai-perception, #ai-optimize-policy, #ai-optimize-person, #ai-pattern, #ai-label {
+  line, polygon, path, rect {
     transition: opacity 0.6s ease;
   }
 </style>
@@ -383,6 +476,14 @@ import Base from '../layouts/Base.astro';
     if (el) el.style.opacity = visible ? '1' : '0';
   }
 
+  function toggleClass(id: string, cls: string, on: boolean) {
+    const el = document.getElementById(id);
+    if (el) {
+      if (on) el.classList.add(cls);
+      else el.classList.remove(cls);
+    }
+  }
+
   let dotAnimation: number | null = null;
 
   function stopDot() {
@@ -393,17 +494,21 @@ import Base from '../layouts/Base.astro';
   }
 
   function updateDiagram(step: number) {
+    // === ACT 1: The Six Primitives ===
+
     // Step 1: Event
     show('node-event', step >= 1);
-    show('dot', step >= 1 && step < 6);
 
-    // Reset dot position for pre-loop steps
+    // Static dot at Event for steps 1-5
     if (step >= 1 && step < 6) {
       stopDot();
+      show('dot', true);
+      show('clean-dot', false);
       const dot = document.getElementById('dot');
       if (dot) {
         dot.setAttribute('cx', '150');
         dot.setAttribute('cy', '100');
+        dot.setAttribute('fill', '#1a1a1a');
       }
     }
 
@@ -434,54 +539,126 @@ import Base from '../layouts/Base.astro';
     show('path-ledger-event', step >= 6);
     show('arrow-6', step >= 6);
 
-    if (step >= 6) {
+    if (step === 6) {
       show('dot', true);
-      animateDot();
-    } else {
+      const dot = document.getElementById('dot');
+      if (dot) dot.setAttribute('fill', '#1a1a1a');
+      animateDot(false);
+    }
+
+    // === ACT 2: The AI Layer ===
+
+    // Step 7: The mess — squiggle appears, system breaks
+    show('squiggle', step === 7);
+    toggleClass('squiggle', 'squiggle-animate', step === 7);
+    if (step === 7) {
+      // Dot stops, system stalled
       stopDot();
+      show('dot', false);
+      show('clean-dot', false);
     }
 
-    // AI Layer
-    const showAI = step >= 7;
-    show('ai-label', showAI);
+    // Step 8: Perception — blue filter cleans the squiggle
+    show('ai-filter', step >= 8 && step <= 11);
+    show('ai-perception-ring', step >= 8 && step <= 11);
+    toggleClass('ai-perception-ring', 'ai-glow', step === 8);
+    show('squiggle', step === 7); // squiggle gone after 7
+    if (step === 8) {
+      // Clean blue dot emerges, system flows again
+      show('dot', false);
+      show('clean-dot', true);
+      animateDot(true);
+    }
 
-    // Perception: glows Event node
-    show('ai-perception', step === 7 || step >= 10);
-    togglePulse('ai-perception', step === 7);
+    // Step 9: Optimization — three person nodes, AI picks best
+    show('node-person-b', step === 9);
+    show('node-person-c', step === 9);
+    show('ai-opt-ring-a', step === 9);
+    show('ai-opt-ring-b', step === 9);
+    show('ai-opt-ring-c', step === 9);
+    show('ai-best-label', step === 9);
+    toggleClass('ai-opt-ring-a', 'ai-glow', step === 9);
+    if (step === 9) {
+      // Dim the non-selected persons
+      const pb = document.getElementById('node-person-b');
+      const pc = document.getElementById('node-person-c');
+      if (pb) pb.style.opacity = '0.4';
+      if (pc) pc.style.opacity = '0.4';
+      show('clean-dot', true);
+      animateDot(true);
+    }
 
-    // Optimization: glows Policy + Person
-    show('ai-optimize-policy', step === 8 || step >= 10);
-    show('ai-optimize-person', step === 8 || step >= 10);
-    togglePulse('ai-optimize-policy', step === 8);
-    togglePulse('ai-optimize-person', step === 8);
+    // Step 10: Pattern Detection — ledger glows, arc to policy
+    show('ai-ledger-lines', step >= 10 && step <= 11);
+    show('ai-pattern-ring', step >= 10 && step <= 11);
+    show('ai-suggestion-arc', step >= 10 && step <= 11);
+    show('ai-suggestion-arrow', step >= 10 && step <= 11);
+    show('ai-suggestion-label', step >= 10 && step <= 11);
+    toggleClass('ai-pattern-ring', 'ai-glow', step === 10);
+    toggleClass('ai-ledger-lines', 'ai-glow', step === 10);
+    if (step === 10) {
+      show('clean-dot', true);
+      animateDot(true);
+    }
 
-    // Pattern Detection: glows Ledger
-    show('ai-pattern', step === 9 || step >= 10);
-    togglePulse('ai-pattern', step === 9);
+    // Step 11: Complete system — everything visible, all AI at edges
+    if (step === 11) {
+      // All primitives visible (already are from step 6+)
+      // AI rings visible but not pulsing
+      show('ai-perception-ring', true);
+      show('ai-pattern-ring', true);
+      show('ai-filter', true);
+      show('ai-label', true);
+      show('ai-ledger-lines', true);
+      show('ai-suggestion-arc', true);
+      show('ai-suggestion-arrow', true);
+      show('ai-suggestion-label', true);
 
-    // Step 10: all AI rings visible, no pulse
-    if (step >= 10) {
-      ['ai-perception', 'ai-optimize-policy', 'ai-optimize-person', 'ai-pattern'].forEach(id => {
-        show(id, true);
-        togglePulse(id, false);
+      // Hide extra persons (back to single person node)
+      show('node-person-b', false);
+      show('node-person-c', false);
+      show('ai-opt-ring-a', false);
+      show('ai-opt-ring-b', false);
+      show('ai-opt-ring-c', false);
+      show('ai-best-label', false);
+
+      // Remove all pulses
+      ['ai-perception-ring', 'ai-pattern-ring', 'ai-ledger-lines'].forEach(id => {
+        toggleClass(id, 'ai-glow', false);
       });
+
+      show('clean-dot', true);
+      animateDot(true);
+    }
+
+    // Hide AI stuff for primitive-only steps
+    if (step < 7) {
+      show('squiggle', false);
+      show('ai-filter', false);
+      show('ai-perception-ring', false);
+      show('clean-dot', false);
+      show('node-person-b', false);
+      show('node-person-c', false);
+      show('ai-opt-ring-a', false);
+      show('ai-opt-ring-b', false);
+      show('ai-opt-ring-c', false);
+      show('ai-best-label', false);
+      show('ai-ledger-lines', false);
+      show('ai-pattern-ring', false);
+      show('ai-suggestion-arc', false);
+      show('ai-suggestion-arrow', false);
+      show('ai-suggestion-label', false);
+      show('ai-label', false);
     }
   }
 
-  function togglePulse(id: string, on: boolean) {
-    const el = document.getElementById(id);
-    if (el) {
-      if (on) {
-        el.classList.add('ai-glow');
-      } else {
-        el.classList.remove('ai-glow');
-      }
-    }
-  }
-
-  function animateDot() {
-    const dot = document.getElementById('dot');
+  function animateDot(useBlue: boolean) {
+    const dotId = useBlue ? 'clean-dot' : 'dot';
+    const dot = document.getElementById(dotId);
     if (!dot) return;
+
+    // Hide the other dot
+    show(useBlue ? 'dot' : 'clean-dot', false);
 
     // Full loop: Event -> Policy -> Procedure -> Person -> Asset -> Ledger -> Event
     const waypoints = [
@@ -491,7 +668,7 @@ import Base from '../layouts/Base.astro';
       { x: 650, y: 400 },  // Person
       { x: 400, y: 400 },  // Asset
       { x: 150, y: 400 },  // Ledger
-      { x: 150, y: 100 },  // Back to Event (follows the dashed feedback line)
+      { x: 150, y: 100 },  // Back to Event
     ];
 
     let wpIndex = 0;
