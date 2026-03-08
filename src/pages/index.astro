@@ -22,6 +22,18 @@ import Base from '../layouts/Base.astro';
 
     <!-- The Ten Principles -->
     <div class="py-16 space-y-16">
+      <!-- Opening frame: meet the reader where they are -->
+      <div class="pb-4 border-b border-rule">
+        <p class="text-muted leading-relaxed mb-3">
+          The policies are in your head. The procedures change depending on who's working. There's no record of what happened last time.
+          You know it's fragile — you just haven't had language for what, exactly, needs to be built.
+        </p>
+        <p class="text-muted leading-relaxed">
+          These are the six structures every operation needs. You probably have most of them already — scattered, implicit, unnamed.
+          Here's what we've found everywhere we've looked.
+        </p>
+      </div>
+
       <section>
         <div class="flex items-baseline gap-4 mb-4">
           <span class="font-mono text-accent text-sm">01</span>
@@ -250,23 +262,15 @@ import Base from '../layouts/Base.astro';
     <!-- How to Read -->
     <div class="border-t border-rule py-16">
       <h2 class="text-xl font-semibold tracking-tight mb-6">How to Read These Principles</h2>
-      <div class="grid sm:grid-cols-2 gap-6 text-sm">
-        <div class="p-5 border border-rule rounded-lg">
-          <p class="font-mono text-accent mb-2">Founders</p>
-          <p class="text-muted">Start with #4 (The Swap Test) and #9 (The Kill Switch Test). They'll tell you how dependent your product is on things you don't own.</p>
-        </div>
-        <div class="p-5 border border-rule rounded-lg">
-          <p class="font-mono text-accent mb-2">Operators</p>
-          <p class="text-muted">Start with #7 (The New Hire Test) and #10 (The Resignation Test). They'll tell you how much of your operation lives in someone's head.</p>
-        </div>
-        <div class="p-5 border border-rule rounded-lg">
-          <p class="font-mono text-accent mb-2">Engineers</p>
-          <p class="text-muted">Start with #2 (The Decomposition Challenge) and #5 (The Misclassification Drill). They'll change how you think about "AI integration."</p>
-        </div>
-        <div class="p-5 border border-rule rounded-lg">
-          <p class="font-mono text-accent mb-2">Investors</p>
-          <p class="text-muted">Start with #1 (The Subtraction Test) and #8 (The Pencil Test). A framework for evaluating every AI-for-operations pitch you'll hear this year.</p>
-        </div>
+      <div class="text-sm space-y-4">
+        <p class="text-muted leading-relaxed">
+          If you run an operation and recognize the fragility — start anywhere. Each principle is a test you can run today.
+          The proofs aren't hypothetical. They're checks you perform on your own system.
+        </p>
+        <p class="text-muted leading-relaxed">
+          If you're building for operators, start with #2 and #5. If you're evaluating AI deployments, start with #4 and #8.
+          Everyone else: start with #7 and #10 — they'll tell you how much of your operation walks out the door when someone quits.
+        </p>
       </div>
     </div>
 
