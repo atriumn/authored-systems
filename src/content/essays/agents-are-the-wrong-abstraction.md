@@ -48,7 +48,7 @@ The framework is four steps:
 3. **Bound** — put AI only where classification or optimization is genuinely needed
 4. **Record** — log every decision so you can explain it
 
-This works whether you're building maintenance software, gym operations, lawn care, fleet management, healthcare scheduling, or something that doesn't exist yet. It's not anti-agent. It's **agent-agnostic**. The operation doesn't care who's executing it — human, AI, or a cron job. The primitives are the same.
+This works whether you're building maintenance software, emergency room operations, lawn care, fleet management, or something that doesn't exist yet. It's not anti-agent. It's **agent-agnostic**. The operation doesn't care who's executing it — human, AI, or a cron job. The primitives are the same.
 
 ---
 
@@ -157,16 +157,16 @@ A primitives-based system answers: "Vendor A was eligible (licensed, available, 
 
 ### 2. The composability wall
 
-An "AI maintenance director" is one product for one vertical. Try to use it for gym operations or lawn care — you rebuild from scratch. The intelligence is baked into the agent, not extracted into reusable pieces.
+An "AI maintenance director" is one product for one vertical. Try to use it for emergency room operations or lawn care — you rebuild from scratch. The intelligence is baked into the agent, not extracted into reusable pieces.
 
 With primitives, you swap the nouns:
 
-| Maintenance | Gym Ops | Lawn Care | Healthcare |
-|---|---|---|---|
-| Work order → Asset | Check-in → Member | Job request → Property | Referral → Patient |
-| Triage → classify severity | Waiver → verify compliance | Scope → assess condition | Intake → assess urgency |
-| Dispatch → vendor matching | Schedule → instructor matching | Dispatch → crew matching | Schedule → provider matching |
-| Complete → close + score | Session → log + feedback | Complete → close + photo | Visit → document + bill |
+| Property | Lawn Care | ER |
+|---|---|---|
+| Work order → Asset | Job request → Property | Referral → Patient |
+| Triage → classify severity | Scope → assess condition | Intake → assess urgency |
+| Dispatch → vendor matching | Dispatch → crew matching | Schedule → provider matching |
+| Complete → close + score | Complete → close + photo | Visit → document + bill |
 
 Same engine. Same primitives. Different nouns. An "agent" can't do this because its logic is implicit in its training, not explicit in its configuration.
 
@@ -258,7 +258,7 @@ An "AI maintenance director" is a product. The primitives that any director (hum
 
 The agent crowd will hit a wall the first time:
 - A customer asks "why did it do that?" and the answer is "the model decided"
-- A new vertical needs the same logic but the agent was trained on maintenance, not gyms
+- A new vertical needs the same logic but the agent was trained on property maintenance, not emergency rooms
 - A regulation requires auditability and there's no structured decision log
 - The LLM provider changes pricing or performance and the whole product shifts
 
@@ -276,7 +276,7 @@ Primitives don't have these problems. Policies are inspectable. The engine is ve
 
 This observation isn't scoped to a single vertical. It's an ontological claim: **this is how operations work.** All of them. Always. Whether a human runs them or a machine does.
 
-Maintenance. Fitness. Lawn care. Healthcare. Logistics. Hospitality. Education. Insurance claims. Supply chain. Every single one decomposes into Policy, Procedure, Asset, Person, Event, Ledger. The "agent" products in each vertical are just pre-molded house kits — they work, but they only build one thing.
+Property management. Lawn care. Emergency rooms. Logistics. Hospitality. Education. Insurance claims. Supply chain. Every single one decomposes into Policy, Procedure, Asset, Person, Event, Ledger. The "agent" products in each vertical are just pre-molded house kits — they work, but they only build one thing.
 
 Whether you're building for property management or something that doesn't exist yet — start by asking:
 
