@@ -1,106 +1,100 @@
 ---
 title: "I've Worked Where the Procedures Are Real"
-subtitle: "What healthcare tech taught me about operations — and why your gym, your property, and your lawn care company need the same discipline."
+subtitle: "I spent a decade thinking 'process' was a bureaucratic tax. Then I opened a gym and realized it's the only thing that keeps a business from being a series of lucky breaks."
 date: "2026-03-07"
-description: "In healthcare tech, procedures weren't optional. Policies weren't tribal knowledge. The ledger was real. Then I left and built software for small businesses — and found the same six structures, with none of the discipline."
+description: "A software engineer leaves healthcare tech, opens a gym, and discovers that every small business is a system with no documentation and a lot of side effects."
 order: 1
 series: "The Core Thesis"
 ---
 
-## The Other Side
+## The Bureaucratic Tax
 
-Before I built software for gyms and property managers, I built software in healthcare tech — the kind where the data touches patients, clinical decisions, and regulatory bodies that don't care about your shipping velocity.
+I spent years building software in healthcare tech — the kind where the data touches patients, clinical decisions, and regulatory bodies that don't care about your shipping velocity.
 
-In that world, you don't ship code and hope the procedure was followed. You prove it. You don't have policies in someone's head. You have policies in a system — versioned, reviewed, enforced. You don't skip the audit trail because it's inconvenient. The audit trail is the product.
+In that world, the system won't let you proceed without a policy check. Step 3 doesn't happen until step 2 is verified — not with a checkbox, but with evidence. Every access, every decision, every change gets written to an append-only ledger with a timestamp, an actor, and a justification. When a regulator asks "who accessed this record and why?" the answer isn't "let me check Slack." It's a traceable chain from trigger to outcome.
 
-I didn't appreciate this at the time. It felt like overhead. Like process for the sake of process. Like the kind of bureaucracy that slows engineering teams down.
+I thought this was overhead. Bureaucracy slowing engineers down. Process for the sake of process.
 
-Then I left and started building software for operations that had none of it.
-
----
-
-## What Healthcare Tech Looked Like
-
-Every system that touched patient data had a defined set of constraints. Not suggestions. Not best practices. Constraints.
-
-**Policy was authored.** Who can access what. Under what conditions. What happens when the conditions change. These weren't in a wiki nobody reads — they were in the system, enforced at runtime, auditable after the fact. When a regulator asked "who accessed this record and why?" the answer wasn't "let me check Slack." The answer was a ledger entry with a timestamp, an actor, a policy reference, and a justification.
-
-**Procedures were real.** Not "we have a deploy checklist in Confluence." Real procedures with gates. Step 3 doesn't happen until step 2 is verified. The verification isn't a checkbox — it's evidence. Test results. Review approvals. Compliance checks. You can't skip a step because you're confident. The system doesn't care about your confidence.
-
-**The ledger was everything.** Every decision. Every access. Every change. Append-only. Attributed. Timestamped. Not because we were paranoid — because the domain demanded it. When something goes wrong in healthcare, "the model decided" isn't an answer. "The engineer thought it was fine" isn't an answer. The only acceptable answer is a traceable chain: this event triggered this policy, which invoked this procedure, executed by this person, on this asset, and here's the record.
-
-**People had qualifications.** Not "Jordan is senior so Jordan can do it." Explicit qualifications mapped to explicit capabilities. This person is authorized for this operation. That person isn't — not because they're bad, but because authorization requires training, certification, or role assignment that hasn't happened yet.
-
-**Events were classified.** Not "something happened and we reacted." Structured events with severity, category, source, and downstream routing. An anomaly in a data pipeline wasn't a Slack message — it was a classified event that triggered a defined response procedure.
-
-I'm describing the six primitives. I just didn't have the vocabulary yet.
+Then I left and opened a gym.
 
 ---
 
-## What the Gym Looked Like
+## A System With No Documentation
 
-Then I left, and my family opened a ninja warrior gym. Kids climbing walls, swinging on obstacles, having birthday parties. Lower stakes than healthcare. Same operational problems.
+My family owns a ninja warrior gym. Kids climbing walls, swinging on obstacles, having birthday parties. I figured building software for my own operation would be the easy part. I'd spent years building software for other people's problems.
 
-**Policy was in someone's head.** "We don't let more than 25 kids in a party." Says who? Where is that written? What happens at 26? "We just... know." What happens when the person who "just knows" isn't working that day?
+What I found was a system with no documentation and a lot of side effects.
 
-**Procedures were habits.** The Monday opening routine existed as a concept — everyone knew the gym needed to be set up before the first class. But the *steps* varied by who was opening. Mike checks the obstacles first, then the mats, then the sound system. Sarah starts with the bathrooms. Jordan skips the parking lot check because "it's always fine." None of them are wrong, exactly. But none of them are following a procedure, either. They're following habits that approximate a procedure nobody wrote down.
+The Monday opening routine existed as a concept — everyone knew the gym needed to be set up before the first class. But Mike checks the obstacles first, then the mats, then the sound system. Sarah starts with the bathrooms. Jordan skips the parking lot check because "it's always fine." Three people, three different procedures, none of them written down. None of them wrong, exactly. But none of them following a procedure, either. They're following habits that approximate a procedure nobody authored.
 
-**The ledger was nonexistent.** Did the equipment get inspected last week? Probably. By who? I think Mike. What did he find? Nothing, I guess — he didn't mention anything. Can you prove it? No. What if a kid gets hurt on an obstacle that should have been flagged? Silence.
+"We don't let more than 25 kids in a party." Says who? Where is that written? What happens at 26? "We just... know." What happens when the person who "just knows" isn't working that day?
 
-**People were interchangeable — on paper.** "Any coach can open." Can they? Can Jordan do course prep? Does the new hire know the waiver system? Can the weekend staff handle a birthday party cancellation? The schedule said "staffed." The reality was "staffed, but not with the right person for the work that needed to happen."
+"Any coach can open." Can they? Can Jordan do course prep? Does the new hire know the waiver system? Can the weekend staff handle a birthday party cancellation? The schedule said "staffed." The reality was "staffed, but not with the right person for the work that needed to happen."
 
-**Events were reactive.** Things happened and people responded. No classification. No routing. A parent complains about a dirty bathroom — that's the same priority as a parent reporting a loose bolt on the warped wall? In practice, yes, because there's no system distinguishing them. Just whoever picks up the phone.
+Did the equipment get inspected last week? Probably. By who? Mike, I think. What did he find? Nothing, I guess — he didn't mention anything. Can you prove it? No. What if a kid gets hurt on an obstacle that should have been flagged?
 
-Same six primitives. Every single one implicit, scattered, and fragile.
+Silence.
 
----
-
-## The Gap
-
-Here's what I realized: the difference between healthcare tech and the gym wasn't the stakes. It was whether anyone had been *forced* to author the system.
-
-Healthcare has the FDA. Aviation has the FAA. Nuclear has the NRC. These industries author their operations because the consequences of not doing it are catastrophic and the regulators won't let you skip it.
-
-A gym doesn't have an FDA. Neither does a property management company, a lawn care service, or a 30-person engineering team. Nobody forces them to write down their policies, define their procedures, track their assets, qualify their people, classify their events, or keep a ledger.
-
-So they don't. And the operation works — until it doesn't.
-
-Until the coach who "just knows" the opening routine quits. Until the equipment that "probably" got inspected fails. Until the policy that lived in the owner's head walks out the door with the owner.
-
-The six primitives exist in both environments. In healthcare, they were authored — explicit, inspectable, enforceable. At the gym, they were inferred — implicit, scattered, and dependent on specific people showing up and remembering.
+A software engineer would look at this and say: no input validation, no error handling, no logging, no tests, no types. The entire system runs on implicit state held by specific people. It works the same way a codebase with no tests "works" — until someone pushes to production on a Friday.
 
 ---
 
-## The Discipline Gap Is the Opportunity
+## The Tribal Knowledge Trap
 
-Here's the thing that surprised me: the *structuring work* is the same. Writing a policy for "who can access patient data under what conditions" is structurally identical to writing a policy for "who can open the gym on Monday morning." The domain is different. The primitive is the same.
+Every small business I've looked at since — property management, lawn care, field services — has the same problem. The operation isn't built. It's *remembered*.
 
-In healthcare, that structuring work was mandated. A compliance team existed to make sure it happened. An entire infrastructure of tools, reviews, and audits enforced it.
+The best person does it right because they've done it a hundred times. The new person does it wrong because nobody wrote it down. The owner holds the whole thing together not because they designed a system, but because they *are* the system. They hold the policies, teach the procedures, track the assets in their head, and serve as the institutional memory.
 
-At the gym, nobody mandates it. There's no compliance team. There's no budget for operational infrastructure. The founder *is* the system — they hold the policies, teach the procedures, track the assets informally, and serve as the institutional memory.
+This works. It works surprisingly well, actually, for a long time. Which is why nobody fixes it.
 
-This works until it doesn't scale. Until the founder goes on vacation. Until the business grows past what one person can hold in their head. Until someone gets hurt and you need to prove the equipment was inspected.
+It stops working when the person who holds the knowledge goes on vacation. Or gets sick. Or quits. Or when the business grows past what one person can hold in their head. Or when a parent asks why their kid was on an obstacle that should have been flagged, and you have nothing to show them.
 
-The opportunity isn't "bring FDA-level compliance to gyms." That's absurd. The opportunity is: **the same six structures that make healthcare operations reliable can make any operation reliable — if someone authors them.**
-
-The structuring work that cost millions of dollars of institutional infrastructure in healthcare can now be done on a platform that costs less than a single employee. Not because the work is different. Because AI closes the gap — it sees the unstructured input, it validates the execution, it reads the ledger for patterns. The discipline is the same. The cost of implementing it just dropped by orders of magnitude.
+The fragility isn't in the people. The people are great. The fragility is that the system lives *inside* the people instead of alongside them.
 
 ---
 
-## What I Brought With Me
+## What the FDA Actually Does
 
-I didn't bring the tools. I brought the mental model.
+Here's the thing I got wrong about healthcare: I thought the FDA made healthcare *better*. It doesn't. It makes healthcare *authored*.
 
-The instinct that says: if a decision matters, there should be a policy you can point to. If a process matters, there should be steps you can follow without calling the boss. If something happened, there should be a record that proves it. If a person did the work, there should be a reason they were the right person for it.
+The FDA doesn't make doctors smarter or nurses more careful. It forces the system to be written down. The policy is in the code, not in the breakroom. The procedure has gates that can't be skipped. The record exists whether or not someone remembered to write it down. The person doing the work has explicit qualifications mapped to explicit capabilities — not "Jordan is senior so Jordan can do it."
 
-That instinct isn't healthcare-specific. It's operational. It's the same instinct that makes a good engineer write tests before code, document decisions in ADRs, and build alerts before shipping to production.
+The difference between healthcare and the gym wasn't the stakes. It wasn't the people. It was that someone had been *forced* to author the system. To take the operation that lived in one person's head and turn it into something that survives that person's absence.
 
-The six primitives are just that instinct, formalized. Policy. Procedure. Asset. Person. Event. Ledger. The irreducible structures that every operation needs — whether the regulator demands them or not.
+Healthcare has the FDA. Aviation has the FAA. Nuclear has the NRC. These industries didn't author their operations because the people are more disciplined. They authored them because regulators wouldn't let them skip it.
 
-I've worked where the procedures are real. Now I'm building the platform that makes them real everywhere.
+A gym doesn't have an FDA. Neither does a property management company or a 30-person engineering team. Nobody forces them. So the system stays in people's heads, and the operation runs on heroics until it can't.
+
+---
+
+## Why Now
+
+Why didn't the gym author its system before? Same reason most small businesses don't: authoring a system used to require a compliance department.
+
+In healthcare, the structuring work — writing policies, defining procedures, qualifying people, classifying events, maintaining the ledger — was done by teams of people with specialized roles and enterprise tools. The infrastructure to author a system cost more than most small businesses make in a year. The discipline was real, but so was the price tag.
+
+That's what changed. Not the discipline — the cost.
+
+AI reads a coach's voice note describing a damaged obstacle and turns it into a structured inspection record. It watches how your best opener runs Monday morning and proposes the procedure they never wrote down. It reads three months of incident reports and surfaces the pattern you'd never see: *obstacles in Zone B get flagged 4x more often than Zone A, but only on weekends when the newer coaches are working.* That's a staffing problem dressed up as an equipment problem, and no human reads 90 inspection logs to notice it.
+
+The perception layer — turning unstructured reality into structured data — used to be the expensive part. A dropdown menu that says "select issue type" doesn't compete with an LLM that reads a blurry photo of a worn kick plate and extracts condition, location, and severity before the first rule fires.
+
+The structuring work is the same work it's always been. The same six structures that make healthcare reliable can make any operation reliable. The difference is that implementing them no longer requires a $5M compliance department. It requires someone willing to author the system and a platform that meets them where the work actually happens — in voice notes, photos, texts, and the messy reality of a Tuesday morning.
+
+---
+
+## The Mental Model
+
+I didn't bring the tools from healthcare. I brought the instinct.
+
+The instinct that says: this is a system, and someone should document it. Not because a regulator demands it, but because the alternative is a business that runs on luck and specific people showing up.
+
+A software engineer would call it the same thing they call an undocumented codebase with no tests and implicit dependencies on specific team members: *tech debt*. Except it's not tech debt. It's *operational* debt. And every business that runs on tribal knowledge is accumulating it.
+
+You don't need a regulator to force you to be reliable. You just need to stop pretending your business lives in your head.
 
 ---
 
 ## The One-Liner
 
-> Healthcare doesn't have better operations because it has better people. It has better operations because someone was forced to author the system. The six primitives are the same everywhere. The only question is whether you author them before the failure — or after.
+> Healthcare doesn't have better operations because it has better people. It has better operations because someone was forced to author the system. The only question is whether you author yours before the failure — or after.
