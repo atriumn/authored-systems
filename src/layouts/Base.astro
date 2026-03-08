@@ -28,11 +28,33 @@ const isHome = Astro.url.pathname === '/';
         <a href="/" class="font-mono text-sm tracking-tight hover:text-accent transition-colors">
           authored.systems
         </a>
-        <div class="flex gap-6 text-sm text-muted">
+        <!-- Desktop nav -->
+        <div class="hidden sm:flex gap-6 text-sm text-muted">
           <a href="/essays" class="hover:text-ink transition-colors">Essays</a>
           <a href="/glossary" class="hover:text-ink transition-colors">Glossary</a>
           <a href="/architect" class="hover:text-ink transition-colors">The Role</a>
           <a href="/about" class="hover:text-ink transition-colors">About</a>
+        </div>
+        <!-- Mobile menu button -->
+        <button id="menu-toggle" class="sm:hidden text-muted hover:text-ink transition-colors p-1" aria-label="Toggle menu">
+          <svg id="menu-icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <line x1="3" y1="6" x2="17" y2="6" />
+            <line x1="3" y1="10" x2="17" y2="10" />
+            <line x1="3" y1="14" x2="17" y2="14" />
+          </svg>
+          <svg id="menu-icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="hidden">
+            <line x1="5" y1="5" x2="15" y2="15" />
+            <line x1="15" y1="5" x2="5" y2="15" />
+          </svg>
+        </button>
+      </div>
+      <!-- Mobile nav dropdown -->
+      <div id="mobile-menu" class="hidden sm:hidden border-t border-rule">
+        <div class="max-w-3xl mx-auto px-6 py-4 flex flex-col gap-3 text-sm text-muted">
+          <a href="/essays" class="hover:text-ink transition-colors py-1">Essays</a>
+          <a href="/glossary" class="hover:text-ink transition-colors py-1">Glossary</a>
+          <a href="/architect" class="hover:text-ink transition-colors py-1">The Role</a>
+          <a href="/about" class="hover:text-ink transition-colors py-1">About</a>
         </div>
       </div>
     </nav>
@@ -43,19 +65,28 @@ const isHome = Astro.url.pathname === '/';
 
     <footer class="border-t border-rule mt-24">
       <div class="max-w-3xl mx-auto px-6 py-12 text-sm text-muted">
-        <div class="flex flex-col sm:flex-row justify-between gap-4">
-          <div>
-            <span class="font-mono">authored.systems</span>
-            <span class="mx-2">&middot;</span>
-            Structure first. AI second.
-          </div>
-          <div class="flex gap-6">
-          </div>
+        <div>
+          <span class="font-mono">authored.systems</span>
+          <span class="mx-2">&middot;</span>
+          Structure first. AI second.
         </div>
       </div>
     </footer>
   </body>
 </html>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+  });
+</script>
 
 <style is:global>
   @import '../styles/global.css';
