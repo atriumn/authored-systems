@@ -6,6 +6,12 @@ import Base from '../layouts/Base.astro';
   <div class="explain">
     <!-- Sticky graphic -->
     <div class="graphic">
+      <div id="industry-pills" class="industry-pills hidden">
+        <button class="pill active" data-industry="property">Property</button>
+        <button class="pill" data-industry="restaurant">Restaurant</button>
+        <button class="pill" data-industry="saas">SaaS</button>
+        <button class="pill" data-industry="construction">Construction</button>
+      </div>
       <svg id="diagram" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
         <!-- Layout:
              Event(150,100) -> Policy(400,100) -> Procedure(650,100)
@@ -275,6 +281,15 @@ import Base from '../layouts/Base.astro';
           <p>You've heard AI can help. But help with what? There's nothing structured for it to work with yet.</p>
           <p>Here's the structure it needs. Here's what every operation is actually made of.</p>
           <p class="step-label">Watch it come together. ↓</p>
+          <div class="industry-chooser">
+            <p class="chooser-label">What do you run?</p>
+            <div class="chooser-options">
+              <button class="chooser-btn active" data-industry="property">Property</button>
+              <button class="chooser-btn" data-industry="restaurant">Restaurant</button>
+              <button class="chooser-btn" data-industry="saas">SaaS</button>
+              <button class="chooser-btn" data-industry="construction">Construction</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -282,11 +297,7 @@ import Base from '../layouts/Base.astro';
         <div class="step-content">
           <h2>Something happened.</h2>
           <p>An event fires. But it just sits there. Nothing knows what to do with it.</p>
-          <div class="examples">
-            <div class="example"><span class="example-label">Property</span> Homeowner reports a leak</div>
-            <div class="example"><span class="example-label">Lawn Care</span> Customer books a mow</div>
-            <div class="example"><span class="example-label">ER</span> Patient walks through the door</div>
-          </div>
+          <div class="examples" data-step-examples="1"></div>
         </div>
       </div>
 
@@ -294,11 +305,7 @@ import Base from '../layouts/Base.astro';
         <div class="step-content">
           <h2>Now there's a rule.</h2>
           <p>A policy decides what happens next — who's eligible, what's allowed, what the constraints are.</p>
-          <div class="examples">
-            <div class="example"><span class="example-label">Property</span> Water leak = emergency. 2-hour SLA. Notify owner.</div>
-            <div class="example"><span class="example-label">Lawn Care</span> Match crew by zone, rating, and availability</div>
-            <div class="example"><span class="example-label">ER</span> Triage: ESI Level 2. See within 10 minutes.</div>
-          </div>
+          <div class="examples" data-step-examples="2"></div>
         </div>
       </div>
 
@@ -306,11 +313,7 @@ import Base from '../layouts/Base.astro';
         <div class="step-content">
           <h2>Now there's a how.</h2>
           <p>Steps materialize. First this, then that. In order. With gates.</p>
-          <div class="examples">
-            <div class="example"><span class="example-label">Property</span> Dispatch plumber. Confirm arrival. Document repair. Close.</div>
-            <div class="example"><span class="example-label">Lawn Care</span> Arrive. Assess. Mow. Edge. Blow. Photo. Complete.</div>
-            <div class="example"><span class="example-label">ER</span> Vitals. History. Assessment. Orders. Reassess.</div>
-          </div>
+          <div class="examples" data-step-examples="3"></div>
         </div>
       </div>
 
@@ -318,11 +321,7 @@ import Base from '../layouts/Base.astro';
         <div class="step-content">
           <h2>Now someone's accountable.</h2>
           <p>Not just anyone — someone qualified, available, and assigned by policy.</p>
-          <div class="examples">
-            <div class="example"><span class="example-label">Property</span> Licensed plumber, within 15 miles, rated 4.5+</div>
-            <div class="example"><span class="example-label">Lawn Care</span> Crew lead certified for this property size</div>
-            <div class="example"><span class="example-label">ER</span> Attending physician, on shift, credentialed for trauma</div>
-          </div>
+          <div class="examples" data-step-examples="4"></div>
         </div>
       </div>
 
@@ -330,11 +329,7 @@ import Base from '../layouts/Base.astro';
         <div class="step-content">
           <h2>Now there's a thing.</h2>
           <p>The asset — with identity, state, and history that persists across every event.</p>
-          <div class="examples">
-            <div class="example"><span class="example-label">Property</span> Unit 4B kitchen — water heater, installed 2019, last inspected 7 months ago</div>
-            <div class="example"><span class="example-label">Lawn Care</span> 1247 Oak St — bermuda grass, 0.3 acres, last service 12 days ago</div>
-            <div class="example"><span class="example-label">ER</span> Bed 7 — patient, 58M, chest pain, prior cardiac history</div>
-          </div>
+          <div class="examples" data-step-examples="5"></div>
         </div>
       </div>
 
@@ -343,11 +338,7 @@ import Base from '../layouts/Base.astro';
           <h2>Now there's proof.</h2>
           <p>The ledger records everything. Who did what, when, what they found. Append-only. Immutable.</p>
           <p>The record feeds back into future decisions.</p>
-          <div class="examples">
-            <div class="example"><span class="example-label">Property</span> Plumber arrived 10:42am. Fixed supply line. Photos attached. Cost: $340.</div>
-            <div class="example"><span class="example-label">Lawn Care</span> Service complete 2:15pm. Before/after photos. Crew rating: 4.8.</div>
-            <div class="example"><span class="example-label">ER</span> Troponin negative. Discharged 14:30. Follow-up scheduled. Full chart documented.</div>
-          </div>
+          <div class="examples" data-step-examples="6"></div>
           <p class="finale">Six primitives. Always six.</p>
         </div>
       </div>
@@ -356,11 +347,7 @@ import Base from '../layouts/Base.astro';
         <div class="step-content ai-step">
           <h2>But the real world is messy.</h2>
           <p>The event arrives as a photo. A voice note. A vague text. The system can't route a squiggle.</p>
-          <div class="examples">
-            <div class="example"><span class="example-label">Property</span> "there's water coming from somewhere upstairs"</div>
-            <div class="example"><span class="example-label">Lawn Care</span> Blurry photo of overgrown yard, no address</div>
-            <div class="example"><span class="example-label">ER</span> "my chest feels weird" — no vitals, no history</div>
-          </div>
+          <div class="examples" data-step-examples="7"></div>
         </div>
       </div>
 
@@ -369,11 +356,7 @@ import Base from '../layouts/Base.astro';
           <p class="ai-badge">AI MODE 1 — PERCEPTION</p>
           <h2>AI sees.</h2>
           <p>A thin blue layer between the mess and the system. The squiggle passes through — comes out structured. The system hums again.</p>
-          <div class="examples">
-            <div class="example"><span class="example-label">Property</span> Photo → water damage, ceiling, severity: high, unit: 4B</div>
-            <div class="example"><span class="example-label">Lawn Care</span> GPS + photo → 1247 Oak St, overgrowth grade: heavy</div>
-            <div class="example"><span class="example-label">ER</span> Intake transcript → chest pain, 58M, onset 2hrs, no prior meds</div>
-          </div>
+          <div class="examples" data-step-examples="8"></div>
         </div>
       </div>
 
@@ -382,11 +365,7 @@ import Base from '../layouts/Base.astro';
           <p class="ai-badge">AI MODE 2 — OPTIMIZATION</p>
           <h2>Three people can do the work.</h2>
           <p>Policy already filtered who's eligible. AI picks who's optimal — fastest, closest, least loaded. Policy decides who <em>can</em>. AI decides who <em>should</em>.</p>
-          <div class="examples">
-            <div class="example"><span class="example-label">Property</span> 3 plumbers qualified → AI picks one: 4.8 rating, 3 miles, available now</div>
-            <div class="example"><span class="example-label">Lawn Care</span> 2 crews in zone → resequence routes, save 40 min</div>
-            <div class="example"><span class="example-label">ER</span> 4 attendings on shift → assign by current acuity load</div>
-          </div>
+          <div class="examples" data-step-examples="9"></div>
         </div>
       </div>
 
@@ -395,11 +374,7 @@ import Base from '../layouts/Base.astro';
           <p class="ai-badge">AI MODE 3 — PATTERN DETECTION</p>
           <h2>AI reads the record.</h2>
           <p>The ledger has been filling up. AI scans it — finds what humans can't see. Recurring failures. Drifting SLAs. Procedures that stall at step 3. It proposes. Humans decide.</p>
-          <div class="examples">
-            <div class="example"><span class="example-label">Property</span> Unit 4B: 3rd water event in 14 months → recommend pipe replacement</div>
-            <div class="example"><span class="example-label">Lawn Care</span> Crew B: 22% slower on similar lots → flag for review</div>
-            <div class="example"><span class="example-label">ER</span> Door-to-doc trending up 12% over 6 weeks → staffing model alert</div>
-          </div>
+          <div class="examples" data-step-examples="10"></div>
         </div>
       </div>
 
@@ -497,6 +472,84 @@ import Base from '../layouts/Base.astro';
   .step-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.85rem;
+    color: #2563eb;
+  }
+
+  .industry-chooser {
+    margin-top: 1.25rem;
+  }
+
+  .chooser-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #6b6b6b;
+    margin-bottom: 0.5rem;
+  }
+
+  .chooser-options {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .chooser-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    border: 1px solid #e5e5e3;
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    background: transparent;
+    color: #6b6b6b;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .chooser-btn:hover {
+    border-color: #6b6b6b;
+  }
+
+  .chooser-btn.active {
+    border-color: #2563eb;
+    color: #2563eb;
+  }
+
+  .industry-pills {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.375rem;
+    z-index: 10;
+    background: rgba(250, 250, 248, 0.9);
+    backdrop-filter: blur(6px);
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid #e5e5e3;
+  }
+
+  .industry-pills.hidden {
+    display: none;
+  }
+
+  .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    border: 1px solid #e5e5e3;
+    border-radius: 9999px;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+    background: transparent;
+    color: #6b6b6b;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .pill:hover {
+    border-color: #6b6b6b;
+  }
+
+  .pill.active {
+    border-color: #2563eb;
     color: #2563eb;
   }
 
@@ -634,12 +687,86 @@ import Base from '../layouts/Base.astro';
     .step-content h2 {
       font-size: 1.25rem;
     }
+
+    .industry-pills {
+      gap: 0.25rem;
+      padding: 0.25rem 0.5rem;
+    }
+
+    .pill {
+      font-size: 0.6rem;
+      padding: 0.15rem 0.5rem;
+    }
   }
 </style>
 
 <script>
   import scrollama from 'scrollama';
 
+  const industries: Record<string, { label: string; examples: Record<number, string> }> = {
+    property: {
+      label: 'Property',
+      examples: {
+        1: 'Homeowner reports a leak',
+        2: 'Water leak = emergency. 2-hour SLA. Notify owner.',
+        3: 'Dispatch plumber. Confirm arrival. Document. Close.',
+        4: 'Licensed plumber, within 15 miles, rated 4.5+',
+        5: 'Unit 4B kitchen — water heater, installed 2019',
+        6: 'Plumber arrived 10:42am. Fixed supply line. Cost: $340.',
+        7: '\u201Cthere\u2019s water coming from somewhere upstairs\u201D',
+        8: 'Photo \u2192 water damage, ceiling, severity: high, unit: 4B',
+        9: '3 plumbers \u2192 pick: 4.8 rating, 3 miles, available now',
+        10: 'Unit 4B: 3rd water event in 14 months \u2192 pipe replacement',
+      },
+    },
+    restaurant: {
+      label: 'Restaurant',
+      examples: {
+        1: 'Table 12 flags cold food',
+        2: 'Cold food = remake + comp dessert within 5 min',
+        3: 'Refire ticket. Expo verify. Runner deliver. Manager check.',
+        4: 'Line cook certified for station, sous chef verifies',
+        5: 'Walk-in cooler — 3 yrs old, last calibrated 2 weeks ago',
+        6: 'Remake sent 6:12pm. Comp applied. Guest satisfied.',
+        7: 'Angry Yelp review with blurry photo of plate',
+        8: 'Review \u2192 cold steak, table 12, 7:45pm, service failure',
+        9: '2 line cooks available \u2192 assign by current ticket load',
+        10: 'Steak remakes up 40% Fri nights \u2192 line staffing',
+      },
+    },
+    saas: {
+      label: 'SaaS',
+      examples: {
+        1: 'Deploy fails at staging',
+        2: 'Failed deploy = auto-rollback, page on-call',
+        3: 'Rollback. Investigate. Fix. Re-deploy. Post-mortem.',
+        4: 'On-call engineer, familiar with service, SRE backup',
+        5: 'Auth service — 14 dependencies, last incident 3mo ago',
+        6: 'Rollback 03:14 UTC. Root cause: config drift. MTTR: 22min.',
+        7: 'Slack thread: \u201Cis the site down? feels slow\u201D',
+        8: 'Alert correlation \u2192 latency spike, auth service, p95 > 2s',
+        9: '3 engineers on-call \u2192 route by service familiarity',
+        10: 'Auth service: 3rd config-drift incident \u2192 add drift detection',
+      },
+    },
+    construction: {
+      label: 'Construction',
+      examples: {
+        1: 'Concrete pour delayed by rain',
+        2: 'Rain delay = reschedule within 48hrs, notify GC',
+        3: 'Assess site. Cover materials. Update schedule. Notify subs.',
+        4: 'Site super, certified for weather protocol',
+        5: 'Foundation at 742 Elm — Grade 3 soil, 40% poured',
+        6: 'Pour rescheduled to Thursday. Materials covered. No waste.',
+        7: 'Voicemail: \u201Cthe inspector said something about the rebar\u201D',
+        8: 'Voicemail \u2192 rebar spacing concern, section B, inspector flag',
+        9: '4 subs available \u2192 schedule by equipment + proximity',
+        10: 'Rebar flags on 3 of last 5 pours \u2192 supplier review',
+      },
+    },
+  };
+
+  let currentIndustry = 'property';
   let currentStep = 0;
 
   const scroller = scrollama();
@@ -659,6 +786,25 @@ import Base from '../layouts/Base.astro';
   function show(id: string, visible: boolean) {
     const el = document.getElementById(id);
     if (el) el.style.opacity = visible ? '1' : '0';
+  }
+
+  function setIndustry(key: string) {
+    currentIndustry = key;
+    document.querySelectorAll('.chooser-btn, .pill').forEach(btn => {
+      btn.classList.toggle('active', (btn as HTMLElement).dataset.industry === key);
+    });
+    renderExamples();
+  }
+
+  function renderExamples() {
+    document.querySelectorAll<HTMLElement>('[data-step-examples]').forEach(el => {
+      const step = Number(el.dataset.stepExamples);
+      const industry = industries[currentIndustry];
+      const text = industry?.examples[step];
+      if (text) {
+        el.innerHTML = `<div class="example"><span class="example-label">${industry.label}</span>${text}</div>`;
+      }
+    });
   }
 
   let dotAnimation: number | null = null;
@@ -742,6 +888,10 @@ import Base from '../layouts/Base.astro';
   function updateDiagram(step: number) {
     // Reset everything, then build up
     hideAll();
+
+    // Show/hide sticky industry pills
+    const pills = document.getElementById('industry-pills');
+    if (pills) pills.classList.toggle('hidden', step === 0 || step >= 11);
 
     // === Step 0: Blue AI blob opener ===
     if (step === 0) {
@@ -984,6 +1134,14 @@ import Base from '../layouts/Base.astro';
     frame();
   }
 
+  // Industry switcher event listeners
+  document.querySelectorAll<HTMLElement>('[data-industry]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.industry) setIndustry(btn.dataset.industry);
+    });
+  });
+
   // Show step 0 immediately on load (Scrollama doesn't fire until scroll)
   updateDiagram(0);
+  renderExamples();
 </script>
