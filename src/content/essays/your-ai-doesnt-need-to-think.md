@@ -3,7 +3,7 @@ title: "Your AI Doesn't Need to Think. It Needs to See."
 subtitle: "The bottleneck isn't cognition. It's perception."
 date: "2026-03-03"
 description: "A rules engine needs structured input. The real world is unstructured. AI bridges that gap — not by thinking, but by seeing."
-order: 3
+order: 4
 series: "The Core Thesis"
 ---
 

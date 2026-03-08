@@ -3,7 +3,7 @@ title: "Agents Are the Wrong Abstraction"
 subtitle: "Take the agent apart. You'll find six LEGO bricks. They're always the same six."
 date: "2026-03-02"
 description: "The AI industry is converging on 'agents' as the default abstraction for automating operations. This is the wrong level of abstraction."
-order: 1
+order: 3
 series: "The Core Thesis"
 ---
 

@@ -3,8 +3,8 @@ title: "I've Worked Where the Procedures Are Real"
 subtitle: "What healthcare tech taught me about operations — and why your gym, your property, and your lawn care company need the same discipline."
 date: "2026-03-07"
 description: "In healthcare tech, procedures weren't optional. Policies weren't tribal knowledge. The ledger was real. Then I left and built software for small businesses — and found the same six structures, with none of the discipline."
-order: 10
-series: "Phase 2"
+order: 1
+series: "The Core Thesis"
 ---
 
 ## The Other Side
