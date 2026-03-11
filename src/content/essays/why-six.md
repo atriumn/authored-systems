@@ -3,8 +3,8 @@ title: "Why Six"
 subtitle: "Why not five? Why not seven? The answer isn't 'I designed six.' The answer is 'I tried other numbers and they broke.'"
 date: "2026-03-05"
 description: "The origin story of the six primitives framework — how it started with three concepts and grew to six through contact with real operations."
-order: 2
-series: "The Core Thesis"
+order: 3
+series: "The Foundations"
 ---
 
 ## Where This Came From
@@ -128,4 +128,4 @@ The number isn't the point. The irreducibility is. If you can decompose one of t
 
 ---
 
-**If you find the seventh, we want to hear about it.** The whole thesis depends on there being exactly as many primitives as operations require — no more, no fewer. If the number is wrong, the framework is wrong. That's the bet.
+**If you find the seventh, I want to hear about it.** The whole thesis depends on there being exactly as many primitives as operations require — no more, no fewer. If the number is wrong, the framework is wrong. That's the bet.

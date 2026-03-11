@@ -1,0 +1,599 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="The Architect's Workbench — authored.systems">
+  <div class="max-w-3xl mx-auto px-6 py-12">
+    <header class="mb-8">
+      <p class="font-mono text-sm text-accent mb-4 tracking-wide uppercase">Interactive Diagnostic</p>
+      <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
+        The Architect's Workbench
+      </h1>
+      <p class="text-lg text-muted">
+        Describe an operation you're running. We'll identify the six primitives
+        and surface the gaps where your Heroism Tax is highest.
+      </p>
+    </header>
+
+    <!-- Scenario Selector -->
+    <div id="scenario-selector" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+      <button data-scenario="gym" class="scenario-card text-left px-5 py-4 border border-rule rounded-xl hover:border-accent/40 hover:bg-accent/[0.02] transition-all cursor-pointer">
+        <span class="text-[10px] font-mono text-accent uppercase tracking-wider">Gym</span>
+        <p class="text-sm font-medium mt-1">The Heroism Tax</p>
+        <p class="text-xs text-muted mt-1">Derek opens at 5am. What happens when he doesn't?</p>
+      </button>
+      <button data-scenario="saas" class="scenario-card text-left px-5 py-4 border border-rule rounded-xl hover:border-accent/40 hover:bg-accent/[0.02] transition-all cursor-pointer">
+        <span class="text-[10px] font-mono text-accent uppercase tracking-wider">SaaS Support</span>
+        <p class="text-sm font-medium mt-1">The Escalation Gap</p>
+        <p class="text-xs text-muted mt-1">Amara just knows which bugs are serious. Until she's out sick.</p>
+      </button>
+      <button data-scenario="construction" class="scenario-card text-left px-5 py-4 border border-rule rounded-xl hover:border-accent/40 hover:bg-accent/[0.02] transition-all cursor-pointer">
+        <span class="text-[10px] font-mono text-accent uppercase tracking-wider">Construction</span>
+        <p class="text-sm font-medium mt-1">The Inconsistent Record</p>
+        <p class="text-xs text-muted mt-1">The safety walk happens. The paperwork? Sometimes.</p>
+      </button>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+
+      <!-- Chat Column (7/12) -->
+      <div class="md:col-span-7 flex flex-col">
+        <!-- Skip bar -->
+        <div id="skip-bar" class="hidden flex items-center justify-between mb-4">
+          <span id="skip-label" class="text-[10px] font-mono text-muted uppercase tracking-wider"></span>
+          <button id="skip-btn" class="text-xs font-mono text-accent hover:text-blue-700 transition-colors cursor-pointer">Skip &rarr;</button>
+        </div>
+
+        <div id="chat-window" class="space-y-6 pr-4 mb-6">
+          <div id="greeting" class="flex gap-4">
+            <div class="w-8 h-8 rounded-full bg-accent flex-shrink-0 flex items-center justify-center text-white text-xs font-mono">A</div>
+            <div class="bg-soft border border-rule p-4 rounded-2xl rounded-tl-none text-sm leading-relaxed text-ink">
+              Tell me about an operation you run. Not the business — one specific process.
+              The thing that breaks when the wrong person is out sick.
+            </div>
+          </div>
+        </div>
+
+        <div class="relative mt-auto">
+          <textarea
+            id="chat-input"
+            rows="1"
+            class="w-full border border-rule rounded-2xl p-4 pr-14 text-sm focus:outline-none focus:ring-1 focus:ring-accent transition-all resize-none bg-white shadow-sm"
+            placeholder="Watch an example above, or start typing to describe your operation..."
+          ></textarea>
+          <button
+            id="send-btn"
+            class="absolute right-3 bottom-3 w-8 h-8 bg-ink text-white rounded-full flex items-center justify-center hover:bg-accent transition-colors disabled:opacity-50"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sidebar Column (5/12) -->
+      <div class="md:col-span-5 space-y-3 sticky top-12 self-start">
+        <h2 class="text-[10px] font-mono text-muted uppercase tracking-[0.2em] mb-4">System Manifest</h2>
+
+        <div class="grid grid-cols-1 gap-2">
+          {[
+            { name: 'Event', hint: 'What triggers the work?' },
+            { name: 'Policy', hint: 'What are the rules?' },
+            { name: 'Procedure', hint: 'What are the steps?' },
+            { name: 'Person', hint: 'Who does the work?' },
+            { name: 'Asset', hint: 'What\'s being acted on?' },
+            { name: 'Ledger', hint: 'What\'s the proof?' },
+          ].map((p) => (
+            <div id={`primitive-${p.name.toLowerCase()}`} class="group relative px-4 py-3 border border-rule rounded-xl bg-white opacity-40 grayscale transition-all duration-700 hover:opacity-60">
+              <div class="flex items-center justify-between mb-0.5">
+                <span class="text-[10px] font-mono text-muted uppercase tracking-wider">{p.name}</span>
+                <span class="primitive-status hidden w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+              </div>
+              <div class="primitive-content text-xs text-muted italic line-clamp-2">{p.hint}</div>
+            </div>
+          ))}
+        </div>
+
+        <div id="diagnostic-box" class="mt-8 p-5 bg-accent/5 border border-accent/20 rounded-xl hidden">
+          <h3 class="text-[10px] font-mono text-accent uppercase tracking-wider mb-2">Architect's Note</h3>
+          <p id="diagnostic-text" class="text-xs text-ink leading-relaxed"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #e5e5e3;
+      border-radius: 10px;
+    }
+    .scenario-card.active-scenario {
+      border-color: rgba(37, 99, 235, 0.4);
+      background: rgba(37, 99, 235, 0.02);
+    }
+    .scenario-selector-muted .scenario-card {
+      opacity: 0.5;
+    }
+    .scenario-selector-muted .scenario-card:hover {
+      opacity: 0.8;
+    }
+  </style>
+
+  <script>
+    // ── DOM refs ──
+    const chatWindow = document.getElementById('chat-window')!;
+    const chatInput = document.getElementById('chat-input') as HTMLTextAreaElement;
+    const sendBtn = document.getElementById('send-btn')!;
+    const diagnosticBox = document.getElementById('diagnostic-box')!;
+    const diagnosticText = document.getElementById('diagnostic-text')!;
+    const scenarioSelector = document.getElementById('scenario-selector')!;
+    const skipBar = document.getElementById('skip-bar')!;
+    const skipLabel = document.getElementById('skip-label')!;
+    const skipBtn = document.getElementById('skip-btn')!;
+
+    // ── Primitive hints (for reset) ──
+    const PRIMITIVE_HINTS: Record<string, string> = {
+      event: 'What triggers the work?',
+      policy: 'What are the rules?',
+      procedure: 'What are the steps?',
+      person: 'Who does the work?',
+      asset: "What's being acted on?",
+      ledger: "What's the proof?",
+    };
+
+    // ── State ──
+    type PageState = 'select' | 'playing' | 'ready';
+    let pageState: PageState = 'select';
+    let animationController: AbortController | null = null;
+
+    const primitives: Record<string, { active: boolean; content: string }> = {
+      event: { active: false, content: '' },
+      policy: { active: false, content: '' },
+      procedure: { active: false, content: '' },
+      person: { active: false, content: '' },
+      asset: { active: false, content: '' },
+      ledger: { active: false, content: '' },
+    };
+
+    // ── Scenario Data ──
+    interface Step {
+      type: 'message' | 'primitive' | 'diagnostic';
+      role?: 'user' | 'architect';
+      text?: string;
+      key?: string;
+      content?: string;
+      delay: number;
+    }
+
+    interface Scenario {
+      id: string;
+      title: string;
+      industry: string;
+      steps: Step[];
+      aiOpportunity: {
+        title: string;
+        items: { verb: string; text: string }[];
+      };
+    }
+
+    const SCENARIOS: Scenario[] = [
+      {
+        id: 'gym',
+        title: 'The Heroism Tax',
+        industry: 'Gym',
+        steps: [
+          { type: 'message', role: 'user', text: "We run a small gym. Derek opens at 5am every day — he walks the floor, checks every piece of equipment, wipes things down. If something's broken, he figures out what to do.", delay: 2500 },
+          { type: 'message', role: 'architect', text: "Derek's morning walk is your Event — a recurring trigger that starts the operation. And Derek himself is the Person. Is there a written checklist he follows, or does he just know what to check?", delay: 3500 },
+          { type: 'primitive', key: 'event', content: '5am floor walk — recurring daily trigger', delay: 800 },
+          { type: 'primitive', key: 'person', content: 'Derek — primary operator, sole opener', delay: 600 },
+          { type: 'message', role: 'user', text: "No checklist. He's been here three years, he just knows. If a cable is fraying he'll pull the machine out of rotation and text me.", delay: 3500 },
+          { type: 'message', role: 'architect', text: "That's the gap. You have a Procedure, but it's in Derek's head — it's a habit, not a gate. And the Policy for \"what counts as broken enough to pull\" is entirely his judgment. What happens when Derek takes a vacation?", delay: 4000 },
+          { type: 'primitive', key: 'procedure', content: "Implicit — equipment inspection (unwritten, habit-based)", delay: 800 },
+          { type: 'primitive', key: 'policy', content: "Implicit — \"broken enough\" determined by Derek's judgment", delay: 600 },
+          { type: 'message', role: 'user', text: "Honestly? I open myself and probably miss things. We had a frayed cable incident last summer when he was out.", delay: 3500 },
+          { type: 'message', role: 'architect', text: "That's the Heroism Tax. Your operation runs on Derek's expertise, not on a system. The Asset — your equipment — has no structured record. And the Ledger is a text thread that nobody can search.", delay: 4000 },
+          { type: 'primitive', key: 'asset', content: 'Gym equipment fleet — no structured inventory', delay: 800 },
+          { type: 'primitive', key: 'ledger', content: 'Informal — text messages to owner, unsearchable', delay: 600 },
+          { type: 'diagnostic', text: "Full manifest revealed. All six primitives exist — but Policy, Procedure, and Ledger are implicit. This operation survives on Derek's memory.", delay: 1500 },
+        ],
+        aiOpportunity: {
+          title: 'Where AI fits in this operation',
+          items: [
+            { verb: 'Perceive', text: "Phone camera + AI turns \"Derek looked at the treadmill\" into a structured condition report with timestamp and severity." },
+            { verb: 'Record', text: "The Ledger writes itself. Every inspection becomes a searchable, timestamped record — not a text message." },
+            { verb: 'Detect', text: "After 90 days of real data, AI notices treadmill #4 needs a cable every 3 weeks. You replace it before it frays." },
+          ],
+        },
+      },
+      {
+        id: 'saas',
+        title: 'The Escalation Gap',
+        industry: 'SaaS Support',
+        steps: [
+          { type: 'message', role: 'user', text: "We're a B2B SaaS company, about 40 people. When a bug report comes in, support triages it. If it's bad enough, they escalate to engineering. But the handoff is messy.", delay: 2500 },
+          { type: 'message', role: 'architect', text: "The bug report arriving is your Event. Support doing triage is a Procedure. Who decides what \"bad enough\" means?", delay: 3500 },
+          { type: 'primitive', key: 'event', content: 'Bug report submitted — inbound trigger', delay: 800 },
+          { type: 'primitive', key: 'procedure', content: 'Support triage — initial classification', delay: 600 },
+          { type: 'message', role: 'user', text: "It's kind of informal. Our senior support person, Amara, just knows which bugs are serious. She'll ping a Slack channel and tag an engineer. Sometimes it takes hours for someone to pick it up.", delay: 3500 },
+          { type: 'message', role: 'architect', text: "Amara is your Person, and she's carrying an implicit Policy — \"senior people handle hard stuff\" isn't a rule anyone can follow if Amara is out sick. The Slack channel is your Ledger, and it's lossy. What's the Asset here — the customer account, or the product?", delay: 4000 },
+          { type: 'primitive', key: 'person', content: 'Amara — senior support, sole escalation authority', delay: 800 },
+          { type: 'primitive', key: 'policy', content: "Implicit — escalation threshold lives in Amara's judgment", delay: 600 },
+          { type: 'message', role: 'user', text: "The customer account, I guess. We've lost two mid-tier customers this quarter because escalations took too long and they felt ignored.", delay: 3500 },
+          { type: 'message', role: 'architect', text: "That confirms it. Your Asset is the customer relationship, and it's degrading because the Ledger — Slack threads — can't enforce time-to-response. Nobody tracks whether an escalation was picked up in 10 minutes or 10 hours.", delay: 4000 },
+          { type: 'primitive', key: 'asset', content: 'Customer accounts — relationship at risk during escalation', delay: 800 },
+          { type: 'primitive', key: 'ledger', content: 'Slack threads — unstructured, no SLA tracking', delay: 600 },
+          { type: 'diagnostic', text: "Full manifest revealed. The escalation Policy is the critical gap — it's implicit, personal, and creates a bottleneck at Amara. Two customer losses trace directly to this.", delay: 1500 },
+        ],
+        aiOpportunity: {
+          title: 'Where AI fits in this operation',
+          items: [
+            { verb: 'Perceive', text: "AI classifies incoming bug reports — turning unstructured text into a structured Event with severity, component, and affected customer tier." },
+            { verb: 'Enforce', text: "Escalation rules become a gate, not a judgment call. Policy says P1 bugs get an engineer within 15 minutes — the system enforces it." },
+            { verb: 'Detect', text: "Ledger analysis reveals that support over-classifies severity 30% of the time. The Policy can be tuned with data, not instinct." },
+          ],
+        },
+      },
+      {
+        id: 'construction',
+        title: 'The Inconsistent Record',
+        industry: 'Construction',
+        steps: [
+          { type: 'message', role: 'user', text: "I run a mid-size general contractor. Every morning, the site super does a safety walk before work starts. They check PPE, scaffolding, trenching — the usual. Sometimes they fill out the inspection form, sometimes they don't.", delay: 2500 },
+          { type: 'message', role: 'architect', text: "The morning safety walk is your Event, and you have an existing Procedure — that inspection form. The fact that it \"sometimes\" gets filled out tells me the Ledger is your weak point. Who is responsible?", delay: 3500 },
+          { type: 'primitive', key: 'event', content: 'Morning safety walk — daily pre-work trigger', delay: 800 },
+          { type: 'primitive', key: 'procedure', content: 'Safety inspection checklist — exists but inconsistently followed', delay: 600 },
+          { type: 'message', role: 'user', text: "The site superintendent. We have four supers across different sites. Some are diligent, some aren't. Even when they fill out the form, it's usually after the fact — they do the walk, then fill it out from memory at lunch.", delay: 3500 },
+          { type: 'message', role: 'architect', text: "Four Persons, same Procedure, different compliance. And the Ledger is fiction — if it's filled out from memory at lunch, it's a narrative, not a record. What's the Policy that mandates this? Internal, or regulatory?", delay: 4000 },
+          { type: 'primitive', key: 'person', content: '4 site superintendents — variable compliance across sites', delay: 800 },
+          { type: 'primitive', key: 'ledger', content: 'Paper forms — filled retroactively from memory, unreliable', delay: 600 },
+          { type: 'message', role: 'user', text: "OSHA requires it. We've been lucky in audits, but our insurance company started asking for digital records and we have nothing to give them.", delay: 3500 },
+          { type: 'message', role: 'architect', text: "So the Policy is regulatory — OSHA mandates it, your insurance requires proof. The Asset is the job site itself. You have every primitive, but the Ledger is the single point of failure. When it's filled in from memory, you don't have a record — you have a story.", delay: 4000 },
+          { type: 'primitive', key: 'policy', content: 'OSHA-mandated daily inspection — regulatory requirement', delay: 800 },
+          { type: 'primitive', key: 'asset', content: 'Job sites — physical locations requiring daily safety verification', delay: 600 },
+          { type: 'diagnostic', text: "Full manifest revealed. Every primitive exists, but the Ledger is structurally broken. The gap isn't knowledge — it's capture. Insurance and regulatory risk are accumulating.", delay: 1500 },
+        ],
+        aiOpportunity: {
+          title: 'Where AI fits in this operation',
+          items: [
+            { verb: 'Perceive', text: "Phone camera + voice memo + GPS turns the safety walk into a structured, timestamped Ledger entry. The super narrates while walking — AI maps it to the checklist." },
+            { verb: 'Record', text: "Every inspection is geotagged, timestamped, and tied to the specific site. Insurance gets digital records without changing the super's workflow." },
+            { verb: 'Detect', text: "Across four sites and 90 days of data, AI identifies that Site C has 3x the scaffolding flags. The pattern was invisible in paper forms." },
+          ],
+        },
+      },
+    ];
+
+    // ── Core UI Functions ──
+
+    function fadeIn(el: HTMLElement, duration = 600, slideUp = 8) {
+      el.style.opacity = '0';
+      el.style.transform = `translateY(${slideUp}px)`;
+      el.style.transition = `opacity ${duration}ms ease-out, transform ${duration}ms ease-out`;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        });
+      });
+    }
+
+    function addMessage(text: string, role: string, animate = true) {
+      const div = document.createElement('div');
+      div.className = 'flex gap-4 ' + (role === 'user' ? 'flex-row-reverse' : '');
+
+      const icon = document.createElement('div');
+      icon.className = 'w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[10px] font-mono ' +
+                       (role === 'user' ? 'bg-ink' : 'bg-accent');
+      icon.textContent = role === 'user' ? 'U' : 'A';
+
+      const content = document.createElement('div');
+      content.className = 'p-4 rounded-2xl text-sm leading-relaxed max-w-[85%] ' +
+                          (role === 'user' ? 'bg-ink text-white rounded-tr-none' : 'bg-soft border border-rule rounded-tl-none text-ink');
+      content.textContent = text;
+
+      div.appendChild(icon);
+      div.appendChild(content);
+      chatWindow.appendChild(div);
+
+      if (animate) fadeIn(div);
+
+      div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+
+    function updatePrimitive(key: string, content: string, animate = true) {
+      const el = document.getElementById(`primitive-${key}`);
+      if (!el) return;
+
+      el.classList.remove('opacity-40', 'grayscale');
+      el.classList.add('border-accent/40', 'bg-accent/[0.02]', 'ring-1', 'ring-accent/10');
+
+      if (animate) {
+        el.style.boxShadow = '0 0 0 4px rgba(37, 99, 235, 0.15)';
+        el.style.transition = 'box-shadow 1s ease-out';
+        setTimeout(() => { el.style.boxShadow = 'none'; }, 100);
+      }
+
+      const contentEl = el.querySelector('.primitive-content') as HTMLElement | null;
+      const statusEl = el.querySelector('.primitive-status');
+
+      if (contentEl) {
+        contentEl.textContent = content;
+        contentEl.classList.remove('italic', 'text-muted');
+        contentEl.classList.add('text-ink', 'font-medium');
+        if (animate) fadeIn(contentEl, 500, 4);
+      }
+
+      if (statusEl) statusEl.classList.remove('hidden');
+
+      primitives[key].active = true;
+      primitives[key].content = content;
+    }
+
+    function showDiagnostic(text: string, animate = true) {
+      diagnosticBox.classList.remove('hidden');
+      diagnosticText.textContent = text;
+      if (animate) fadeIn(diagnosticBox, 700, 6);
+    }
+
+    function hideDiagnostic() {
+      diagnosticBox.classList.add('hidden');
+      diagnosticText.textContent = '';
+    }
+
+    function clearChat() {
+      chatWindow.innerHTML = '';
+    }
+
+    function resetPrimitives() {
+      for (const key of Object.keys(primitives)) {
+        primitives[key].active = false;
+        primitives[key].content = '';
+
+        const el = document.getElementById(`primitive-${key}`);
+        if (!el) continue;
+
+        el.classList.add('opacity-40', 'grayscale');
+        el.classList.remove('border-accent/40', 'bg-accent/[0.02]', 'ring-1', 'ring-accent/10');
+
+        const contentEl = el.querySelector('.primitive-content');
+        if (contentEl) {
+          contentEl.textContent = PRIMITIVE_HINTS[key];
+          contentEl.classList.add('italic', 'text-muted');
+          contentEl.classList.remove('text-ink', 'font-medium');
+        }
+
+        const statusEl = el.querySelector('.primitive-status');
+        if (statusEl) statusEl.classList.add('hidden');
+      }
+    }
+
+    function addGreeting() {
+      const div = document.createElement('div');
+      div.className = 'flex gap-4';
+      div.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-accent flex-shrink-0 flex items-center justify-center text-white text-xs font-mono">A</div>
+        <div class="bg-soft border border-rule p-4 rounded-2xl rounded-tl-none text-sm leading-relaxed text-ink">
+          Tell me about an operation you run. Not the business — one specific process.
+          The thing that breaks when the wrong person is out sick.
+        </div>
+      `;
+      chatWindow.appendChild(div);
+    }
+
+    function showAIOpportunity(scenario: Scenario, animate = true) {
+      const card = document.createElement('div');
+      card.className = 'mx-4 my-2 p-5 bg-accent/5 border border-accent/20 rounded-xl';
+      card.innerHTML = `
+        <h3 class="text-[10px] font-mono text-accent uppercase tracking-wider mb-4">${scenario.aiOpportunity.title}</h3>
+        <div class="space-y-3">
+          ${scenario.aiOpportunity.items.map(item => `
+            <div class="flex gap-3">
+              <span class="text-[10px] font-mono text-accent uppercase tracking-wider mt-0.5 w-16 flex-shrink-0">${item.verb}</span>
+              <p class="text-xs text-ink leading-relaxed">${item.text}</p>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      chatWindow.appendChild(card);
+      if (animate) fadeIn(card, 800, 10);
+      card.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+
+    // ── Page State Management ──
+
+    function setPageState(state: PageState) {
+      pageState = state;
+
+      if (state === 'select') {
+        skipBar.classList.add('hidden');
+        scenarioSelector.classList.remove('scenario-selector-muted');
+        chatInput.disabled = false;
+        chatInput.placeholder = 'Watch an example above, or start typing to describe your operation...';
+        document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('active-scenario'));
+      }
+
+      if (state === 'playing') {
+        skipBar.classList.remove('hidden');
+        chatInput.disabled = true;
+        chatInput.placeholder = 'Watching example...';
+      }
+
+      if (state === 'ready') {
+        skipBar.classList.add('hidden');
+        scenarioSelector.classList.add('scenario-selector-muted');
+        chatInput.disabled = false;
+        chatInput.placeholder = 'My operation is...';
+        chatInput.focus();
+      }
+    }
+
+    // ── Playback Engine ──
+
+    function interruptibleDelay(ms: number, signal: AbortSignal): Promise<void> {
+      return new Promise((resolve, reject) => {
+        const timer = setTimeout(resolve, ms);
+        signal.addEventListener('abort', () => {
+          clearTimeout(timer);
+          reject(new DOMException('Aborted', 'AbortError'));
+        });
+      });
+    }
+
+    function executeStep(step: Step, animate = true) {
+      switch (step.type) {
+        case 'message':
+          addMessage(step.text!, step.role!, animate);
+          break;
+        case 'primitive':
+          updatePrimitive(step.key!, step.content!, animate);
+          break;
+        case 'diagnostic':
+          showDiagnostic(step.text!, animate);
+          break;
+      }
+    }
+
+    async function playScenario(id: string) {
+      const scenario = SCENARIOS.find(s => s.id === id);
+      if (!scenario) return;
+
+      // Cancel any running animation
+      if (animationController) animationController.abort();
+      animationController = new AbortController();
+      const signal = animationController.signal;
+
+      // Set up UI
+      setPageState('playing');
+      clearChat();
+      resetPrimitives();
+      hideDiagnostic();
+      skipLabel.textContent = `${scenario.industry} — ${scenario.title}`;
+
+      // Highlight active scenario card
+      document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('active-scenario'));
+      document.querySelector(`[data-scenario="${id}"]`)?.classList.add('active-scenario');
+
+      let stepsCompleted = 0;
+
+      // Play each step with delays
+      for (const step of scenario.steps) {
+        if (signal.aborted) break;
+
+        try {
+          await interruptibleDelay(step.delay, signal);
+        } catch {
+          break;
+        }
+
+        if (signal.aborted) break;
+
+        executeStep(step);
+        stepsCompleted++;
+      }
+
+      // If skipped, render remaining steps instantly without animation
+      if (signal.aborted) {
+        for (let i = stepsCompleted; i < scenario.steps.length; i++) {
+          executeStep(scenario.steps[i], false);
+        }
+      }
+
+      // Show AI opportunity card
+      try {
+        await interruptibleDelay(2000, animationController?.signal || new AbortController().signal);
+      } catch { /* skipped */ }
+
+      showAIOpportunity(scenario);
+
+      // Pause to let user read the AI opportunity
+      try {
+        await interruptibleDelay(8000, new AbortController().signal);
+      } catch { /* won't abort */ }
+
+      // Transition to ready
+      transitionToReady();
+    }
+
+    async function transitionToReady() {
+      // Show transition message
+      const transition = document.createElement('div');
+      transition.className = 'text-center py-8';
+      transition.innerHTML = `<p class="text-sm text-muted italic">That was their operation. Now describe yours.</p>`;
+      chatWindow.appendChild(transition);
+      fadeIn(transition, 1000, 0);
+      transition.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+      await new Promise(r => setTimeout(r, 3500));
+
+      // Reset everything
+      clearChat();
+      resetPrimitives();
+      hideDiagnostic();
+      addGreeting();
+
+      setPageState('ready');
+    }
+
+    // ── Event Listeners ──
+
+    // Scenario card clicks
+    document.querySelectorAll('.scenario-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const id = (card as HTMLElement).dataset.scenario;
+        if (id) playScenario(id);
+      });
+    });
+
+    // Skip button
+    skipBtn.addEventListener('click', () => {
+      if (animationController) animationController.abort();
+    });
+
+    // Auto-resize textarea
+    chatInput.addEventListener('input', () => {
+      chatInput.style.height = 'auto';
+      chatInput.style.height = (chatInput.scrollHeight) + 'px';
+      if (chatInput.scrollHeight > 150) chatInput.style.overflowY = 'auto';
+      else chatInput.style.overflowY = 'hidden';
+    });
+
+    // Direct-start bypass: if user starts typing in select mode, go to ready
+    chatInput.addEventListener('focus', () => {
+      if (pageState === 'select') {
+        setPageState('ready');
+      }
+    });
+
+    // Send message (placeholder — will be wired to API)
+    async function getArchitectResponse(input: string) {
+      await new Promise(r => setTimeout(r, 600));
+      return "I see. Let's look at the primitives. Who does this work, and what is the record that proves it's done?";
+    }
+
+    sendBtn.addEventListener('click', async () => {
+      const text = chatInput.value.trim();
+      if (!text || chatInput.disabled) return;
+
+      chatInput.value = '';
+      chatInput.style.height = 'auto';
+      addMessage(text, 'user');
+
+      const response = await getArchitectResponse(text);
+      addMessage(response, 'architect');
+    });
+
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendBtn.click();
+      }
+    });
+  </script>
+</Base>
