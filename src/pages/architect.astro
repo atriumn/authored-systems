@@ -111,21 +111,78 @@ import Base from '../layouts/Base.astro';
 
       <hr />
 
-      <h2>Get involved</h2>
+      <h2>Stay connected</h2>
 
       <p>
-        If you read the <a href="/essays">essays</a>, understood the <a href="/glossary">primitives</a>,
-        and recognized yourself in this page — we want to talk.
+        If you read the principles, understood the primitives, and recognized yourself
+        in this page — I'm building the tools for this role. Leave your email.
       </p>
 
-      <p>
-        Not a job posting. Not a newsletter signup. Just a conversation with someone who thinks the same way.
-      </p>
-
-      <p>
-        <a href="mailto:jeff@atriumn.com">jeff@atriumn.com</a>
-      </p>
+      <div class="not-prose mt-6">
+        <form id="subscribe-form" class="flex gap-3 max-w-md">
+          <input
+            id="subscribe-email"
+            type="email"
+            required
+            placeholder="you@example.com"
+            class="flex-1 border border-rule rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-accent transition-all bg-white"
+          />
+          <button
+            type="submit"
+            class="px-6 py-3 bg-ink text-white rounded-full text-sm font-medium hover:bg-accent transition-colors whitespace-nowrap"
+          >Subscribe</button>
+        </form>
+        <p id="subscribe-status" class="text-sm mt-4 hidden"></p>
+      </div>
 
     </div>
   </div>
+
+  <script>
+    const SUPABASE_URL = 'https://xfzxjxxapecayztnefgi.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhmenhqeHhhcGVjYXl6dG5lZmdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyNTk0MzQsImV4cCI6MjA4ODgzNTQzNH0.LgADc4Iy_yN8k3vm2tYuK1MYGJBUi-HkZKM2qvzIaGM';
+
+    const form = document.getElementById('subscribe-form') as HTMLFormElement;
+    const emailInput = document.getElementById('subscribe-email') as HTMLInputElement;
+    const status = document.getElementById('subscribe-status')!;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      const btn = form.querySelector('button')!;
+      btn.disabled = true;
+      btn.textContent = '...';
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/subscribers`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Prefer': 'return=minimal',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        if (res.ok) {
+          status.textContent = "You're in. New essays straight to your inbox.";
+          status.className = 'text-sm mt-4 text-accent';
+          form.classList.add('hidden');
+        } else if (res.status === 409) {
+          status.textContent = "You're already subscribed.";
+          status.className = 'text-sm mt-4 text-muted';
+        } else {
+          throw new Error('Request failed');
+        }
+      } catch {
+        status.textContent = 'Something went wrong. Try again.';
+        status.className = 'text-sm mt-4 text-muted';
+        btn.disabled = false;
+        btn.textContent = 'Subscribe';
+      }
+    });
+  </script>
 </Base>
