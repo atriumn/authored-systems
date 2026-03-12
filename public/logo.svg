@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 32">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700');
+    text { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  </style>
+  <text x="2" y="25" font-size="28" fill="#1a1a1a">a</text>
+  <circle cx="33" cy="23.5" r="3" fill="#2563eb"/>
+</svg>
