@@ -107,14 +107,9 @@ Almost. But every notification is an Event (something happened) that triggers a 
 
 Here's how I know it's six and not seven: **every time I tried to add a seventh, I could decompose it into existing primitives.** And every time I tried to remove one of the six, I lost the ability to model something real.
 
-- Remove Policy — you can't express constraints, eligibility, or rules
-- Remove Procedure — you can't express ordered steps
-- Remove Asset — you can't express the thing being acted on
-- Remove Person — you can't express who does the work or who it's for
-- Remove Event — you can't express what triggers work
-- Remove Ledger — you can't prove anything happened
+Remove Policy and you can't express constraints or eligibility. Remove Procedure and there are no ordered steps. Remove Asset and you can't talk about the thing being acted on. Remove Person and you lose who does the work, who's qualified, who's available. Remove Event and nothing triggers — you have a static system with no concept of "something happened." Remove Ledger and you can describe how the operation *should* work, but you can never prove that it did.
 
-Six is the number where nothing decomposes further and nothing is missing. It's not elegant by design. It's what survived contact with real operations across a gym, a property management company, a lawn care marketplace, and every vertical we've tested it against since.
+It's not elegant by design. It's what survived contact with real operations across a gym, a property management company, a lawn care marketplace, and every vertical we've tested it against since.
 
 ---
 

@@ -17,15 +17,15 @@ Both operations have procedures. The difference isn't discipline or effort. It's
 
 ## The tax you're already paying
 
-Every operation that runs on tribal knowledge pays a tax. You don't see it on a balance sheet. You feel it in the three ways things go wrong:
+Every operation that runs on tribal knowledge pays a tax. You don't see it on a balance sheet. You feel it when things go wrong.
 
-**The resignation gap.** Your best person quits. The knowledge of how things actually work — not the employee handbook version, the real version — walks out with them. The next person does it differently. The one after that does it a third way. Within a month, you've lost consistency you spent years building.
+Your best person quits. The knowledge of how things actually work — not the employee handbook version, the real version — walks out with them. The next person does it differently. The one after that does it a third way. Within a month, you've lost consistency you spent years building.
 
-**The inconsistency drift.** Two people perform the same task in two different ways. Neither is wrong, exactly, but you can't measure what you can't see. You can't optimize a process that changes depending on who's working. You don't have a procedure. You have habits.
+Or it's subtler than that. Two people perform the same task in two different ways. Neither is wrong, exactly, but you can't measure what you can't see. You can't optimize a process that changes depending on who's working.
 
-**The audit dead-end.** Something goes wrong. You try to walk it back. Why did this happen? Who made this call? When was this last checked? You hit a wall of "I think so" and "that's just how we do it." The record doesn't exist because nobody was required to create it.
+Or something breaks and you try to walk it back. Why did this happen? Who made this call? When was this last checked? You hit a wall of "I think so" and "that's just how we do it." The record doesn't exist because nobody was required to create it.
 
-These aren't failures of people. They're failures of design. If the system state lives inside specific people, you don't have an operation. You have a dependency.
+None of these are failures of effort. They're failures of design. When the system state lives inside specific people, the operation is only as reliable as their memory and their continued employment.
 
 ---
 
@@ -37,9 +37,9 @@ The opposite is true. Inferred systems are the ones full of red tape.
 
 In an inferred system, you have to ask for permission because the rules aren't clear. You sit through sync meetings because the records are incomplete. You wait for the manager to bless a decision because the policy lives in their head. Every handoff requires a conversation. Every escalation requires finding the right person and hoping they remember.
 
-When the policy is authored and the procedure is a gate, you don't need permission. You have a green light. You don't need to report what you did — the ledger records it as you work. You don't need to wonder if you're qualified — the system already knows.
+When the policy is authored and the procedure is a gate, you don't need permission — the system already told you what's allowed. You don't need to report what you did — the ledger records it as you work. You don't need to wonder if you're qualified — the system already knows.
 
-Structure doesn't add steps. It removes the cognitive load of those steps.
+The structure doesn't add steps. It removes the overhead around the steps you were already doing.
 
 ---
 
@@ -47,12 +47,12 @@ Structure doesn't add steps. It removes the cognitive load of those steps.
 
 An authored system names the six things every operation already has:
 
-- **Policy** — the rule. Not "everyone knows we don't deploy on Fridays." A written, inspectable, enforceable constraint.
-- **Procedure** — the steps. Not the SOP from 2019. The actual steps the best operator follows on Tuesday morning, written as gates.
-- **Asset** — the thing being acted on. With state, history, and governance — not just a name in a spreadsheet.
-- **Person** — the qualified actor. Not interchangeable headcount. Someone with specific qualifications, capacity, and availability.
-- **Event** — the trigger. Not "things happen and we react." A classified signal that activates a specific policy.
-- **Ledger** — the proof. Not checkboxes. Structured records that answer "was this done, when, by whom, and what did they find?"
+- **Policy** — the rule. Written, inspectable, enforceable — not "everyone knows we don't deploy on Fridays."
+- **Procedure** — the steps. The actual steps the best operator follows on Tuesday morning, written as gates. Not the SOP from 2019 that nobody reads.
+- **Asset** — the thing being acted on, with state and history. Not a name in a spreadsheet.
+- **Person** — the qualified actor. Someone with specific qualifications, capacity, and availability — not interchangeable headcount.
+- **Event** — the trigger that activates a specific policy.
+- **Ledger** — structured records that answer "was this done, when, by whom, and what did they find?"
 
 In an authored system, these aren't just words. They're gates. The procedure can't start unless the person has the right policy clearance and the event has been classified. The ledger is written as the work happens, not reconstructed from memory at the end of the day.
 
@@ -68,4 +68,4 @@ AI's contribution to operations isn't thinking — it's perception. It can see a
 
 AI makes it cheap to be structured. It removes the paperwork humans hate while keeping the structure businesses need. The structuring work that used to require a compliance department can now happen as a natural byproduct of the work itself.
 
-The question isn't whether your operation has these six structures. It does. The question is whether they're authored — or whether they're in someone's head, waiting to walk out the door.
+Your operation already has these six structures. Every operation does. The only variable is whether they're authored — explicit, enforced, recorded — or living in someone's head, accumulating risk every day they don't write it down.
