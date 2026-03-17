@@ -7,11 +7,11 @@ order: 1
 series: "The Foundations"
 ---
 
-In healthcare, a nurse can't skip a step. The system won't let them. The medication gets scanned, the patient ID gets verified, the dosage gets checked against the order. If any of those fail, the process stops. Not because the nurse is incompetent — because the architecture treats the procedure as a gate, not a suggestion.
+In healthcare, a nurse can't skip a step. The system won't let them. The medication gets scanned, the patient ID gets verified, the dosage gets checked against the order. If any of those fail, the process stops. Not because the nurse is incompetent, but because the architecture treats the procedure as a gate, not a suggestion.
 
 In a gym, a coach walks the floor before the first class. Checks the obstacles. Looks for frayed cables, loose bolts, worn landing mats. There is no gate. There's just the coach's judgment and memory. If they miss something, nobody knows until a kid gets hurt.
 
-Both operations have procedures. The difference isn't discipline or effort. It's whether the procedure is authored — written, enforced, recorded — or inferred from the habits of whoever shows up that morning.
+Both operations have procedures. The difference isn't discipline or effort. It's whether the procedure is authored (written, enforced, recorded) or inferred from the habits of whoever shows up that morning.
 
 ---
 
@@ -19,7 +19,7 @@ Both operations have procedures. The difference isn't discipline or effort. It's
 
 Every operation that runs on tribal knowledge pays a tax. You don't see it on a balance sheet. You feel it when things go wrong.
 
-Your best person quits. The knowledge of how things actually work — not the employee handbook version, the real version — walks out with them. The next person does it differently. The one after that does it a third way. Within a month, you've lost consistency you spent years building.
+Your best person quits. The knowledge of how things actually work (not the employee handbook version, the real version) walks out with them. The next person does it differently. The one after that does it a third way. Within a month, you've lost consistency you spent years building.
 
 Or it's subtler than that. Two people perform the same task in two different ways. Neither is wrong, exactly, but you can't measure what you can't see. You can't optimize a process that changes depending on who's working.
 
@@ -37,7 +37,7 @@ The opposite is true. Inferred systems are the ones full of red tape.
 
 In an inferred system, you have to ask for permission because the rules aren't clear. You sit through sync meetings because the records are incomplete. You wait for the manager to bless a decision because the policy lives in their head. Every handoff requires a conversation. Every escalation requires finding the right person and hoping they remember.
 
-When the policy is authored and the procedure is a gate, you don't need permission — the system already told you what's allowed. You don't need to report what you did — the ledger records it as you work. You don't need to wonder if you're qualified — the system already knows.
+When the policy is authored and the procedure is a gate, you don't need permission. The system already told you what's allowed. You don't need to report what you did because the ledger records it as you work. You don't need to wonder if you're qualified. The system already knows.
 
 The structure doesn't add steps. It removes the overhead around the steps you were already doing.
 
@@ -47,12 +47,12 @@ The structure doesn't add steps. It removes the overhead around the steps you we
 
 An authored system names the six things every operation already has:
 
-- **Policy** — the rule. Written, inspectable, enforceable — not "everyone knows we don't deploy on Fridays."
-- **Procedure** — the steps. The actual steps the best operator follows on Tuesday morning, written as gates. Not the SOP from 2019 that nobody reads.
-- **Asset** — the thing being acted on, with state and history. Not a name in a spreadsheet.
-- **Person** — the qualified actor. Someone with specific qualifications, capacity, and availability — not interchangeable headcount.
-- **Event** — the trigger that activates a specific policy.
-- **Ledger** — structured records that answer "was this done, when, by whom, and what did they find?"
+- **Policy**: the rule. Written, inspectable, enforceable. Not "everyone knows we don't deploy on Fridays."
+- **Procedure**: the steps the best operator follows on Tuesday morning, written as gates. Not the SOP from 2019 that nobody reads.
+- **Asset**: the thing being acted on, with state and history.
+- **Person**: the qualified actor. Someone with specific qualifications, capacity, and availability.
+- **Event**: the trigger that activates a specific policy.
+- **Ledger**: structured records that answer "was this done, when, by whom, and what did they find?"
 
 In an authored system, these aren't just words. They're gates. The procedure can't start unless the person has the right policy clearance and the event has been classified. The ledger is written as the work happens, not reconstructed from memory at the end of the day.
 
@@ -60,12 +60,12 @@ In an authored system, these aren't just words. They're gates. The procedure can
 
 ## Why this matters now
 
-The heroism tax used to be the price of doing business. Structuring an operation was expensive — it required institutional infrastructure, compliance departments, regulatory pressure. Healthcare has authored systems because regulators forced it. Aviation has authored systems because crashes forced it. Nobody authors a system voluntarily when the cost is that high.
+The heroism tax used to be the price of doing business. Structuring an operation was expensive. It required institutional infrastructure, compliance departments, regulatory pressure. Healthcare has authored systems because regulators forced it. Aviation has authored systems because crashes forced it. Nobody authors a system voluntarily when the cost is that high.
 
 But AI changed the math.
 
-AI's contribution to operations isn't thinking — it's perception. It can see a photo of a frayed cable and classify it as an equipment issue. It can hear a voice note and extract a structured inspection record. It can read an unstructured email and create a classified event before the first rule fires.
+AI's contribution to operations isn't thinking. It's perception. It can see a photo of a frayed cable and classify it as an equipment issue. It can hear a voice note and extract a structured inspection record. It can read an unstructured email and create a classified event before the first rule fires.
 
 AI makes it cheap to be structured. It removes the paperwork humans hate while keeping the structure businesses need. The structuring work that used to require a compliance department can now happen as a natural byproduct of the work itself.
 
-Your operation already has these six structures. Every operation does. The only variable is whether they're authored — explicit, enforced, recorded — or living in someone's head, accumulating risk every day they don't write it down.
+Your operation already has these six structures. Every operation does. The only variable is whether they're authored (explicit, enforced, recorded) or living in someone's head, accumulating risk every day they don't write it down.

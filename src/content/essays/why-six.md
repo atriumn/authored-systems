@@ -9,11 +9,11 @@ series: "The Foundations"
 
 ## Where This Came From
 
-I'm a software engineer who left tech to open a small business. My family owns a gym — not a franchise, an independent ninja warrior facility with obstacles, coaches, birthday parties, open gym sessions, and all the operational chaos that comes with a physical space full of kids and equipment that can hurt them.
+I'm a software engineer who left tech to open a small business. My family owns a gym. Not a franchise, an independent ninja warrior facility with obstacles, coaches, birthday parties, open gym sessions, and all the operational chaos that comes with a physical space full of kids and equipment that can hurt them.
 
 I figured building software for my own operation would be the easy part. I'd spent years building software for other people's problems. Now I had my own. Nothing on the market modeled what we actually do. Every tool I evaluated was either a generic checklist app that ignored the structure of our work, or an enterprise platform that cost more than our annual revenue.
 
-So I started building. And I kept hitting the same wall: every "simple" feature — assign a coach to an opening shift, schedule a weekly equipment inspection, track a damaged obstacle, cap a birthday party at 25 kids — required me to model the same handful of concepts. I didn't set out to find primitives. I set out to build a checklist app for our team and kept discovering things I couldn't avoid naming.
+So I started building. And I kept hitting the same wall: every "simple" feature (assign a coach to an opening shift, schedule a weekly equipment inspection, track a damaged obstacle, cap a birthday party at 25 kids) required me to model the same handful of concepts. I didn't set out to find primitives. I set out to build a checklist app for our team and kept discovering things I couldn't avoid naming.
 
 Then I built the same system for a property management company. Different industry. Different nouns. Same six concepts. That's when I knew it wasn't a coincidence.
 
@@ -47,7 +47,7 @@ Four primitives. Better.
 
 "Mike coaches Monday mornings. Sarah covers weekends. Jordan is new and can't do course prep yet."
 
-In the three-primitive model, these are rules. "Assign Mike to Monday morning" is a policy. But Mike isn't a policy — Mike is a person with qualifications, capacity, availability, and a track record. Treating people as rule parameters meant I couldn't ask the questions that actually matter in operations: Who's overloaded? Who's qualified for course prep? Who's available Saturday?
+In the three-primitive model, these are rules. "Assign Mike to Monday morning" is a policy. But Mike isn't a policy. Mike is a person with qualifications, capacity, availability, and a track record. Treating people as rule parameters meant I couldn't ask the questions that actually matter in operations: Who's overloaded? Who's qualified for course prep? Who's available Saturday?
 
 **Person** became its own primitive. Not because it's theoretically elegant, but because every scheduling problem, every coverage gap, every capacity question we tried to model collapsed into "tell me about the people."
 
@@ -65,7 +65,7 @@ But nothing *happened*.
 
 "When does the opening inspection run?" Monday at 8am. "What triggers a party cancellation?" Unsigned waiver 24 hours before the event. "Why did the system alert the coordinator at 2pm?" Because Thursday afternoon has no qualified coach on the schedule.
 
-I was encoding triggers as policies, and it was a mess. "If it's Monday and it's 8am and a qualified coach is on shift, run the opening runbook" isn't a policy — it's a policy reacting to an event. The event is the thing that happened. The policy is the thing that decides what to do about it.
+I was encoding triggers as policies, and it was a mess. "If it's Monday and it's 8am and a qualified coach is on shift, run the opening runbook" isn't a policy. It's a policy reacting to an event. The event is the thing that happened. The policy is the thing that decides what to do about it.
 
 **Event** had to be its own primitive. Without it, you can't distinguish between the rules (Policy) and the things that activate those rules (Event). You end up with policies that contain their own triggers, which means you can't reuse either one independently.
 
@@ -93,7 +93,7 @@ No. A schedule is an Event (the trigger) governed by Policy (the constraints). "
 
 "A runbook is a composition of procedures." Doesn't that deserve primitive status?
 
-No. A runbook is a composition, not a primitive. The distinction matters. Primitives are irreducible — they don't decompose further. A runbook decomposes into procedures, which are the actual primitive. Elevating Runbook to primitive status would mean you have two levels of "steps" (runbook steps and procedure steps) with unclear ownership. The composition layer sits above the primitives, not among them.
+No. A runbook is a composition, not a primitive. The distinction matters. Primitives are irreducible. They don't decompose further. A runbook decomposes into procedures, which are the actual primitive. Elevating Runbook to primitive status would mean you have two levels of "steps" (runbook steps and procedure steps) with unclear ownership. The composition layer sits above the primitives, not among them.
 
 ### Communication / Notification
 

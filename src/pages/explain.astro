@@ -390,11 +390,22 @@ import Base from '../layouts/Base.astro';
           <p>The ledger is operational memory, not just a log. It reveals recurring failures, drift by cohort, and leading indicators before incidents spike.</p>
           <p>AI surfaces the pattern. Humans decide whether to change policy, thresholds, or maintenance cadence.</p>
           <div class="examples" data-step-examples="7"></div>
-          <p class="finale">Structure first. Intelligence second.</p>
         </div>
       </div>
 
       <div class="step" data-step="8">
+        <div class="step-content ai-step">
+          <p class="phase-badge ai">AI Augmentation</p>
+          <p class="ai-badge">AI MODE 4 — AUDIT</p>
+          <h2>8) AI reviews the primitives themselves.</h2>
+          <p>Pattern detection reads the ledger. Auditing reads the system. AI can review policies for conflicts, flag procedures with missing steps, identify qualifications that have lapsed, and detect assets whose maintenance cadence doesn't match their failure history.</p>
+          <p>The system doesn't just run. It checks its own work. Humans still approve every change, but AI does the review that nobody has time for.</p>
+          <div class="examples" data-step-examples="8"></div>
+          <p class="finale">Structure first. Intelligence second.</p>
+        </div>
+      </div>
+
+      <div class="step" data-step="9">
         <div class="step-content">
           <h2>Two architecture choices.</h2>
           <p><strong>Left:</strong> AI is treated as the operator. Decisions are concentrated in a black box and hard to explain later.</p>
@@ -812,6 +823,10 @@ import Base from '../layouts/Base.astro';
           structured: 'Ledger cohort signal: across 214 properties, Rheem HVAC units show accelerated degradation after year 7.',
           outcome: 'Policy suggestion: start proactive replacement planning at 6.5 years and prioritize high-load sites.',
         },
+        8: {
+          structured: 'Audit: emergency dispatch policy conflicts with new vendor onboarding procedure. 3 inspector certifications expire next month.',
+          outcome: 'Policy revision queued for review. Recertification reminders sent automatically.',
+        },
       },
     },
     restaurant: {
@@ -842,6 +857,10 @@ import Base from '../layouts/Base.astro';
         7: {
           structured: 'Ledger cohort signal: steak remakes spike 40% on Friday 7–9pm when grill wait >14 minutes.',
           outcome: 'Policy suggestion: open a second grill lane when wait-time threshold is crossed.',
+        },
+        8: {
+          structured: 'Audit: recovery procedure missing follow-up step for repeat complaints. Food safety cert expires for 2 line cooks in 10 days.',
+          outcome: 'Procedure updated with follow-up gate. Certification renewal flagged to manager.',
         },
       },
     },
@@ -874,6 +893,10 @@ import Base from '../layouts/Base.astro';
           structured: 'Ledger trend: config-drift incidents cluster within 24 hours of emergency patch releases.',
           outcome: 'Policy suggestion: require automated drift reconciliation before merge on patch branches.',
         },
+        8: {
+          structured: 'Audit: rollback procedure assumes single-region deploy but 2 services are now multi-region. On-call rotation has coverage gap Sundays 2-6am.',
+          outcome: 'Procedure flagged for architecture review. Rotation gap escalated to eng manager.',
+        },
       },
     },
     construction: {
@@ -904,6 +927,10 @@ import Base from '../layouts/Base.astro';
         7: {
           structured: 'Ledger cohort signal: rebar spacing flags concentrate on pours from one supplier lot.',
           outcome: 'Policy suggestion: hold that lot, add incoming QC gate, and pre-stage alternate supply.',
+        },
+        8: {
+          structured: 'Audit: wet-weather procedure doesn\'t cover curing requirements for new concrete spec. 1 site super\'s OSHA 30 certification lapsed.',
+          outcome: 'Procedure revision drafted for review. Certification hold placed on affected super.',
         },
       },
     },
@@ -1045,7 +1072,7 @@ import Base from '../layouts/Base.astro';
 
     // Show/hide sticky industry pills
     const pills = document.getElementById('industry-pills');
-    if (pills) pills.classList.toggle('hidden', step === 0 || step >= 8);
+    if (pills) pills.classList.toggle('hidden', step === 0 || step >= 9);
 
     // === Step 0: Blue AI blob opener ===
     if (step === 0) {
@@ -1054,8 +1081,8 @@ import Base from '../layouts/Base.astro';
       return;
     }
 
-    // === Step 8: Two architectures comparison ===
-    if (step === 8) {
+    // === Step 9: Two architectures comparison ===
+    if (step === 9) {
       show('comparison', true);
       return;
     }
@@ -1160,7 +1187,7 @@ import Base from '../layouts/Base.astro';
     }
 
     // Step 7: Pattern detection
-    show('ai-ledger-lines', step === 7);
+    show('ai-ledger-lines', step === 7 || step === 8);
     if (step === 7) {
       announceAI('PATTERN', 150, 400, () => {
         show('clean-dot', true);
@@ -1180,6 +1207,31 @@ import Base from '../layouts/Base.astro';
       });
       show('ai-filter', true);
       show('ai-edge-labels', true);
+    }
+
+    // Step 8: Audit — AI reviews the primitives themselves
+    if (step === 8) {
+      announceAI('AUDIT', 400, 250, () => {
+        show('clean-dot', true);
+        show('ai-filter', true);
+        show('ai-edge-labels', true);
+        show('ai-pattern-line', true);
+        show('ai-pattern-label', true);
+        // Pulse the policy and procedure nodes to indicate review
+        const policy = document.getElementById('node-policy');
+        const procedure = document.getElementById('node-procedure');
+        if (policy) { policy.style.transition = 'opacity 0.5s'; policy.style.opacity = '1'; }
+        if (procedure) { procedure.style.transition = 'opacity 0.5s'; procedure.style.opacity = '1'; }
+        // Flash the nodes to indicate active audit
+        stepTimeouts.push(setTimeout(() => {
+          if (policy) policy.style.opacity = '0.5';
+          if (procedure) procedure.style.opacity = '0.5';
+        }, 400));
+        stepTimeouts.push(setTimeout(() => {
+          if (policy) policy.style.opacity = '1';
+          if (procedure) procedure.style.opacity = '1';
+        }, 800));
+      });
     }
   }
 

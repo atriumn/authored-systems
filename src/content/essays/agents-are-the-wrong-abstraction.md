@@ -11,7 +11,7 @@ Call it an AI property manager. An AI scheduling coordinator. An AI front desk. 
 
 Now take it apart.
 
-You'll find a policy — a rule about what should happen. A procedure — steps for how it happens. An asset — the thing being acted on. A person — the qualified actor. An event — the trigger that started the work. A ledger — the record that it happened.
+You'll find a policy (a rule about what should happen), a procedure (steps for how it happens), an asset (the thing being acted on), a person (the qualified actor), an event (the trigger that started the work), and a ledger (the record that it happened).
 
 Six structures. Always six. Regardless of what you called the agent, regardless of the industry, regardless of the vendor that sold it to you.
 
@@ -27,22 +27,22 @@ Triage. Route. Schedule. Score. Document. Verify. Escalate.
 
 Now sort those verbs. Every one of them maps to one of six structures:
 
-- **Policy** — the rule that governs the decision. "Premium customers get a 2-hour SLA." A lookup, not a judgment call.
-- **Procedure** — the steps that execute the work. "Diagnose, quote, schedule, repair, close." A sequence with gates.
-- **Asset** — the thing being acted on. "Unit 4B, water heater, installed 2019, last serviced October." This is a record. The model doesn't need to remember it.
-- **Person** — the qualified actor. "Licensed plumber, available Tuesday, within 15 miles." A database query.
-- **Event** — the trigger that started the work. "Customer reported no hot water." Classification — the one place AI actually earns its keep.
-- **Ledger** — the proof it happened. "Work order opened, assigned, completed, verified." An append to a log.
+- **Policy**: the rule that governs the decision. "Premium customers get a 2-hour SLA." A lookup, not a judgment call.
+- **Procedure**: the steps that execute the work. "Diagnose, quote, schedule, repair, close." A sequence with gates.
+- **Asset**: the thing being acted on. "Unit 4B, water heater, installed 2019, last serviced October." This is a record. The model doesn't need to remember it.
+- **Person**: the qualified actor. "Licensed plumber, available Tuesday, within 15 miles." A database query.
+- **Event**: the trigger that started the work. "Customer reported no hot water." Classification, and the one place AI actually earns its keep.
+- **Ledger**: the proof it happened. "Work order opened, assigned, completed, verified." An append to a log.
 
 Most of those verbs don't need intelligence. They need rules. A few need classification. Almost none need reasoning.
 
-The agent was doing all six things at once, inside a prompt, probabilistically. Take it apart and you can do five of them deterministically — cheaper, faster, and without hallucinations. The AI handles the one thing it's actually good at: perceiving the world and classifying what it sees.
+The agent was doing all six things at once, inside a prompt, probabilistically. Take it apart and you can do five of them deterministically. Cheaper, faster, and without hallucinations. The AI handles the one thing it's actually good at: perceiving the world and classifying what it sees.
 
 ---
 
 ## Why This Matters for LLMs
 
-LLMs are probabilistic. If you wrap your rules inside an agent's prompt, you have a probabilistic system trying to act deterministic. The model is guessing at the rule rather than following it — and that's where hallucinations come from.
+LLMs are probabilistic. If you wrap your rules inside an agent's prompt, you have a probabilistic system trying to act deterministic. The model is guessing at the rule rather than following it, and that's where hallucinations come from.
 
 When you decompose the agent into primitives, you move the rules out of the prompt and into the architecture. 
 
