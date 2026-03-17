@@ -10,11 +10,11 @@ draft: true
 
 ## Why This Matters
 
-FMEA is usually associated with regulated industries and formal quality programs. Most small teams assume they are too early, too lean, or too busy for it.
+We had a kid land wrong off the warped wall on a Monday morning. The landing mat had shifted over the weekend, and the coach who opened hadn't checked it because Sunday's closer was supposed to reset the mats. The closer hadn't, because nobody had written down that mat resets were part of closing. The kid was fine. We were lucky.
 
-That assumption creates a blind spot. You still have failure modes. You just discover them in production.
+After that, I started asking: what else can go wrong that we haven't thought about? How bad is it if it does? And would we even catch it before someone gets hurt?
 
-If you run operations where people, equipment, customers, and time-sensitive events intersect, you are already doing a low-quality version of FMEA in your head. This essay is about doing a higher-quality version on purpose.
+That's FMEA. It usually lives in regulated industries and formal quality programs, and most small teams assume they're too early or too lean for it. But the questions are the same whether you're running a nuclear plant or a gym. You just discover the answers differently. In a nuclear plant, FMEA happens in a conference room with engineers. In our gym, it happened because a kid landed on a concrete floor.
 
 ---
 
@@ -139,8 +139,4 @@ Operationalize it with three habits:
 
 If scores never change, the process is theater. If scores move and incidents fall, the system is learning.
 
----
-
-## The One-Liner
-
-> FMEA for small teams is not paperwork. It is a fast way to turn recurring surprises into explicit controls, owners, and evidence.
+After the mat incident, we ran our first FMEA on the opening routine. Took an hour. Found three other things that could hurt a kid before first class. Fixed all of them with a gate in the procedure and a photo requirement in the ledger. That was two years ago. No injuries since.

@@ -43,8 +43,6 @@ Take engineering. An SDLC has all six:
 
 Now do it for product development. The policy is "features require a problem statement before engineering starts" — or it's "the CEO mentioned it in a meeting so I guess we're building it." The procedure is discovery through retro — or it's "we just kind of build it." The ledger is a decision log with experiment results — or it's "I think we tried that last year, it didn't work, but I don't remember why."
 
-Do it for HR. The policy is "PIP requires three documented performance conversations" — or it's "managers handle it however they want." The ledger is interview scorecards and comp change records — or it's "I gave them feedback verbally, in a 1:1, no I didn't write it down."
-
 The pattern is identical in every function. The six primitives exist whether anyone has named them or not. The only question is whether they're authored — explicit, inspectable, enforced — or inferred from the habits of whoever happens to be working that day.
 
 ---

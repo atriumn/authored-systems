@@ -56,3 +56,7 @@ Then the human approves, edits, or rejects — and now it's a rule. Explicit, in
 The rules engine is the brain. AI is the eyes and the scribe. It sees the world and it captures what happened. That's a narrow, well-defined job, and current models are good at it.
 
 The mistake most AI deployments make is giving the model the brain's job too. When you ask an LLM to enforce your policies, route your work, and decide what happens next, you get a system that hallucinates its way through decisions that should have been deterministic. When you limit the model to perception and extraction, the architecture handles the rest.
+
+But there's a third job that emerges once the system is running: AI can review the system itself. Not the data flowing through it, but the primitives that define it. A policy that conflicts with another policy. A procedure that's missing a step the ledger says operators always add manually. A person whose certification expires next month. An asset whose maintenance cadence doesn't match its actual failure rate.
+
+This is different from perception (seeing the world) and different from pattern detection (reading the ledger for trends). This is structural review. The system checking its own integrity. AI proposes the change. Humans approve it. The system gets better without a quarterly review meeting that nobody schedules.
