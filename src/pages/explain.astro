@@ -737,41 +737,36 @@ import Base from '../layouts/Base.astro';
   }
 
   @media (max-width: 768px) {
-    .explain {
-      display: flex;
-      flex-direction: column;
-    }
-
     .graphic {
-      position: sticky;
-      top: 0;
-      height: 45vh;
-      min-height: 240px;
-      z-index: 10;
-      padding: 0.5rem;
-    }
-
-    #diagram {
-      padding: 0;
-      height: 100%;
-      width: auto;
+      display: none;
     }
 
     .steps {
       position: relative;
       z-index: 1;
-      margin-top: -45vh;
     }
 
     .step {
-      min-height: 100vh;
-      padding: 1rem;
-      padding-top: 47vh;
-      align-items: flex-start;
+      min-height: auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .step:first-child {
+      padding-top: 2rem;
     }
 
     .step-content {
       max-width: 100%;
+      background: none;
+      backdrop-filter: none;
+      border: none;
+      border-bottom: 1px solid #e5e5e3;
+      border-radius: 0;
+      padding: 0 0 2rem 0;
+    }
+
+    .step:last-child .step-content {
+      border-bottom: none;
     }
 
     .step-content h2 {
@@ -779,13 +774,7 @@ import Base from '../layouts/Base.astro';
     }
 
     .industry-pills {
-      gap: 0.25rem;
-      padding: 0.25rem 0.5rem;
-    }
-
-    .pill {
-      font-size: 0.6rem;
-      padding: 0.15rem 0.5rem;
+      display: none;
     }
   }
 </style>
