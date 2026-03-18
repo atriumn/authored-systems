@@ -747,7 +747,7 @@ import Base from '../layouts/Base.astro';
       top: 0;
       height: 40vh;
       min-height: 200px;
-      z-index: 1;
+      z-index: 10;
     }
 
     #diagram {
@@ -756,18 +756,19 @@ import Base from '../layouts/Base.astro';
 
     .steps {
       position: relative;
-      z-index: 2;
+      z-index: 1;
+      margin-top: -40vh;
     }
 
     .step {
-      min-height: 60vh;
+      min-height: 100vh;
       padding: 1rem;
-      align-items: flex-end;
+      padding-top: 42vh;
+      align-items: flex-start;
     }
 
     .step-content {
       max-width: 100%;
-      margin-top: 42vh;
     }
 
     .step-content h2 {
