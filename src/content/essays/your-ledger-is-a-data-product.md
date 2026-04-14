@@ -14,10 +14,10 @@ Key points:
 - Data mesh got domain ownership right — federated, schema-driven, discoverable
 - But data products describe what happened. Primitives describe what should happen.
 - The Ledger is the natural data product: append-only, structured, queryable, domain-owned
-- Policy, Procedure, Event, Person, Asset = the control plane
+- Policy, Procedure, Trigger, Actor, Asset = the control plane
 - The control plane governs the operation. The data plane is its exhaust.
 - Each function owns its primitives the same way each domain owns its data products
-- Primitives interlock across domains (engineering Event triggers security Procedure)
+- Primitives interlock across domains (engineering Trigger fires security Procedure)
 - AI's role in both planes: control plane (perceive, optimize, propose), data plane (query, detect, model)
 - The quality of the data product depends on the quality of the system that produces it
 - "A Ledger entry from an authored system is useful. A Slack thread is not."

@@ -38,7 +38,7 @@ import Base from '../layouts/Base.astro';
         <g id="node-event" class="node" opacity="0">
           <circle cx="150" cy="100" r="44" fill="#fafaf8" stroke="#1a1a1a" stroke-width="2" />
           <path d="M148,76 L140,100 L150,98 L144,124 L160,94 L149,96 Z" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linejoin="round" />
-          <text x="150" y="158" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Event</text>
+          <text x="150" y="158" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Trigger</text>
         </g>
 
         <!-- Policy node — document with lines -->
@@ -76,7 +76,7 @@ import Base from '../layouts/Base.astro';
           <circle cx="650" cy="388" r="10" fill="none" stroke="#1a1a1a" stroke-width="1.5" />
           <!-- Shoulders -->
           <path d="M634,416 Q634,404 650,404 Q666,404 666,416" fill="none" stroke="#1a1a1a" stroke-width="1.5" />
-          <text x="650" y="458" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Person</text>
+          <text x="650" y="458" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Actor</text>
         </g>
 
         <!-- Extra person nodes for optimization (step 9) — row at y=400 -->
@@ -330,7 +330,7 @@ import Base from '../layouts/Base.astro';
         <div class="step-content">
           <p class="phase-badge">Foundation (No AI Required)</p>
           <h2>1) A trigger enters the system.</h2>
-          <p>Every operation starts with an event. Until that event is classified, nothing reliable can happen next.</p>
+          <p>Every operation starts with a trigger. Until that trigger is classified, nothing reliable can happen next.</p>
           <div class="examples" data-step-examples="1"></div>
         </div>
       </div>
@@ -347,7 +347,7 @@ import Base from '../layouts/Base.astro';
       <div class="step" data-step="3">
         <div class="step-content">
           <p class="phase-badge">Foundation (No AI Required)</p>
-          <h2>3) Work is assigned to a person on a real asset, then recorded.</h2>
+          <h2>3) Work is assigned to an Actor on a real asset, then recorded.</h2>
           <p>Execution without a ledger is memory. Execution with a ledger is an operational system you can inspect.</p>
           <div class="examples" data-step-examples="3"></div>
         </div>
@@ -366,7 +366,7 @@ import Base from '../layouts/Base.astro';
         <div class="step-content ai-step">
           <p class="phase-badge ai">AI Augmentation</p>
           <p class="ai-badge">AI MODE 1 — PERCEPTION</p>
-          <h2>5) AI translates ambiguity into structured events.</h2>
+          <h2>5) AI translates ambiguity into structured triggers.</h2>
           <p>AI turns messy input into fields your policy engine can evaluate: type, severity, location, confidence, and context.</p>
           <div class="examples" data-step-examples="5"></div>
         </div>
@@ -843,7 +843,7 @@ import Base from '../layouts/Base.astro';
         },
         5: {
           structured: 'AI output: issue=cold steak, table=12, time=7:45pm, severity=medium.',
-          outcome: 'Event routed to service recovery workflow with context.',
+          outcome: 'Trigger routed to service recovery workflow with context.',
         },
         6: {
           structured: 'Eligible cooks: 2. AI ranks by station load and current queue.',

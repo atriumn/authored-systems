@@ -15,7 +15,7 @@ Key points:
 - A Confluence page isn't a Policy — it's a document nobody reads
 - A Notion wiki isn't a Ledger — it's a record that can be edited after the fact
 - ServiceNow is the closest — it models workflows — but it doesn't model the six primitives explicitly
-- An ERP (Yardi, AppFolio, SAP) is a system of record — it covers Ledger and Asset, maybe Person. But it doesn't enforce Policy, Procedure, or Event. It records what happened. It doesn't govern what should happen.
+- An ERP (Yardi, AppFolio, SAP) is a system of record — it covers Ledger and Asset, maybe Actor. But it doesn't enforce Policy, Procedure, or Trigger. It records what happened. It doesn't govern what should happen.
 - An ERP gives you a database with screens. An authored system gives you an operating system with gates.
 - An authored system subsumes the ERP — the Ledger and Asset primitives give you the record-keeping, but you also get the enforcement layer an ERP never provides
 - The difference: a tool that stores vs. a system that enforces

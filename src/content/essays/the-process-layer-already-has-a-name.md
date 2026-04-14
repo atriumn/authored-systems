@@ -30,15 +30,15 @@ Process mining shows you the chaos. It doesn't replace it. Discovering your curr
 
 ## The six structures
 
-Every operation — whether it's a four-person gym or a 40,000-person enterprise — decomposes into six primitives: **Policy, Procedure, Asset, Person, Event, Ledger.** This is true of engineering. It's true of product development. It's true of marketing, HR, supply chain, and every other function that's about to have AI agents dropped into it.
+Every operation — whether it's a four-person gym or a 40,000-person enterprise — decomposes into six primitives: **Policy, Procedure, Asset, Actor, Trigger, Ledger.** This is true of engineering. It's true of product development. It's true of marketing, HR, supply chain, and every other function that's about to have AI agents dropped into it.
 
 Take engineering. An SDLC has all six:
 
 - **Policy** — "All PRs require two approvals. No direct pushes to main." Or, in the inferred version: "Senior devs merge their own stuff. We review when we have time."
 - **Procedure** — A deployment runbook with steps, gates, and rollback criteria. Or: "Follow the README. I think it's up to date."
 - **Asset** — Services, repositories, infrastructure components, each with ownership and SLA. Or: a spreadsheet someone started in 2023.
-- **Person** — An on-call rotation with qualifications. "This person can deploy to prod. This person cannot." Or: "Everyone can deploy, but only two people actually do."
-- **Event** — PR opened. Build failed. Alert fired. Incident declared. Or: "Hey, did anyone see that error in prod?"
+- **Actor** — An on-call rotation with qualifications. "This Actor can deploy to prod. This one cannot." The Actor may be a human, a CI/CD system, or a scheduled release bot — all three carry qualifications, availability, and ledger attribution.
+- **Trigger** — PR opened. Build failed. Alert fired. Incident declared. Or: "Hey, did anyone see that error in prod?"
 - **Ledger** — Deploy log, incident postmortem, change record. Or: git blame and a Slack thread from three months ago.
 
 Now do it for product development. The policy is "features require a problem statement before engineering starts" — or it's "the CEO mentioned it in a meeting so I guess we're building it." The procedure is discovery through retro — or it's "we just kind of build it." The ledger is a decision log with experiment results — or it's "I think we tried that last year, it didn't work, but I don't remember why."
@@ -126,7 +126,7 @@ Yes. But that's not a new problem — it's the integration problem every enterpr
 
 Today, integrations move data between tools with no shared model. Zoom recordings go to Gong, Gong tags go to Salesforce, Salesforce fields get exported to a spreadsheet someone emails around. Each tool has its own schema, its own idea of what matters. The integrations exist but they don't compose into anything. They're plumbing without architecture.
 
-In an authored system, every integration produces the same shaped output: a structured primitive. A Zoom adapter doesn't produce "Zoom data." It produces an Event (meeting happened) and a Ledger entry (what was discussed). A GitHub adapter doesn't produce "GitHub data." It produces Events (PR opened, build failed, deploy completed) and Ledger entries (who approved, what changed). The tools are different. The output shape is the same. The adapter is thin. It answers one question: *what happened?*
+In an authored system, every integration produces the same shaped output: a structured primitive. A Zoom adapter doesn't produce "Zoom data." It produces a Trigger (meeting happened) and a Ledger entry (what was discussed). A GitHub adapter doesn't produce "GitHub data." It produces Triggers (PR opened, build failed, deploy completed) and Ledger entries (who approved, what changed). The tools are different. The output shape is the same. The adapter is thin. It answers one question: *what happened?*
 
 The policy engine — which is deterministic rules, not AI — answers a different question: *what should happen next?* Those are different concerns, and separating them is the whole point.
 
@@ -138,6 +138,6 @@ This is also why the "agent" abstraction is expensive. An agent tries to be the 
 
 ## The process layer already has a name
 
-Six primitives. Policy, Procedure, Asset, Person, Event, Ledger. Every operation has them. The question is whether they're authored or inferred.
+Six primitives. Policy, Procedure, Asset, Actor, Trigger, Ledger. Every operation has them. The question is whether they're authored or inferred.
 
 The enterprise world is spending millions on platforms to discover this. A gym owner with a checklist already knows.

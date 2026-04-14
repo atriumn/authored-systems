@@ -71,49 +71,60 @@ import Base from '../layouts/Base.astro';
           <h2 class="text-2xl font-semibold tracking-tight">Asset</h2>
         </div>
         <p class="text-muted leading-relaxed mb-4">
-          The thing being acted on. An asset has state that can be good or not good.
-          Not all assets are physical — some are ephemeral (a party booking, a job, a legal case).
-          They exist for a window, then become historical.
+          The thing being acted on. The test for Asset-hood is simple: <strong class="text-ink">does work happen on this thing, and does it have state we want to track?</strong>
+          If yes, it's an Asset. Not all Assets are physical. Some are ephemeral (a party booking, a job, a legal case). Some are relational
+          (a customer relationship, a vendor contract). Some are purely informational (a brand, a dataset, a configuration).
+          They may exist for a window, then become historical.
         </p>
         <div class="text-sm text-muted space-y-1">
-          <p>A water heater. A property. An emergency room patient. A SaaS subscription. A consulting engagement.</p>
+          <p>A water heater. A property. An emergency room patient. A SaaS subscription. A consulting engagement. A brand guideline. A production dataset.</p>
         </div>
       </section>
 
-      <section id="person">
+      <section id="actor">
         <div class="flex items-baseline gap-3 mb-3">
-          <span class="font-mono text-accent text-xs px-2 py-0.5 border border-accent/30 rounded">Pe</span>
-          <h2 class="text-2xl font-semibold tracking-tight">Person</h2>
+          <span class="font-mono text-accent text-xs px-2 py-0.5 border border-accent/30 rounded">Ac</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Actor</h2>
         </div>
         <p class="text-muted leading-relaxed mb-4">
-          Who does the work. Three roles always emerge: the person doing it, the person overseeing it, the person paying for it.
-          A person carries two dimensions: <strong class="text-ink">availability</strong> (when they can work) and <strong class="text-ink">qualifications</strong> (what they can do).
+          Who — or what — does the work. An Actor is any entity that can be delegated to, holds
+          <strong class="text-ink">qualifications</strong>, has <strong class="text-ink">availability</strong>, and is
+          <strong class="text-ink">attributed in the ledger</strong>. The biological test is not the test. The operational test is.
+        </p>
+        <p class="text-muted leading-relaxed mb-4">
+          Humans are Actors. So are non-human Actors: software agents, lab systems, kitchen lines, channel sessions, automated dispensers.
+          If an entity holds capabilities, can accept or refuse work, and writes to the ledger as <code class="text-ink">applied_by</code>, it's an Actor.
+          If not, it's infrastructure, a Trigger, or a side-effect — not an Actor.
+        </p>
+        <p class="text-muted leading-relaxed mb-4">
+          Three role archetypes recur: the Actor doing the work, the <strong class="text-ink">Supervisor</strong> accountable for it, and the Customer it's done for.
         </p>
         <div class="text-sm border border-rule rounded-lg overflow-hidden">
           <table class="w-full">
             <thead><tr class="border-b border-rule bg-paper">
               <th class="text-left px-4 py-2 font-mono text-xs text-muted">Context</th>
               <th class="text-left px-4 py-2 font-mono text-xs text-muted">Doer</th>
-              <th class="text-left px-4 py-2 font-mono text-xs text-muted">Overseer</th>
+              <th class="text-left px-4 py-2 font-mono text-xs text-muted">Supervisor</th>
               <th class="text-left px-4 py-2 font-mono text-xs text-muted">Customer</th>
             </tr></thead>
             <tbody class="text-muted">
               <tr class="border-b border-rule"><td class="px-4 py-2">Property</td><td class="px-4 py-2">Steward</td><td class="px-4 py-2">Manager</td><td class="px-4 py-2">Homeowner</td></tr>
               <tr class="border-b border-rule"><td class="px-4 py-2">ER</td><td class="px-4 py-2">Clinician</td><td class="px-4 py-2">Charge Nurse</td><td class="px-4 py-2">Patient</td></tr>
+              <tr class="border-b border-rule"><td class="px-4 py-2">Pharmacy</td><td class="px-4 py-2">Dispenser (system)</td><td class="px-4 py-2">Pharmacist</td><td class="px-4 py-2">Patient</td></tr>
               <tr><td class="px-4 py-2">Lawn Care</td><td class="px-4 py-2">Provider</td><td class="px-4 py-2">Platform Ops</td><td class="px-4 py-2">Homeowner</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <section id="event">
+      <section id="trigger">
         <div class="flex items-baseline gap-3 mb-3">
-          <span class="font-mono text-accent text-xs px-2 py-0.5 border border-accent/30 rounded">E</span>
-          <h2 class="text-2xl font-semibold tracking-tight">Event</h2>
+          <span class="font-mono text-accent text-xs px-2 py-0.5 border border-accent/30 rounded">T</span>
+          <h2 class="text-2xl font-semibold tracking-tight">Trigger</h2>
         </div>
         <p class="text-muted leading-relaxed mb-4">
-          The trigger. What causes work to happen. Events don't just trigger individual procedures — they trigger
-          <strong class="text-ink">chains</strong> of work. Event + Policy together are the operational brain.
+          What causes work to happen. Triggers don't just start individual procedures — they start
+          <strong class="text-ink">chains</strong> of work. Trigger + Policy together are the operational brain.
         </p>
         <div class="text-sm text-muted space-y-2">
           <p><strong class="text-ink">Scheduled</strong> — Monday 8am. Quarterly. 30 minutes before close.</p>
@@ -139,18 +150,13 @@ import Base from '../layouts/Base.astro';
       </section>
     </div>
 
-    <!-- What does "authored" mean? -->
-    <div class="mt-16 pt-16 border-t border-rule">
-      <h2 class="text-xl font-semibold tracking-tight mb-4">What does "authored" mean?</h2>
+    <!-- Additional glossary entries -->
+    <div id="authored" class="mt-16 pt-16 border-t border-rule">
+      <h2 class="text-xl font-semibold tracking-tight mb-4">Authored</h2>
       <p class="text-muted leading-relaxed mb-4">
-        An operation is <strong class="text-ink">authored</strong> when its rules, steps, people, things, triggers, and records
+        An operation is <strong class="text-ink">authored</strong> when its rules, steps, things, Actors, triggers, and records
         are made explicit — written down by humans, named, and enforced by the system. Not guessed at. Not carried in someone's head.
         Not inferred from behavior after the fact.
-      </p>
-      <p class="text-muted leading-relaxed mb-4">
-        The opposite of authored is <strong class="text-ink">inferred</strong>: policies that exist only because a senior person
-        "just knows," procedures that vary by who's on shift, records that depend on someone remembering to write things down.
-        Inferred operations work — until the person who holds the knowledge leaves, or scales, or makes a mistake.
       </p>
       <p class="text-muted leading-relaxed">
         The act of authoring is making the implicit explicit. Your operation already has all six primitives.
@@ -158,17 +164,66 @@ import Base from '../layouts/Base.astro';
       </p>
     </div>
 
+    <div id="inferred" class="mt-16 pt-16 border-t border-rule">
+      <h2 class="text-xl font-semibold tracking-tight mb-4">Inferred</h2>
+      <p class="text-muted leading-relaxed mb-4">
+        The opposite of authored. An <strong class="text-ink">inferred</strong> operation runs on policies that exist only because a senior person
+        "just knows," procedures that vary by who's on shift, and records that depend on someone remembering to write things down.
+      </p>
+      <p class="text-muted leading-relaxed">
+        Inferred operations work — until the person who holds the knowledge leaves, scales, or makes a mistake.
+        Inferred systems also break under AI: a model trained on inferred behavior learns the habits, not the rules.
+      </p>
+    </div>
+
+    <div id="qualifications" class="mt-16 pt-16 border-t border-rule">
+      <h2 class="text-xl font-semibold tracking-tight mb-4">Qualifications</h2>
+      <p class="text-muted leading-relaxed mb-4">
+        The capabilities or authorizations an Actor holds that gate what work can be assigned to it.
+        A human's qualifications are certifications, training, clearances, licenses. A system's qualifications are
+        the drugs a dispenser can release, the assays a lab machine can run, the models a service can invoke, the
+        queries a channel session can answer.
+      </p>
+      <p class="text-muted leading-relaxed">
+        Qualifications answer: <em>"is this Actor allowed to do this work?"</em> If the answer isn't explicit, assignment is guessing.
+      </p>
+    </div>
+
+    <div id="availability" class="mt-16 pt-16 border-t border-rule">
+      <h2 class="text-xl font-semibold tracking-tight mb-4">Availability</h2>
+      <p class="text-muted leading-relaxed mb-4">
+        The state that lets an Actor accept or refuse work right now. For humans: schedule, capacity, on-call status,
+        time off. For systems: uptime, maintenance windows, rate limits, queue depth.
+      </p>
+      <p class="text-muted leading-relaxed">
+        Availability is the live counterpart to Qualifications. Qualifications are <em>can</em>. Availability is <em>now</em>.
+        Assignment without availability is wishful thinking.
+      </p>
+    </div>
+
+    <div id="kill-switch-test" class="mt-16 pt-16 border-t border-rule">
+      <h2 class="text-xl font-semibold tracking-tight mb-4">Kill Switch Test</h2>
+      <p class="text-muted leading-relaxed mb-4">
+        A diagnostic from Principle 9. <em>"What happens if you turn off the AI?"</em> If your operation stops, the AI isn't
+        assisting your operation — it <strong class="text-ink">is</strong> your operation, and you've built a dependency, not a system.
+      </p>
+      <p class="text-muted leading-relaxed">
+        An authored system passes the Kill Switch Test: Policies, Procedures, Assets, Actors, Triggers, and the Ledger
+        remain intact and operable when the perception layer is off. AI adds speed. It is not the foundation.
+      </p>
+    </div>
+
     <!-- The Flow -->
     <div class="mt-16 pt-16 border-t border-rule">
       <h2 class="text-xl font-semibold tracking-tight mb-6">The Flow</h2>
-      <pre class="bg-ink text-rule rounded-lg p-6 text-sm font-mono leading-relaxed overflow-x-auto"><code>Events signal that something happened (or should happen).
+      <pre class="bg-ink text-rule rounded-lg p-6 text-sm font-mono leading-relaxed overflow-x-auto"><code>Triggers signal that something happened (or should happen).
 Policies decide what to do about it.
 Procedures define the work and execute the steps.
-People do the work, on Assets.
+Actors do the work, on Assets.
 The Ledger records everything.
 The Ledger feeds back into Policy decisions.</code></pre>
       <p class="text-sm text-muted mt-4">
-        This is not a linear pipeline. It's a loop. Events fire. Policies evaluate constraints.
+        This is not a linear pipeline. It's a loop. Triggers fire. Policies evaluate constraints.
         The engine runs procedures. The ledger records outcomes. Those outcomes feed back into future policy decisions.
       </p>
     </div>
