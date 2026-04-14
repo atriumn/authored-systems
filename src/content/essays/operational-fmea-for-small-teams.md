@@ -2,7 +2,7 @@
 title: "Operational FMEA for Small Teams"
 subtitle: "Most teams already have failure modes. The win is making them explicit before an incident does it for you."
 date: "2026-03-08"
-description: "A practical way to run FMEA on everyday operations using six primitives: Policy, Procedure, Asset, Person, Event, Ledger."
+description: "A practical way to run FMEA on everyday operations using six primitives: Policy, Procedure, Asset, Actor, Trigger, Ledger."
 order: 5
 series: "The Foundations"
 draft: true
@@ -34,10 +34,10 @@ Classic FMEA scores severity, occurrence, and detection, then prioritizes action
 
 If your team is using the six-primitives model, FMEA becomes easier to run consistently.
 
-- `Asset` and `Event` define where and when a failure can occur
+- `Asset` and `Trigger` define where and when a failure can occur
 - `Procedure` defines the step that can fail
 - `Policy` defines control limits and mitigations
-- `Person` defines accountability for prevention and detection
+- `Actor` defines accountability for prevention and detection
 - `Ledger` captures evidence, trend lines, and follow-through
 
 This mapping keeps FMEA from drifting into abstract brainstorming. Every failure mode must anchor to concrete system elements.

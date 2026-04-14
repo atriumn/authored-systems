@@ -9,7 +9,7 @@ series: "The Foundations"
 
 ## The Objection
 
-If you've read [Agents Are the Wrong Abstraction](/essays/agents-are-the-wrong-abstraction), you already know the claim: every operation decomposes into six primitives: Policy, Procedure, Asset, Person, Event, Ledger. Take the agent apart and those are the pieces you find.
+If you've read [Agents Are the Wrong Abstraction](/essays/agents-are-the-wrong-abstraction), you already know the claim: every operation decomposes into six primitives: Policy, Procedure, Asset, Actor, Trigger, Ledger. Take the agent apart and those are the pieces you find.
 
 The obvious objection comes within five minutes. Every technical person asks it:
 

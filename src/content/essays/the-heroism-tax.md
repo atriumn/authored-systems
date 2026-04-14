@@ -50,11 +50,11 @@ An authored system names the six things every operation already has:
 - **Policy**: the rule. Written, inspectable, enforceable. Not "everyone knows we don't deploy on Fridays."
 - **Procedure**: the steps the best operator follows on Tuesday morning, written as gates. Not the SOP from 2019 that nobody reads.
 - **Asset**: the thing being acted on, with state and history.
-- **Person**: the qualified actor. Someone with specific qualifications, capacity, and availability.
-- **Event**: the trigger that activates a specific policy.
+- **Actor**: the qualified doer — human or non-human. An entity with specific qualifications, capacity, and availability, attributed in the ledger.
+- **Trigger**: what activates a specific policy.
 - **Ledger**: structured records that answer "was this done, when, by whom, and what did they find?"
 
-In an authored system, these aren't just words. They're gates. The procedure can't start unless the person has the right policy clearance and the event has been classified. The ledger is written as the work happens, not reconstructed from memory at the end of the day.
+In an authored system, these aren't just words. They're gates. The procedure can't start unless the Actor has the right policy clearance and the trigger has been classified. The ledger is written as the work happens, not reconstructed from memory at the end of the day.
 
 ---
 

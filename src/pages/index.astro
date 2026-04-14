@@ -69,12 +69,12 @@ import Base from '../layouts/Base.astro';
           <p class="text-sm text-muted">The thing being acted on.</p>
         </div>
         <div>
-          <div class="font-semibold text-ink mb-1">Person</div>
-          <div class="text-sm text-muted">The qualified actor.</div>
+          <div class="font-semibold text-ink mb-1">Actor</div>
+          <div class="text-sm text-muted">The qualified doer — human or not.</div>
         </div>
         <div>
-          <div class="font-semibold text-ink mb-1">Event</div>
-          <div class="text-sm text-muted">The trigger that starts work.</div>
+          <div class="font-semibold text-ink mb-1">Trigger</div>
+          <div class="text-sm text-muted">What causes work to happen.</div>
         </div>
         <div>
           <div class="font-semibold text-ink mb-1">Ledger</div>
@@ -128,9 +128,9 @@ import Base from '../layouts/Base.astro';
       <h2 class="text-sm font-mono text-accent uppercase tracking-widest mb-12">Ten Principles</h2>
       <div class="space-y-12">
         {[
-          ["Six primitives. Always six.", "Every operation decomposes into Policy, Procedure, Asset, Person, Event, and Ledger. Nothing else is required. Nothing can be removed."],
-          ["'Agent' is a noun that hides verbs.", "When you call it an 'Agent', you stop asking what it actually does. Take it apart and you will find the same six bricks every time."],
-          ["AI perceives. Humans author.", "AI operates at the edges, turning messy reality into structured data. But the rules it follows must be human-written and human-changeable."],
+          ["Six primitives. Always six.", "Every operation decomposes into Policy, Procedure, Asset, Actor, Trigger, and Ledger. Nothing else is required. Nothing can be removed."],
+          ["'Agent' is a noun that hides verbs.", "We don't talk about agents — nouns that hide verbs. We talk about Actors — primitives with qualifications, availability, and ledger attribution. Take any 'agent' apart and you will find the same six bricks every time."],
+          ["AI perceives. Humans author. Actors execute.", "AI operates at the edges, turning messy reality into structured data. Humans author the rules. Actors — human or non-human — execute the work. The authoring is human. The execution primitive is broader."],
           ["The policy is the asset.", "Models are interchangeable commodities. Your specific rules for how you run your business are the only thing that adds unique value."],
           ["Architecture handles hallucinations.", "Hallucinations are a property of models. Authored systems make them classification errors—caught at the next gate, corrected, and logged."],
           ["Accountability requires structure.", "Trust breaks when you can't explain why a decision was made. Every automated action must trace back to a human-authored policy."],

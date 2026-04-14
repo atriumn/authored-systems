@@ -77,10 +77,10 @@ import Base from '../layouts/Base.astro';
 
         <div class="grid grid-cols-1 gap-2">
           {[
-            { name: 'Event', hint: 'What triggers the work?' },
+            { name: 'Trigger', hint: 'What causes the work?' },
             { name: 'Policy', hint: 'What are the rules?' },
             { name: 'Procedure', hint: 'What are the steps?' },
-            { name: 'Person', hint: 'Who does the work?' },
+            { name: 'Actor', hint: 'Who — or what — does the work?' },
             { name: 'Asset', hint: 'What\'s being acted on?' },
             { name: 'Ledger', hint: 'What\'s the proof?' },
           ].map((p) => (
@@ -154,10 +154,10 @@ import Base from '../layouts/Base.astro';
     let animationController: AbortController | null = null;
 
     const primitives: Record<string, { active: boolean; content: string }> = {
-      event: { active: false, content: '' },
+      trigger: { active: false, content: '' },
       policy: { active: false, content: '' },
       procedure: { active: false, content: '' },
-      person: { active: false, content: '' },
+      actor: { active: false, content: '' },
       asset: { active: false, content: '' },
       ledger: { active: false, content: '' },
     };
@@ -190,9 +190,9 @@ import Base from '../layouts/Base.astro';
         industry: 'Gym',
         steps: [
           { type: 'message', role: 'user', text: "We run a small gym. Derek opens at 5am every day — he walks the floor, checks every piece of equipment, wipes things down. If something's broken, he figures out what to do.", delay: 2500 },
-          { type: 'message', role: 'architect', text: "Derek's morning walk is your Event — a recurring trigger that starts the operation. And Derek himself is the Person. Is there a written checklist he follows, or does he just know what to check?", delay: 3500 },
-          { type: 'primitive', key: 'event', content: '5am floor walk — recurring daily trigger', delay: 800 },
-          { type: 'primitive', key: 'person', content: 'Derek — primary operator, sole opener', delay: 600 },
+          { type: 'message', role: 'architect', text: "Derek's morning walk is your Trigger — a recurring signal that starts the operation. And Derek himself is the Actor. Is there a written checklist he follows, or does he just know what to check?", delay: 3500 },
+          { type: 'primitive', key: 'trigger', content: '5am floor walk — recurring daily trigger', delay: 800 },
+          { type: 'primitive', key: 'actor', content: 'Derek — primary operator, sole opener', delay: 600 },
           { type: 'message', role: 'user', text: "No checklist. He's been here three years, he just knows. If a cable is fraying he'll pull the machine out of rotation and text me.", delay: 3500 },
           { type: 'message', role: 'architect', text: "That's the gap. You have a Procedure, but it's in Derek's head — it's a habit, not a gate. And the Policy for \"what counts as broken enough to pull\" is entirely his judgment. What happens when Derek takes a vacation?", delay: 4000 },
           { type: 'primitive', key: 'procedure', content: "Implicit — equipment inspection (unwritten, habit-based)", delay: 800 },
@@ -218,12 +218,12 @@ import Base from '../layouts/Base.astro';
         industry: 'SaaS Support',
         steps: [
           { type: 'message', role: 'user', text: "We're a B2B SaaS company, about 40 people. When a bug report comes in, support triages it. If it's bad enough, they escalate to engineering. But the handoff is messy.", delay: 2500 },
-          { type: 'message', role: 'architect', text: "The bug report arriving is your Event. Support doing triage is a Procedure. Who decides what \"bad enough\" means?", delay: 3500 },
-          { type: 'primitive', key: 'event', content: 'Bug report submitted — inbound trigger', delay: 800 },
+          { type: 'message', role: 'architect', text: "The bug report arriving is your Trigger. Support doing triage is a Procedure. Who decides what \"bad enough\" means?", delay: 3500 },
+          { type: 'primitive', key: 'trigger', content: 'Bug report submitted — inbound trigger', delay: 800 },
           { type: 'primitive', key: 'procedure', content: 'Support triage — initial classification', delay: 600 },
           { type: 'message', role: 'user', text: "It's kind of informal. Our senior support person, Amara, just knows which bugs are serious. She'll ping a Slack channel and tag an engineer. Sometimes it takes hours for someone to pick it up.", delay: 3500 },
-          { type: 'message', role: 'architect', text: "Amara is your Person, and she's carrying an implicit Policy — \"senior people handle hard stuff\" isn't a rule anyone can follow if Amara is out sick. The Slack channel is your Ledger, and it's lossy. What's the Asset here — the customer account, or the product?", delay: 4000 },
-          { type: 'primitive', key: 'person', content: 'Amara — senior support, sole escalation authority', delay: 800 },
+          { type: 'message', role: 'architect', text: "Amara is your Actor, and she's carrying an implicit Policy — \"senior people handle hard stuff\" isn't a rule anyone can follow if Amara is out sick. The Slack channel is your Ledger, and it's lossy. What's the Asset here — the customer account, or the product?", delay: 4000 },
+          { type: 'primitive', key: 'actor', content: 'Amara — senior support, sole escalation authority', delay: 800 },
           { type: 'primitive', key: 'policy', content: "Implicit — escalation threshold lives in Amara's judgment", delay: 600 },
           { type: 'message', role: 'user', text: "The customer account, I guess. We've lost two mid-tier customers this quarter because escalations took too long and they felt ignored.", delay: 3500 },
           { type: 'message', role: 'architect', text: "That confirms it. Your Asset is the customer relationship, and it's degrading because the Ledger — Slack threads — can't enforce time-to-response. Nobody tracks whether an escalation was picked up in 10 minutes or 10 hours.", delay: 4000 },
@@ -234,7 +234,7 @@ import Base from '../layouts/Base.astro';
         aiOpportunity: {
           title: 'Where AI fits in this operation',
           items: [
-            { verb: 'Perceive', text: "AI classifies incoming bug reports — turning unstructured text into a structured Event with severity, component, and affected customer tier." },
+            { verb: 'Perceive', text: "AI classifies incoming bug reports — turning unstructured text into a structured Trigger with severity, component, and affected customer tier." },
             { verb: 'Enforce', text: "Escalation rules become a gate, not a judgment call. Policy says P1 bugs get an engineer within 15 minutes — the system enforces it." },
             { verb: 'Detect', text: "Ledger analysis reveals that support over-classifies severity 30% of the time. The Policy can be tuned with data, not instinct." },
           ],
@@ -246,12 +246,12 @@ import Base from '../layouts/Base.astro';
         industry: 'Construction',
         steps: [
           { type: 'message', role: 'user', text: "I run a mid-size general contractor. Every morning, the site super does a safety walk before work starts. They check PPE, scaffolding, trenching — the usual. Sometimes they fill out the inspection form, sometimes they don't.", delay: 2500 },
-          { type: 'message', role: 'architect', text: "The morning safety walk is your Event, and you have an existing Procedure — that inspection form. The fact that it \"sometimes\" gets filled out tells me the Ledger is your weak point. Who is responsible?", delay: 3500 },
-          { type: 'primitive', key: 'event', content: 'Morning safety walk — daily pre-work trigger', delay: 800 },
+          { type: 'message', role: 'architect', text: "The morning safety walk is your Trigger, and you have an existing Procedure — that inspection form. The fact that it \"sometimes\" gets filled out tells me the Ledger is your weak point. Who is responsible?", delay: 3500 },
+          { type: 'primitive', key: 'trigger', content: 'Morning safety walk — daily pre-work trigger', delay: 800 },
           { type: 'primitive', key: 'procedure', content: 'Safety inspection checklist — exists but inconsistently followed', delay: 600 },
           { type: 'message', role: 'user', text: "The site superintendent. We have four supers across different sites. Some are diligent, some aren't. Even when they fill out the form, it's usually after the fact — they do the walk, then fill it out from memory at lunch.", delay: 3500 },
-          { type: 'message', role: 'architect', text: "Four Persons, same Procedure, different compliance. And the Ledger is fiction — if it's filled out from memory at lunch, it's a narrative, not a record. What's the Policy that mandates this? Internal, or regulatory?", delay: 4000 },
-          { type: 'primitive', key: 'person', content: '4 site superintendents — variable compliance across sites', delay: 800 },
+          { type: 'message', role: 'architect', text: "Four Actors, same Procedure, different compliance. And the Ledger is fiction — if it's filled out from memory at lunch, it's a narrative, not a record. What's the Policy that mandates this? Internal, or regulatory?", delay: 4000 },
+          { type: 'primitive', key: 'actor', content: '4 site superintendents — variable compliance across sites', delay: 800 },
           { type: 'primitive', key: 'ledger', content: 'Paper forms — filled retroactively from memory, unreliable', delay: 600 },
           { type: 'message', role: 'user', text: "OSHA requires it. We've been lucky in audits, but our insurance company started asking for digital records and we have nothing to give them.", delay: 3500 },
           { type: 'message', role: 'architect', text: "So the Policy is regulatory — OSHA mandates it, your insurance requires proof. The Asset is the job site itself. You have every primitive, but the Ledger is the single point of failure. When it's filled in from memory, you don't have a record — you have a story.", delay: 4000 },
